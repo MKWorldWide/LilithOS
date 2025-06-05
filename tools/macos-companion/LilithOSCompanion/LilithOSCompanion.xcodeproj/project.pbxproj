@@ -1,0 +1,122 @@
+// !$*UTF8*$!
+{
+  archiveVersion = 1;
+  classes = {};
+  objectVersion = 55;
+  objects = {
+
+/* Begin PBXBuildFile section */
+    1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2 /* ContentView.swift */; };
+    3 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4 /* CameraView.swift */; };
+    5 /* RitualViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6 /* RitualViewModel.swift */; };
+    7 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8 /* Config.swift */; };
+    9 /* LilithOSCompanionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10 /* LilithOSCompanionApp.swift */; };
+    11 /* HandTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12 /* HandTrackingManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+    2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; };
+    4 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; };
+    6 /* RitualViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RitualViewModel.swift; };
+    8 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; };
+    10 /* LilithOSCompanionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LilithOSCompanionApp.swift; };
+    12 /* HandTrackingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandTrackingManager.swift; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+    13 = {
+      isa = PBXGroup;
+      children = (
+        2 /* ContentView.swift */,
+        4 /* CameraView.swift */,
+        6 /* RitualViewModel.swift */,
+        8 /* Config.swift */,
+        10 /* LilithOSCompanionApp.swift */,
+        12 /* HandTrackingManager.swift */,
+      );
+      sourceTree = "<group>";
+    };
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+    14 = {
+      isa = PBXNativeTarget;
+      buildConfigurationList = 15;
+      buildPhases = (
+        16,
+      );
+      buildRules = ( );
+      dependencies = ( );
+      name = LilithOSCompanion;
+      productName = LilithOSCompanion;
+      productType = "com.apple.product-type.application";
+    };
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+    17 = {
+      isa = PBXProject;
+      buildConfigurationList = 18;
+      compatibilityVersion = "Xcode 12.0";
+      mainGroup = 13;
+      targets = ( 14 );
+    };
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+    16 = {
+      isa = PBXSourcesBuildPhase;
+      buildActionMask = 2147483647;
+      files = (
+        1 /* ContentView.swift in Sources */,
+        3 /* CameraView.swift in Sources */,
+        5 /* RitualViewModel.swift in Sources */,
+        7 /* Config.swift in Sources */,
+        9 /* LilithOSCompanionApp.swift in Sources */,
+        11 /* HandTrackingManager.swift in Sources */,
+      );
+      runOnlyForDeploymentPostprocessing = 0;
+    };
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+    19 = {
+      isa = XCBuildConfiguration;
+      buildSettings = {
+        PRODUCT_NAME = LilithOSCompanion;
+        SWIFT_VERSION = 5.0;
+        MACOSX_DEPLOYMENT_TARGET = 13.0;
+        INFOPLIST_FILE = Info.plist;
+      };
+      name = Debug;
+    };
+    20 = {
+      isa = XCBuildConfiguration;
+      buildSettings = {
+        PRODUCT_NAME = LilithOSCompanion;
+        SWIFT_VERSION = 5.0;
+        MACOSX_DEPLOYMENT_TARGET = 13.0;
+        INFOPLIST_FILE = Info.plist;
+      };
+      name = Release;
+    };
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+    15 = {
+      isa = XCConfigurationList;
+      buildConfigurations = ( 19, 20 );
+      defaultConfigurationIsVisible = 0;
+      defaultConfigurationName = Debug;
+    };
+    18 = {
+      isa = XCConfigurationList;
+      buildConfigurations = ( 19, 20 );
+      defaultConfigurationIsVisible = 0;
+      defaultConfigurationName = Debug;
+    };
+/* End XCConfigurationList section */
+
+  };
+  rootObject = 17;
+} 

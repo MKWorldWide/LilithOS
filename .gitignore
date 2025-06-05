@@ -1,0 +1,42 @@
+# Build artifacts
+build/
+dist/
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Project specific
+*.log
+*.spec
+*.dmg
+*.app
+*.deb
+*.rpm
+*.iso
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# System files
+.DS_Store
+Thumbs.db 

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>SystemVersion</key>
+    <dict>
+        <key>ProductBuildVersion</key>
+        <string>13G37</string>
+        <key>ProductCopyright</key>
+        <string>Copyright © 2024 LilithOS. All rights reserved.</string>
+        <key>ProductName</key>
+        <string>LilithOS</string>
+        <key>ProductVersion</key>
+        <string>9.3.6</string>
+    </dict>
+    <key>SystemModifications</key>
+    <dict>
+        <key>BootAnimation</key>
+        <dict>
+            <key>Enabled</key>
+            <true/>
+            <key>AnimationFile</key>
+            <string>/System/Library/CoreServices/boot_animation.gif</string>
+            <key>ConfigurationFile</key>
+            <string>/System/Library/CoreServices/BootAnimation.plist</string>
+        </dict>
+        <key>Security</key>
+        <dict>
+            <key>EnhancedProtection</key>
+            <true/>
+            <key>CustomCertificates</key>
+            <array>
+                <string>/System/Library/LaunchDaemons/com.lilithos.security.plist</string>
+            </array>
+        </dict>
+        <key>Kernel</key>
+        <dict>
+            <key>Patches</key>
+            <array>
+                <string>/System/Library/LaunchDaemons/com.lilithos.kernel.plist</string>
+            </array>
+        </dict>
+    </dict>
+</dict>
+</plist> 
