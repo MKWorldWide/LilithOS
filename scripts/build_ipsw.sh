@@ -42,13 +42,48 @@ check_requirements() {
         pip3 install Pillow imageio
     fi
     
-    # Check for other required tools
-    for tool in "unzip" "zip" "plutil" "idevicerestore"; do
+    # Check for Homebrew
+    if ! command -v brew &> /dev/null; then
+        print_error "Homebrew not found. Please install Homebrew first."
+        exit 1
+    fi
+    
+    # Check and install required tools
+    local tools=(
+        "unzip"
+        "zip"
+        "plutil"
+        "idevicerestore"
+        "libimobiledevice"
+        "libusbmuxd"
+        "libplist"
+        "libimobiledevice-glue"
+    )
+    
+    for tool in "${tools[@]}"; do
         if ! command -v $tool &> /dev/null; then
-            print_error "$tool not found. Please install required tools."
-            exit 1
+            print_warning "$tool not found. Attempting to install..."
+            case $tool in
+                "idevicerestore")
+                    brew install --HEAD libimobiledevice
+                    ;;
+                "libimobiledevice"|"libusbmuxd"|"libplist"|"libimobiledevice-glue")
+                    brew install --HEAD $tool
+                    ;;
+                *)
+                    brew install $tool
+                    ;;
+            esac
+            
+            # Verify installation
+            if ! command -v $tool &> /dev/null; then
+                print_error "Failed to install $tool. Please install manually."
+                exit 1
+            fi
         fi
     done
+    
+    print_status "All requirements satisfied."
 }
 
 # Create necessary directories

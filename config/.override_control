@@ -1,6 +1,6 @@
 # LilithOS Override Control
-# Last updated: Fri Jun  6 09:26:03 EDT 2025
-# This file controls integration and override settings for /Users/sovereign/Library/Mobile Documents/com~apple~CloudDocs/Projects/LilithOS/scripts
+# Last updated: Fri Jun  6 09:26:04 EDT 2025
+# This file controls integration and override settings for /Users/sovereign/Library/Mobile Documents/com~apple~CloudDocs/Projects/LilithOS/config
 
 # Integration Settings
 INTEGRATION_ENABLED=true
@@ -16,8 +16,8 @@ IGNORE_CONFLICTS=false
 CUSTOM_SETTINGS={}
 
 # Directory Type
-DIRECTORY_TYPE="scripts"
+DIRECTORY_TYPE="config"
 
 # Integration Status
-LAST_SYNC="Fri Jun  6 10:26:37 EDT 2025"
+LAST_SYNC="Fri Jun  6 10:26:39 EDT 2025"
 SYNC_STATUS="active"
