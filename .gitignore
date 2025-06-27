@@ -39,4 +39,21 @@ ENV/
 
 # System files
 .DS_Store
-Thumbs.db 
+Thumbs.db
+
+# Xcode specific
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcworkspace/xcuserdata/
+
+# Build logs and artifacts
+build_ipsw.log
+build.log
+
+# Python packaging
+pyinstaller.spec
+
+# Documentation session files (optional - uncomment to exclude)
+# @memories.md
+# @lessons-learned.md
+# @scratchpad.md 
