@@ -1,15 +1,21 @@
 import SwiftUI
 
-struct HomeView: View {
+public struct HomeView: View {
   @State private var selectedTab: Tab = .dreams
   @State private var isBreathing = false
   @State private var scale: CGFloat = 1.0
+  @State private var showingDreams = false
+  @State private var showingFlow = false
+  @State private var showingSoul = false
+  @State private var showingQuantum = false
   
-  enum Tab {
+  public enum Tab {
     case dreams, flow, soul, quantum
   }
   
-  var body: some View {
+  public init() {}
+  
+  public var body: some View {
     ZStack {
       // Ethereal background
       LinearGradient(
@@ -58,52 +64,50 @@ struct HomeView: View {
         HStack(spacing: 40) {
           NavigationButton(title: "Dreams", isSelected: selectedTab == .dreams) {
             selectedTab = .dreams
+            showingDreams = true
           }
           NavigationButton(title: "Flow", isSelected: selectedTab == .flow) {
             selectedTab = .flow
+            showingFlow = true
           }
           NavigationButton(title: "Soul", isSelected: selectedTab == .soul) {
             selectedTab = .soul
+            showingSoul = true
           }
           NavigationButton(title: "Quantum", isSelected: selectedTab == .quantum) {
             selectedTab = .quantum
+            showingQuantum = true
           }
         }
       }
     }
-    .fullScreenCover(isPresented: Binding(
-      get: { selectedTab == .dreams },
-      set: { if !$0 { selectedTab = .flow } }
-    )) {
+    .sheet(isPresented: $showingDreams) {
       DreamsView()
     }
-    .fullScreenCover(isPresented: Binding(
-      get: { selectedTab == .flow },
-      set: { if !$0 { selectedTab = .soul } }
-    )) {
+    .sheet(isPresented: $showingFlow) {
       FlowView()
     }
-    .fullScreenCover(isPresented: Binding(
-      get: { selectedTab == .soul },
-      set: { if !$0 { selectedTab = .quantum } }
-    )) {
+    .sheet(isPresented: $showingSoul) {
       SoulView()
     }
-    .fullScreenCover(isPresented: Binding(
-      get: { selectedTab == .quantum },
-      set: { if !$0 { selectedTab = .dreams } }
-    )) {
+    .sheet(isPresented: $showingQuantum) {
       QuantumView()
     }
   }
 }
 
-struct NavigationButton: View {
+public struct NavigationButton: View {
   let title: String
   let isSelected: Bool
   let action: () -> Void
   
-  var body: some View {
+  public init(title: String, isSelected: Bool, action: @escaping () -> Void) {
+    self.title = title
+    self.isSelected = isSelected
+    self.action = action
+  }
+  
+  public var body: some View {
     Button(action: action) {
       Text(title)
         .font(.system(size: 20, weight: .medium, design: .serif))

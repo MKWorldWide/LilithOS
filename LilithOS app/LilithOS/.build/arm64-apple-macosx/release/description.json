@@ -1,0 +1,578 @@
+{
+  "builtTestProducts" : [
+
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.LilithOS-arm64-apple-macosx15.0-release.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/sources",
+      "importPath" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Models/CelestialTracker.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Models/QuantumNode.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Utils/Color+Hex.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Utils/Secrets.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Utils/StarfieldView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Views/DreamsView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Views/FlowView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Views/HomeView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Views/QuantumView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Views/SoulView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "LilithOS",
+      "moduleOutputPath" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/Modules/LilithOS.swiftmodule",
+      "objects" : [
+        "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/CelestialTracker.swift.o",
+        "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/QuantumNode.swift.o",
+        "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/Color+Hex.swift.o",
+        "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/Secrets.swift.o",
+        "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/StarfieldView.swift.o",
+        "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/DreamsView.swift.o",
+        "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/FlowView.swift.o",
+        "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/HomeView.swift.o",
+        "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/QuantumView.swift.o",
+        "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/SoulView.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-O",
+        "-j8",
+        "-DSWIFT_PACKAGE",
+        "-module-cache-path",
+        "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/LilithOS-Swift.h",
+        "-color-diagnostics",
+        "-swift-version",
+        "5",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "lilithos"
+      ],
+      "outputFileMapPath" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/CelestialTracker.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/QuantumNode.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/Color+Hex.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/Secrets.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/StarfieldView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/DreamsView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/FlowView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/HomeView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/QuantumView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/SoulView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/Modules/LilithOS.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Models/CelestialTracker.swift",
+        "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Models/QuantumNode.swift",
+        "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Utils/Color+Hex.swift",
+        "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Utils/Secrets.swift",
+        "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Utils/StarfieldView.swift",
+        "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Views/DreamsView.swift",
+        "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Views/FlowView.swift",
+        "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Views/HomeView.swift",
+        "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Views/QuantumView.swift",
+        "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Views/SoulView.swift"
+      ],
+      "tempsPath" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build",
+      "wholeModuleOptimization" : true
+    },
+    "C.LilithOSApp-arm64-apple-macosx15.0-release.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOSApp.build/sources",
+      "importPath" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/App/LilithOSApp.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/Modules/LilithOS.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOSApp.build/sources"
+        }
+      ],
+      "isLibrary" : false,
+      "moduleName" : "LilithOSApp",
+      "moduleOutputPath" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/Modules/LilithOSApp.swiftmodule",
+      "objects" : [
+        "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOSApp.build/LilithOSApp.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-O",
+        "-j8",
+        "-DSWIFT_PACKAGE",
+        "-module-cache-path",
+        "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/ModuleCache",
+        "-parseable-output",
+        "-Xfrontend",
+        "-entry-point-function-name",
+        "-Xfrontend",
+        "LilithOSApp_main",
+        "-parse-as-library",
+        "-color-diagnostics",
+        "-swift-version",
+        "5",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "lilithos"
+      ],
+      "outputFileMapPath" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOSApp.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOSApp.build/LilithOSApp.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/Modules/LilithOSApp.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/App/LilithOSApp.swift"
+      ],
+      "tempsPath" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOSApp.build",
+      "wholeModuleOptimization" : true
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "LilithOS" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "LilithOS",
+      "-package-name",
+      "lilithos",
+      "-whole-module-optimization",
+      "-num-threads",
+      "8",
+      "-c",
+      "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Models/CelestialTracker.swift",
+      "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Models/QuantumNode.swift",
+      "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Utils/Color+Hex.swift",
+      "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Utils/Secrets.swift",
+      "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Utils/StarfieldView.swift",
+      "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Views/DreamsView.swift",
+      "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Views/FlowView.swift",
+      "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Views/HomeView.swift",
+      "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Views/QuantumView.swift",
+      "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Views/SoulView.swift",
+      "-I",
+      "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-O",
+      "-j8",
+      "-DSWIFT_PACKAGE",
+      "-module-cache-path",
+      "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/LilithOS-Swift.h",
+      "-color-diagnostics",
+      "-swift-version",
+      "5",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "lilithos",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "LilithOSApp" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "LilithOSApp",
+      "-package-name",
+      "lilithos",
+      "-whole-module-optimization",
+      "-num-threads",
+      "8",
+      "-c",
+      "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/App/LilithOSApp.swift",
+      "-I",
+      "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-O",
+      "-j8",
+      "-DSWIFT_PACKAGE",
+      "-module-cache-path",
+      "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/ModuleCache",
+      "-parseable-output",
+      "-Xfrontend",
+      "-entry-point-function-name",
+      "-Xfrontend",
+      "LilithOSApp_main",
+      "-parse-as-library",
+      "-color-diagnostics",
+      "-swift-version",
+      "5",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "lilithos",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "LilithOS" : [
+
+    ],
+    "LilithOSApp" : [
+      "LilithOS"
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+
+  },
+  "traitConfiguration" : {
+    "enableAllTraits" : false
+  },
+  "writeCommands" : {
+    "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Models/CelestialTracker.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Models/QuantumNode.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Utils/Color+Hex.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Utils/Secrets.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Utils/StarfieldView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Views/DreamsView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Views/FlowView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Views/HomeView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Views/QuantumView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/Views/SoulView.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/sources"
+    },
+    "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOSApp.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/App/LilithOSApp.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOSApp.build/sources"
+    },
+    "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOSApp.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/CelestialTracker.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/Color+Hex.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/DreamsView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/FlowView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/HomeView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/QuantumNode.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/QuantumView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/Secrets.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/SoulView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/StarfieldView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOSApp.build/LilithOSApp.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOSApp.product/Objects.LinkFileList"
+    },
+    "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt"
+    }
+  }
+}

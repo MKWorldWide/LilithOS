@@ -1,0 +1,11 @@
+{
+  "": {
+    "swift-dependencies": "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/debug/LilithOSApp.build/master.swiftdeps"
+  },
+  "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/App/LilithOSApp.swift": {
+    "dependencies": "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/debug/LilithOSApp.build/LilithOSApp.d",
+    "object": "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/debug/LilithOSApp.build/LilithOSApp.swift.o",
+    "swiftmodule": "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/debug/LilithOSApp.build/LilithOSApp~partial.swiftmodule",
+    "swift-dependencies": "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/debug/LilithOSApp.build/LilithOSApp.swiftdeps"
+  }
+}

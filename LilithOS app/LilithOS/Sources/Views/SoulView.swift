@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct SoulView: View {
+public struct SoulView: View {
   @State private var selectedTab = 0
   @State private var reflection = ""
   @State private var showingNewReflection = false
@@ -8,7 +8,7 @@ struct SoulView: View {
   @State private var isBreathing = false
   @State private var scale: CGFloat = 1.0
   
-  var body: some View {
+  public var body: some View {
     ZStack {
       // Ethereal background
       LinearGradient(
@@ -88,7 +88,7 @@ struct SoulView: View {
           SacredView()
             .tag(2)
         }
-        .tabViewStyle(.page(indexDisplayMode: .never))
+        .tabViewStyle(.automatic)
       }
     }
     .sheet(isPresented: $showingNewReflection) {
@@ -97,12 +97,12 @@ struct SoulView: View {
   }
 }
 
-struct SoulTab: View {
+public struct SoulTab: View {
   let title: String
   let isSelected: Bool
   let action: () -> Void
   
-  var body: some View {
+  public var body: some View {
     Button(action: action) {
       Text(title)
         .font(.system(size: 18, weight: .medium, design: .serif))
@@ -117,11 +117,11 @@ struct SoulTab: View {
   }
 }
 
-struct ReflectionsView: View {
+public struct ReflectionsView: View {
   @Binding var reflections: [SoulReflection]
   @Binding var showingNewReflection: Bool
   
-  var body: some View {
+  public var body: some View {
     ScrollView {
       LazyVStack(spacing: 16) {
         ForEach(reflections) { reflection in
@@ -144,11 +144,11 @@ struct ReflectionsView: View {
   }
 }
 
-struct ReflectionCard: View {
+public struct ReflectionCard: View {
   let reflection: SoulReflection
   @State private var isHovered = false
   
-  var body: some View {
+  public var body: some View {
     VStack(alignment: .leading, spacing: 12) {
       Text(reflection.title)
         .font(.system(size: 20, weight: .medium, design: .serif))
@@ -187,14 +187,14 @@ struct ReflectionCard: View {
   }
 }
 
-struct MeditationView: View {
+public struct MeditationView: View {
   @State private var isBreathing = false
   @State private var scale: CGFloat = 1.0
   @State private var selectedDuration = 5
   
   let durations = [5, 10, 15, 20, 30]
   
-  var body: some View {
+  public var body: some View {
     VStack(spacing: 30) {
       Text("Sacred Breath")
         .font(.system(size: 24, weight: .medium, design: .serif))
@@ -250,7 +250,7 @@ struct MeditationView: View {
   }
 }
 
-struct SacredView: View {
+public struct SacredView: View {
   @State private var selectedAffirmation = 0
   @State private var isAnimating = false
   
@@ -262,7 +262,7 @@ struct SacredView: View {
     "I am one with the cosmic dance"
   ]
   
-  var body: some View {
+  public var body: some View {
     VStack(spacing: 30) {
       Text(affirmations[selectedAffirmation])
         .font(.system(size: 36, weight: .light, design: .serif))
@@ -294,56 +294,32 @@ struct SacredView: View {
 }
 
 struct NewReflectionView: View {
-  @Environment(\.dismiss) var dismiss
   @Binding var reflections: [SoulReflection]
+  @Environment(\.dismiss) private var dismiss
   @State private var title = ""
   @State private var content = ""
-  @State private var tags: [String] = []
-  @State private var newTag = ""
+  @State private var tags = ""
   
   var body: some View {
     NavigationView {
-      Form {
-        Section(header: Text("Reflection Details")) {
-          TextField("Title", text: $title)
-            .font(.system(size: 18, design: .serif))
-          
-          TextEditor(text: $content)
-            .font(.system(size: 16, design: .serif))
-            .frame(height: 100)
-        }
+      VStack(spacing: 20) {
+        TextField("Title", text: $title)
+          .textFieldStyle(RoundedBorderTextFieldStyle())
+          .font(.system(size: 18, design: .serif))
         
-        Section(header: Text("Tags")) {
-          HStack {
-            TextField("New Tag", text: $newTag)
-              .font(.system(size: 16, design: .serif))
-            
-            Button(action: {
-              if !newTag.isEmpty {
-                tags.append(newTag)
-                newTag = ""
-              }
-            }) {
-              Image(systemName: "plus.circle.fill")
-                .foregroundColor(Color(hex: "9966cc"))
-            }
-          }
-          
-          FlowWrap(tags: tags) { tag in
-            Text(tag)
-              .font(.system(size: 14, design: .serif))
-              .foregroundColor(Color(hex: "9966cc"))
-              .padding(.horizontal, 12)
-              .padding(.vertical, 6)
-              .background(
-                Capsule()
-                  .fill(Color(hex: "9966cc").opacity(0.2))
-              )
-          }
-        }
+        TextField("Reflection", text: $content, axis: .vertical)
+          .textFieldStyle(RoundedBorderTextFieldStyle())
+          .font(.system(size: 16, design: .serif))
+          .lineLimit(6...12)
+        
+        TextField("Tags (comma separated)", text: $tags)
+          .textFieldStyle(RoundedBorderTextFieldStyle())
+          .font(.system(size: 16, design: .serif))
+        
+        Spacer()
       }
+      .padding()
       .navigationTitle("New Reflection")
-      .navigationBarTitleDisplayMode(.inline)
       .toolbar {
         ToolbarItem(placement: .cancellationAction) {
           Button("Cancel") {
@@ -352,15 +328,15 @@ struct NewReflectionView: View {
         }
         ToolbarItem(placement: .confirmationAction) {
           Button("Save") {
-            let reflection = SoulReflection(
+            let newReflection = SoulReflection(
               title: title,
               content: content,
-              tags: tags
+              tags: tags.split(separator: ",").map { String($0.trimmingCharacters(in: .whitespaces)) }
             )
-            reflections.append(reflection)
+            reflections.append(newReflection)
             dismiss()
           }
-          .disabled(title.isEmpty)
+          .disabled(title.isEmpty || content.isEmpty)
         }
       }
     }

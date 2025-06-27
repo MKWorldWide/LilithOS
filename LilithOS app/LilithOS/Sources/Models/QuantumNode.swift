@@ -26,7 +26,7 @@ struct NodeConfig: Codable {
 }
 
 // MARK: - Quantum Message
-struct QuantumMessage: Codable {
+struct QuantumMessage: Codable, Identifiable {
   let id: UUID
   let content: String
   let source: NodeConfig
@@ -34,6 +34,18 @@ struct QuantumMessage: Codable {
   let timestamp: Date
   let encryptionKey: String
   let quantumSignature: String
+  let type: QuantumProtocol
+  
+  init(id: UUID = UUID(), content: String, source: NodeConfig, destination: NodeConfig, timestamp: Date = Date(), encryptionKey: String, quantumSignature: String, type: QuantumProtocol = .celestial) {
+    self.id = id
+    self.content = content
+    self.source = source
+    self.destination = destination
+    self.timestamp = timestamp
+    self.encryptionKey = encryptionKey
+    self.quantumSignature = quantumSignature
+    self.type = type
+  }
 }
 
 // MARK: - Quantum Node
@@ -41,13 +53,24 @@ class QuantumNode: ObservableObject {
   @Published private(set) var isConnected = false
   @Published private(set) var activeProtocols: Set<QuantumProtocol> = []
   @Published private(set) var messageQueue: [QuantumMessage] = []
+  @Published var messages: [QuantumMessage] = []
+  @Published var celestialConnected = false
+  @Published var terrestrialConnected = false
   
   public let nodeConfig: NodeConfig
   private let encryptionKey: SymmetricKey
   private var connection: NWConnection?
   
-  init(config: NodeConfig) {
-    self.nodeConfig = config
+  init(config: NodeConfig? = nil) {
+    let defaultConfig = NodeConfig(
+      id: UUID(),
+      qprotocol: .celestial,
+      encryptionLevel: 9,
+      celestialCoordinates: .init(rightAscension: 0, declination: 0, epoch: 2000),
+      quantumEntanglement: true,
+      timestamp: Date()
+    )
+    self.nodeConfig = config ?? defaultConfig
     self.encryptionKey = SymmetricKey(size: .bits256)
   }
   
@@ -83,19 +106,31 @@ class QuantumNode: ObservableObject {
   }
   
   // MARK: - Message Handling
-  func sendMessage(_ content: String, to destination: NodeConfig) async throws {
+  func sendMessage(_ content: String, to destination: NodeConfig? = nil) async throws {
+    let dest = destination ?? nodeConfig
     let message = QuantumMessage(
-      id: UUID(),
       content: content,
       source: nodeConfig,
-      destination: destination,
-      timestamp: Date(),
+      destination: dest,
       encryptionKey: encryptionKey.withUnsafeBytes { Data($0).base64EncodedString() },
-      quantumSignature: try generateQuantumSignature(for: content)
+      quantumSignature: try generateQuantumSignature(for: content),
+      type: nodeConfig.qprotocol
     )
+    
+    messages.append(message)
     
     let encryptedData = try encrypt(message)
     try await connection?.send(content: encryptedData, completion: .contentProcessed { _ in })
+  }
+  
+  func sendMessage(content: String) {
+    Task {
+      do {
+        try await sendMessage(content)
+      } catch {
+        print("Failed to send message: \(error)")
+      }
+    }
   }
   
   // MARK: - Private Methods
@@ -134,41 +169,55 @@ class QuantumNode: ObservableObject {
   
   private func generateQuantumSignature(for content: String) throws -> String {
     let data = content.data(using: .utf8) ?? Data()
-    let signature = try HMAC<SHA256>.authenticationCode(for: data, using: encryptionKey)
+    let signature = HMAC<SHA256>.authenticationCode(for: data, using: encryptionKey)
     return Data(signature).base64EncodedString()
   }
 }
 
 // MARK: - Celestial Network Integration
 extension QuantumNode {
-  func connectToCelestialNetwork() async throws {
-    // Initialize connection to celestial networks
-    let celestialConfig = NodeConfig(
-      id: UUID(),
-      qprotocol: .celestial,
-      encryptionLevel: 9,
-      celestialCoordinates: .init(rightAscension: 0, declination: 0, epoch: 2000),
-      quantumEntanglement: true,
-      timestamp: Date()
-    )
-    
-    try await connect()
-    activeProtocols.insert(.celestial)
+  func connectToCelestialNetwork() {
+    Task {
+      do {
+        // Initialize connection to celestial networks
+        _ = NodeConfig(
+          id: UUID(),
+          qprotocol: .celestial,
+          encryptionLevel: 9,
+          celestialCoordinates: .init(rightAscension: 0, declination: 0, epoch: 2000),
+          quantumEntanglement: true,
+          timestamp: Date()
+        )
+        
+        try await connect()
+        activeProtocols.insert(.celestial)
+        celestialConnected = true
+      } catch {
+        print("Failed to connect to celestial network: \(error)")
+      }
+    }
   }
   
-  func connectToTerrestrialNetwork() async throws {
-    // Initialize connection to terrestrial networks
-    let terrestrialConfig = NodeConfig(
-      id: UUID(),
-      qprotocol: .terrestrial,
-      encryptionLevel: 8,
-      celestialCoordinates: .init(rightAscension: 0, declination: 0, epoch: 2000),
-      quantumEntanglement: false,
-      timestamp: Date()
-    )
-    
-    try await connect()
-    activeProtocols.insert(.terrestrial)
+  func connectToTerrestrialNetwork() {
+    Task {
+      do {
+        // Initialize connection to terrestrial networks
+        _ = NodeConfig(
+          id: UUID(),
+          qprotocol: .terrestrial,
+          encryptionLevel: 8,
+          celestialCoordinates: .init(rightAscension: 0, declination: 0, epoch: 2000),
+          quantumEntanglement: false,
+          timestamp: Date()
+        )
+        
+        try await connect()
+        activeProtocols.insert(.terrestrial)
+        terrestrialConnected = true
+      } catch {
+        print("Failed to connect to terrestrial network: \(error)")
+      }
+    }
   }
 }
 
@@ -176,7 +225,7 @@ extension QuantumNode {
 extension QuantumNode {
   func processWithAI(_ message: QuantumMessage) async throws -> String {
     // Process message with AI systems
-    let prompt = """
+    _ = """
     Process the following quantum message with respect to celestial and terrestrial intelligence:
     \(message.content)
     

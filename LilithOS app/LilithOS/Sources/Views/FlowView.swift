@@ -1,13 +1,13 @@
 import SwiftUI
 
-struct FlowView: View {
+public struct FlowView: View {
   @State private var energyLevel: Double = 0.7
   @State private var isBreathing = false
   @State private var selectedTab = 0
   @State private var ideas: [FlowIdea] = []
   @State private var showingNewIdea = false
   
-  var body: some View {
+  public var body: some View {
     ZStack {
       LinearGradient(
         gradient: Gradient(colors: [
@@ -43,7 +43,7 @@ struct FlowView: View {
           FlowStateView()
             .tag(2)
         }
-        .tabViewStyle(.page(indexDisplayMode: .never))
+        .tabViewStyle(.automatic)
       }
     }
     .sheet(isPresented: $showingNewIdea) {
@@ -52,12 +52,12 @@ struct FlowView: View {
   }
 }
 
-struct EnergyCircle: View {
+public struct EnergyCircle: View {
   let energyLevel: Double
   @Binding var isBreathing: Bool
   @State private var scale: CGFloat = 1.0
   
-  var body: some View {
+  public var body: some View {
     ZStack {
       // Outer glow
       Circle()
@@ -101,12 +101,12 @@ struct EnergyCircle: View {
   }
 }
 
-struct FlowTab: View {
+public struct FlowTab: View {
   let title: String
   let isSelected: Bool
   let action: () -> Void
   
-  var body: some View {
+  public var body: some View {
     Button(action: action) {
       Text(title)
         .font(.system(size: 18, weight: .medium, design: .serif))
@@ -121,11 +121,11 @@ struct FlowTab: View {
   }
 }
 
-struct IdeasView: View {
+public struct IdeasView: View {
   @Binding var ideas: [FlowIdea]
   @Binding var showingNewIdea: Bool
   
-  var body: some View {
+  public var body: some View {
     ScrollView {
       LazyVStack(spacing: 16) {
         ForEach(ideas) { idea in
@@ -148,11 +148,11 @@ struct IdeasView: View {
   }
 }
 
-struct IdeaCard: View {
+public struct IdeaCard: View {
   let idea: FlowIdea
   @State private var isHovered = false
   
-  var body: some View {
+  public var body: some View {
     VStack(alignment: .leading, spacing: 12) {
       Text(idea.title)
         .font(.system(size: 20, weight: .medium, design: .serif))
@@ -191,10 +191,10 @@ struct IdeaCard: View {
   }
 }
 
-struct EnergyView: View {
+public struct EnergyView: View {
   @Binding var energyLevel: Double
   
-  var body: some View {
+  public var body: some View {
     VStack(spacing: 30) {
       Text("Energy Level")
         .font(.system(size: 24, weight: .medium, design: .serif))
@@ -212,13 +212,13 @@ struct EnergyView: View {
   }
 }
 
-struct FlowStateView: View {
+public struct FlowStateView: View {
   @State private var flowState = "Deep Focus"
   @State private var isAnimating = false
   
   let states = ["Deep Focus", "Creative Flow", "Meditative", "Energetic"]
   
-  var body: some View {
+  public var body: some View {
     VStack(spacing: 30) {
       Text(flowState)
         .font(.system(size: 36, weight: .light, design: .serif))
@@ -248,56 +248,32 @@ struct FlowStateView: View {
 }
 
 struct NewIdeaView: View {
-  @Environment(\.dismiss) var dismiss
   @Binding var ideas: [FlowIdea]
+  @Environment(\.dismiss) private var dismiss
   @State private var title = ""
   @State private var description = ""
-  @State private var tags: [String] = []
-  @State private var newTag = ""
+  @State private var tags = ""
   
   var body: some View {
     NavigationView {
-      Form {
-        Section(header: Text("Idea Details")) {
-          TextField("Title", text: $title)
-            .font(.system(size: 18, design: .serif))
-          
-          TextEditor(text: $description)
-            .font(.system(size: 16, design: .serif))
-            .frame(height: 100)
-        }
+      VStack(spacing: 20) {
+        TextField("Title", text: $title)
+          .textFieldStyle(RoundedBorderTextFieldStyle())
+          .font(.system(size: 18, design: .serif))
         
-        Section(header: Text("Tags")) {
-          HStack {
-            TextField("New Tag", text: $newTag)
-              .font(.system(size: 16, design: .serif))
-            
-            Button(action: {
-              if !newTag.isEmpty {
-                tags.append(newTag)
-                newTag = ""
-              }
-            }) {
-              Image(systemName: "plus.circle.fill")
-                .foregroundColor(Color(hex: "9966cc"))
-            }
-          }
-          
-          FlowWrap(tags: tags) { tag in
-            Text(tag)
-              .font(.system(size: 14, design: .serif))
-              .foregroundColor(Color(hex: "9966cc"))
-              .padding(.horizontal, 12)
-              .padding(.vertical, 6)
-              .background(
-                Capsule()
-                  .fill(Color(hex: "9966cc").opacity(0.2))
-              )
-          }
-        }
+        TextField("Description", text: $description, axis: .vertical)
+          .textFieldStyle(RoundedBorderTextFieldStyle())
+          .font(.system(size: 16, design: .serif))
+          .lineLimit(4...8)
+        
+        TextField("Tags (comma separated)", text: $tags)
+          .textFieldStyle(RoundedBorderTextFieldStyle())
+          .font(.system(size: 16, design: .serif))
+        
+        Spacer()
       }
+      .padding()
       .navigationTitle("New Idea")
-      .navigationBarTitleDisplayMode(.inline)
       .toolbar {
         ToolbarItem(placement: .cancellationAction) {
           Button("Cancel") {
@@ -306,12 +282,12 @@ struct NewIdeaView: View {
         }
         ToolbarItem(placement: .confirmationAction) {
           Button("Save") {
-            let idea = FlowIdea(
+            let newIdea = FlowIdea(
               title: title,
               description: description,
-              tags: tags
+              tags: tags.split(separator: ",").map { String($0.trimmingCharacters(in: .whitespaces)) }
             )
-            ideas.append(idea)
+            ideas.append(newIdea)
             dismiss()
           }
           .disabled(title.isEmpty)
