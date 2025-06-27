@@ -1,4 +1,0 @@
-module LilithOS {
-    header "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/.build/arm64-apple-macosx/release/LilithOS.build/LilithOS-Swift.h"
-    requires objc
-}

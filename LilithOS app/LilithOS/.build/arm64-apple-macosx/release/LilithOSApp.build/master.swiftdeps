@@ -1,6 +1,0 @@
-version: "Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)"
-options: "0fc629fbd296a71c9c2e3bbc49d1d81aee6d9906c3e035d2816779cbdfe371a4"
-build_start_time: [1751048382, 977988000]
-build_end_time: [1751048383, 113631000]
-inputs:
-  "/Users/sovereign/Projects/LilithOS/LilithOS app/LilithOS/Sources/App/LilithOSApp.swift": [1751048278, 399657657]
