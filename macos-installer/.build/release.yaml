@@ -1,0 +1,66 @@
+client:
+  name: basic
+  file-system: device-agnostic
+tools: {}
+targets:
+  "LilithOSInstaller-arm64-apple-macosx15.0-release.exe": ["<LilithOSInstaller-arm64-apple-macosx15.0-release.exe>"]
+  "LilithOSInstaller-arm64-apple-macosx15.0-release.module": ["<LilithOSInstaller-arm64-apple-macosx15.0-release.module>"]
+  "PackageStructure": ["<PackageStructure>"]
+  "main": ["<LilithOSInstaller-arm64-apple-macosx15.0-release.exe>","<LilithOSInstaller-arm64-apple-macosx15.0-release.module>"]
+  "test": ["<LilithOSInstaller-arm64-apple-macosx15.0-release.exe>","<LilithOSInstaller-arm64-apple-macosx15.0-release.module>"]
+default: "main"
+nodes:
+  "/Users/sovereign/Projects/LilithOS/macos-installer/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
+commands:
+  "/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/LilithOSInstaller.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/Users/sovereign/Projects/LilithOS/macos-installer/LilithOSInstaller.swift"]
+    outputs: ["/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/LilithOSInstaller.build/sources"]
+    description: "Write auxiliary file /Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/LilithOSInstaller.build/sources"
+
+  "/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/LilithOSInstaller.product/Objects.LinkFileList":
+    tool: write-auxiliary-file
+    inputs: ["<link-file-list>","/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/LilithOSInstaller.build/LilithOSInstaller.swift.o"]
+    outputs: ["/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/LilithOSInstaller.product/Objects.LinkFileList"]
+    description: "Write auxiliary file /Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/LilithOSInstaller.product/Objects.LinkFileList"
+
+  "/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt":
+    tool: write-auxiliary-file
+    inputs: ["<swift-get-version>","/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"]
+    outputs: ["/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt"]
+    always-out-of-date: "true"
+    description: "Write auxiliary file /Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt"
+
+  "<LilithOSInstaller-arm64-apple-macosx15.0-release.exe>":
+    tool: phony
+    inputs: ["/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/LilithOSInstaller"]
+    outputs: ["<LilithOSInstaller-arm64-apple-macosx15.0-release.exe>"]
+
+  "<LilithOSInstaller-arm64-apple-macosx15.0-release.module>":
+    tool: phony
+    inputs: ["/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/LilithOSInstaller.build/LilithOSInstaller.swift.o","/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/Modules/LilithOSInstaller.swiftmodule"]
+    outputs: ["<LilithOSInstaller-arm64-apple-macosx15.0-release.module>"]
+
+  "C.LilithOSInstaller-arm64-apple-macosx15.0-release.exe":
+    tool: shell
+    inputs: ["/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/LilithOSInstaller.build/LilithOSInstaller.swift.o","/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/LilithOSInstaller.product/Objects.LinkFileList"]
+    outputs: ["/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/LilithOSInstaller"]
+    description: "Linking ./.build/arm64-apple-macosx/release/LilithOSInstaller"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-L","/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release","-o","/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/LilithOSInstaller","-module-name","LilithOSInstaller","-Xlinker","-no_warn_duplicate_libraries","-emit-executable","-Xlinker","-dead_strip","-Xlinker","-alias","-Xlinker","_LilithOSInstaller_main","-Xlinker","_main","-Xlinker","-rpath","-Xlinker","@loader_path","@/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/LilithOSInstaller.product/Objects.LinkFileList","-target","arm64-apple-macosx13.0","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g"]
+
+  "C.LilithOSInstaller-arm64-apple-macosx15.0-release.module":
+    tool: shell
+    inputs: ["/Users/sovereign/Projects/LilithOS/macos-installer/LilithOSInstaller.swift","/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt","/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/LilithOSInstaller.build/sources"]
+    outputs: ["/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/LilithOSInstaller.build/LilithOSInstaller.swift.o","/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/Modules/LilithOSInstaller.swiftmodule"]
+    description: "Compiling Swift Module 'LilithOSInstaller' (1 sources)"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-module-name","LilithOSInstaller","-emit-dependencies","-emit-module","-emit-module-path","/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/Modules/LilithOSInstaller.swiftmodule","-output-file-map","/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/LilithOSInstaller.build/output-file-map.json","-whole-module-optimization","-num-threads","8","-c","@/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/LilithOSInstaller.build/sources","-I","/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/Modules","-target","arm64-apple-macosx13.0","-O","-j8","-DSWIFT_PACKAGE","-module-cache-path","/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/ModuleCache","-parseable-output","-Xfrontend","-entry-point-function-name","-Xfrontend","LilithOSInstaller_main","-parse-as-library","-color-diagnostics","-swift-version","5","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g","-Xcc","-isysroot","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-Xcc","-fPIC","-Xcc","-g","-package-name","macos_installer"]
+
+  "PackageStructure":
+    tool: package-structure-tool
+    inputs: ["/Users/sovereign/Projects/LilithOS/macos-installer/","/Users/sovereign/Projects/LilithOS/macos-installer/Package.swift","/Users/sovereign/Projects/LilithOS/macos-installer/Package.resolved"]
+    outputs: ["<PackageStructure>"]
+    description: "Planning build"
+    allow-missing-inputs: true
+

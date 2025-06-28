@@ -1,0 +1,12 @@
+{
+  "": {
+    "dependencies": "/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/LilithOSInstaller.build/LilithOSInstaller.d",
+    "object": "/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/LilithOSInstaller.build/LilithOSInstaller.o",
+    "swift-dependencies": "/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/LilithOSInstaller.build/master.swiftdeps"
+  },
+  "/Users/sovereign/Projects/LilithOS/macos-installer/LilithOSInstaller.swift": {
+    "object": "/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/LilithOSInstaller.build/LilithOSInstaller.swift.o",
+    "swiftmodule": "/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/LilithOSInstaller.build/LilithOSInstaller~partial.swiftmodule",
+    "swift-dependencies": "/Users/sovereign/Projects/LilithOS/macos-installer/.build/arm64-apple-macosx/release/LilithOSInstaller.build/LilithOSInstaller.swiftdeps"
+  }
+}

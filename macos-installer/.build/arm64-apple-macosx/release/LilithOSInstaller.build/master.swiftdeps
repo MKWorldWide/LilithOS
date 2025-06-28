@@ -1,0 +1,6 @@
+version: "Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)"
+options: "666534b4232e1403f93aa7068ff1c4650ed25cff1b8a25afa095468a5a73e086"
+build_start_time: [1751068922, 338868000]
+build_end_time: [1751068926, 846728000]
+inputs:
+  "/Users/sovereign/Projects/LilithOS/macos-installer/LilithOSInstaller.swift": [1751068824, 117102178]

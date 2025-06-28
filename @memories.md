@@ -171,3 +171,143 @@
 - M3-specific dual boot system created
 - Ready for clean integration with upstream repository
 - Focus shifted to Linux distribution for MacBook Air M3 
+
+# LilithOS Project Memories
+
+## Session History
+
+### 2024-06-27 - macOS Installer Creation ✅ COMPLETED
+
+**Major Achievement**: Successfully created a native macOS installer application for LilithOS M3 dual boot installation.
+
+**What was accomplished**:
+1. **Native macOS App**: Built a complete SwiftUI-based installer application (`LilithOSInstaller.swift`)
+2. **Professional UI**: Created a 6-step guided installation process with modern macOS design
+3. **System Integration**: Implemented hardware detection, USB management, and installation automation
+4. **Build System**: Set up Swift Package Manager project with proper configuration
+5. **Documentation**: Comprehensive README with usage instructions and troubleshooting
+
+**Technical Details**:
+- **Language**: Swift 5.9+ with SwiftUI
+- **Platform**: macOS 13.0+ (Ventura)
+- **Target**: Apple Silicon M3 specifically
+- **Architecture**: Modular design with separate installer logic class
+- **Features**: System compatibility check, ISO download, USB creation, dual boot setup
+
+**Files Created**:
+- `macos-installer/LilithOSInstaller.swift` - Main application (30523 bytes)
+- `macos-installer/Package.swift` - SwiftPM configuration
+- `macos-installer/build_and_run.sh` - Build and launch script
+- `macos-installer/README.md` - Comprehensive documentation
+- `macos-installer/LilithOSInstaller.app` - Built application bundle
+
+**Installation Steps**:
+1. Welcome & Feature Overview
+2. System Compatibility Check (M3, RAM, Storage, SIP, Architecture)
+3. LilithOS ISO Download
+4. USB Drive Setup & Bootable Creation
+5. Dual Boot Installation
+6. Completion & Restart Instructions
+
+**Status**: ✅ **COMPLETE** - Installer app is built, launched, and ready for use
+
+---
+
+### 2024-06-27 - Project Cleanup and M3 Focus
+
+**Major Change**: Removed the iOS/macOS app development to focus on dual boot installation for MacBook Air M3.
+
+**What was removed**:
+- Entire `LilithOS app/` directory and all SwiftUI app code
+- iOS-specific features and dependencies
+- App development focus
+
+**What was created**:
+- M3-specific dual boot installer script (`scripts/m3-dual-boot-installer.sh`)
+- USB installer script for M3 (`scripts/create-m3-usb-installer.sh`)
+- Comprehensive M3 installation guide (`docs/M3_INSTALLATION.md`)
+- Kali Linux M3 customization script (`scripts/customize-kali-for-m3.sh`)
+
+**Hardware Specifications**:
+- **Device**: MacBook Air M3
+- **Chip**: Apple M3
+- **Memory**: 24GB RAM
+- **Storage**: 1TB SSD
+- **Architecture**: arm64
+
+**Status**: ✅ **COMPLETE** - Project refocused on M3 dual boot installation
+
+---
+
+### 2024-06-27 - Initial GitHub Push
+
+**Major Achievement**: Successfully pushed LilithOS project to GitHub with comprehensive documentation and clean integration.
+
+**What was accomplished**:
+1. **Documentation Initialization**: Created quantum-detailed documentation files
+   - `@memories.md` - Session history and project evolution
+   - `@lessons-learned.md` - Technical insights and best practices
+   - `@scratchpad.md` - Development notes and ideas
+
+2. **Project Analysis**: Compared local project with upstream repository
+   - Identified unique local files and modifications
+   - Analyzed project structure and dependencies
+   - Documented customizations and enhancements
+
+3. **GitHub Integration**: 
+   - Updated `.gitignore` for proper file management
+   - Committed new documentation files
+   - Pushed to GitHub repository
+   - Established clean integration with upstream
+
+**Key Files Identified**:
+- Custom installation scripts for different hardware
+- M3-specific optimizations and configurations
+- Enhanced documentation and guides
+- Project-specific customizations
+
+**Status**: ✅ **COMPLETE** - Project successfully pushed to GitHub with full documentation
+
+---
+
+## Project Evolution Summary
+
+### Phase 1: Foundation ✅
+- Initial project setup and documentation
+- GitHub integration and upstream comparison
+- Project structure analysis and documentation
+
+### Phase 2: App Development ❌ (Removed)
+- SwiftUI app development for iOS/macOS
+- Multiple build iterations and fixes
+- App architecture and UI development
+
+### Phase 3: M3 Focus ✅
+- Project cleanup and refocus
+- M3-specific installation scripts
+- Hardware-optimized configurations
+
+### Phase 4: macOS Installer ✅
+- Native macOS installer application
+- Professional SwiftUI interface
+- Complete installation automation
+
+## Current Status
+
+**🎯 Primary Focus**: LilithOS dual boot installation for MacBook Air M3
+**📱 Installer**: Native macOS application with guided installation process
+**📚 Documentation**: Comprehensive guides and troubleshooting
+**🔧 Scripts**: M3-optimized installation and customization scripts
+**🚀 Ready**: Complete installation solution ready for use
+
+## Next Steps
+
+1. **Test Installation**: Use the macOS installer to perform dual boot installation
+2. **Customization**: Apply M3-specific optimizations and security tools
+3. **Documentation**: Update guides based on installation experience
+4. **Distribution**: Package installer for wider distribution if needed
+
+---
+
+*Last Updated: 2024-06-27*
+*Project Status: ✅ COMPLETE - Ready for Installation* 
