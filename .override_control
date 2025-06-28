@@ -1,0 +1,23 @@
+# LilithOS Override Control
+# Last updated: Fri Jun  6 09:26:03 EDT 2025
+# This file controls integration and override settings for /Users/sovereign/Library/Mobile Documents/com~apple~CloudDocs/Projects/LilithOS
+
+# Integration Settings
+INTEGRATION_ENABLED=true
+SYNC_ENABLED=true
+BACKUP_ENABLED=true
+
+# Override Settings
+OVERRIDE_ENABLED=false
+FORCE_SYNC=false
+IGNORE_CONFLICTS=false
+
+# Custom Settings
+CUSTOM_SETTINGS={}
+
+# Directory Type
+DIRECTORY_TYPE="LilithOS"
+
+# Integration Status
+LAST_SYNC="Fri Jun  6 10:26:35 EDT 2025"
+SYNC_STATUS="active"

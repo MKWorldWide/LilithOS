@@ -1,0 +1,59 @@
+# Build artifacts
+build/
+dist/
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Project specific
+*.log
+*.spec
+*.dmg
+*.app
+*.deb
+*.rpm
+*.iso
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Xcode specific
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcworkspace/xcuserdata/
+
+# Build logs and artifacts
+build_ipsw.log
+build.log
+
+# Python packaging
+pyinstaller.spec
+
+# Documentation session files (optional - uncomment to exclude)
+# @memories.md
+# @lessons-learned.md
+# @scratchpad.md 

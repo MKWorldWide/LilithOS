@@ -29,6 +29,7 @@ LilithOS represents a comprehensive ecosystem of custom operating systems and fi
 - Real-time system monitoring
 - Advanced security tools
 - Hardware acceleration support
+- macOS companion application for easy installation
 
 #### Technical Specifications:
 - **Kernel**: Custom Linux kernel based on Kali's kernel
@@ -55,6 +56,46 @@ LilithOS represents a comprehensive ecosystem of custom operating systems and fi
 - **Build Process**: IPSW extraction, modification, repacking, and signing
 - **Security**: Modified sandbox restrictions and system integrity checks
 - **Performance**: Kernel-level and system service optimizations
+
+## 💻 System Requirements
+
+### Desktop Requirements
+- Mac Pro 2009 (Early 2009 or Mid 2010)
+- Minimum 4GB RAM (8GB recommended)
+- 100GB free disk space
+- EFI firmware
+- Compatible graphics card
+- Network adapter
+
+### Mobile Requirements
+- iPhone 4S
+- iOS 9.3.6 base firmware
+- Apple Developer Account for signing
+- macOS development environment
+
+## 🏗️ Project Structure
+```
+lilithos/
+├── docs/                    # Documentation
+│   ├── ARCHITECTURE.md     # System architecture documentation
+│   ├── BUILD.md           # Build instructions
+│   ├── INSTALLATION.md    # Installation guide
+│   ├── WINDOWS-INTEGRATION.md # Windows integration guide
+│   ├── INTEGRATION-OVERVIEW.md # Ecosystem integration overview
+│   ├── TECHNICAL-INTEGRATION.md # Technical integration guide
+│   ├── PROJECT-COMPARISON.md # Project comparison and analysis
+│   ├── INTEGRATION-SUMMARY.md # Integration summary
+│   ├── memories.md        # Project history and memories
+│   ├── lessons-learned.md # Lessons learned and best practices
+│   └── scratchpad.md      # Development notes and current work
+├── scripts/                # Build and utility scripts
+├── config/                # Configuration files
+├── kernel/               # Custom kernel patches
+├── packages/            # Custom package definitions
+├── tools/              # Development tools
+│   └── macos-companion/ # macOS installation companion app
+└── resources/          # Project resources
+```
 
 ## 🔗 Integration Points
 
@@ -178,6 +219,72 @@ LilithOS represents a comprehensive ecosystem of custom operating systems and fi
 - **Development Chat**: Real-time development discussions
 - **Training Materials**: Educational resources and tutorials
 
+## 🚀 Getting Started
+
+### For Desktop Users
+1. Clone the repository
+   ```bash
+   git clone https://github.com/M-K-World-Wide/LilithOS.git
+   ```
+2. Review system requirements in `docs/INSTALLATION.md`
+3. Follow build instructions in `docs/BUILD.md`
+4. Check architecture details in `docs/ARCHITECTURE.md`
+5. Explore Windows integration in `docs/WINDOWS-INTEGRATION.md`
+6. For macOS users, use the companion app in `tools/macos-companion`
+
+### For Mobile Users
+1. Review iOS firmware requirements
+2. Follow mobile build instructions
+3. Check device compatibility
+4. Review security considerations
+
+### For Developers
+1. Review development guidelines
+2. Set up development environment
+3. Explore integration documentation
+4. Join community discussions
+
+## 🛠️ Development
+- See `docs/CONTRIBUTING.md` for development guidelines
+- Check `docs/ARCHITECTURE.md` for system architecture details
+- Review `docs/lessons-learned.md` for best practices
+- Track progress in `docs/scratchpad.md`
+
+## 🔒 Security
+- Regular security updates
+- Advanced security tools
+- System integrity monitoring
+- Access control management
+- Security audit logging
+
+## 📚 Documentation
+- Comprehensive system documentation
+- Installation guides
+- Development guidelines
+- API documentation
+- Troubleshooting guides
+
+## 🪟 Windows Integration
+### C: Drive Access
+- Automatic C: drive mounting
+- Secure file sharing between systems
+- NTFS-3G support
+- Automatic mount on boot
+
+### Integration Features
+- Seamless file system access
+- Cross-platform file sharing
+- Secure permissions management
+- Automatic drive detection
+
+### Setup Instructions
+1. Run the Windows integration script:
+   ```bash
+   sudo ./scripts/windows-integration.sh
+   ```
+2. Verify C: drive access at `/mnt/c`
+3. Configure sharing preferences in `/etc/lilithos/windows-integration.conf`
+
 ## 🔮 Future Roadmap
 
 ### Short-Term Goals (3-6 months)
@@ -212,26 +319,6 @@ LilithOS represents a comprehensive ecosystem of custom operating systems and fi
 - **Performance Updates**: Regular performance improvements
 - **Hardware Support**: New hardware compatibility additions
 
-## 🎯 Getting Started
-
-### For Desktop Users
-1. Review system requirements in `docs/INSTALLATION.md`
-2. Follow build instructions in `docs/BUILD.md`
-3. Check architecture details in `docs/ARCHITECTURE.md`
-4. Explore Windows integration in `docs/WINDOWS-INTEGRATION.md`
-
-### For Mobile Users
-1. Review iOS firmware requirements
-2. Follow mobile build instructions
-3. Check device compatibility
-4. Review security considerations
-
-### For Developers
-1. Review development guidelines
-2. Set up development environment
-3. Explore integration documentation
-4. Join community discussions
-
 ## 📝 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
@@ -247,4 +334,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 The LilithOS ecosystem represents a comprehensive approach to custom computing environments, spanning from desktop systems to mobile devices. By maintaining a unified vision while respecting platform-specific requirements, LilithOS provides users with enhanced security, performance, and functionality across their entire Apple hardware ecosystem.
 
-The integration of these diverse projects creates a powerful foundation for future development and expansion, while maintaining the highest standards of quality, security, and performance that users expect from custom operating systems and firmware solutions. 
+The integration of these diverse projects creates a powerful foundation for future development and expansion, while maintaining the highest standards of quality, security, and performance that users expect from custom operating systems and firmware solutions.
