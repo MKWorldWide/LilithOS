@@ -153,7 +153,7 @@ struct SystemCheckView: View {
             VStack(spacing: 20) {
                 SystemCheckRow(
                     title: "Hardware",
-                    description: "MacBook Air M3",
+                    description: "MacBook Air M3 (\(installer.systemInfo.modelString))",
                     status: installer.systemInfo.isM3 ? .success : .error
                 )
                 
@@ -558,6 +558,7 @@ struct SystemInfo {
     var availableStorageGB: Int = 0
     var sipEnabled: Bool = true
     var architecture: String = ""
+    var modelString: String = ""
     
     var isCompatible: Bool {
         return isM3 && memoryGB >= 8 && availableStorageGB >= 100 && !sipEnabled && architecture == "arm64"
@@ -619,8 +620,10 @@ class LilithOSInstaller: ObservableObject {
             
             let data = pipe.fileHandleForReading.readDataToEndOfFile()
             let model = String(data: data, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-            
-            info.isM3 = model.contains("MacBookAir") && model.contains("M3")
+            info.modelString = model
+            // Accept Mac15,* as valid for M3 MacBook Air
+            info.isM3 = model.hasPrefix("Mac15,")
+            print("[DEBUG] Detected hardware model: \(model)")
         } catch {
             print("Error checking hardware model: \(error)")
         }
@@ -699,12 +702,20 @@ class LilithOSInstaller: ObservableObject {
     func startDownload() {
         guard !isDownloading else { return }
         
+        let fileManager = FileManager.default
+        // Check if ISO already exists
+        if fileManager.fileExists(atPath: isoPath) {
+            downloadComplete = true
+            downloadStatus = "ISO already exists. Skipping download."
+            statusMessage = "Found local ISO. Skipping download."
+            return
+        }
+        
         isDownloading = true
         downloadProgress = 0.0
         downloadStatus = "Starting download..."
         
         // Create downloads directory if it doesn't exist
-        let fileManager = FileManager.default
         do {
             try fileManager.createDirectory(atPath: "downloads", withIntermediateDirectories: true)
         } catch {
