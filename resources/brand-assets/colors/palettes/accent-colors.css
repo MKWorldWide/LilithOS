@@ -1,0 +1,219 @@
+/* MKWW & LilithOS Accent Color Palette */
+/* Brand Colors - Accent Collection */
+
+:root {
+  /* Stellar Blue */
+  --lilith-blue: #3182CE;
+  --lilith-blue-light: #63B3ED;
+  --lilith-blue-dark: #2C5282;
+  --lilith-blue-darker: #1A365D;
+  
+  /* Mystic Green */
+  --lilith-green: #38A169;
+  --lilith-green-light: #68D391;
+  --lilith-green-dark: #2F855A;
+  --lilith-green-darker: #22543D;
+  
+  /* Ethereal Pink */
+  --lilith-pink: #D53F8C;
+  --lilith-pink-light: #F687B3;
+  --lilith-pink-dark: #B83280;
+  --lilith-pink-darker: #97266D;
+  
+  /* Warning Colors */
+  --lilith-red: #E53E3E;
+  --lilith-red-light: #FC8181;
+  --lilith-red-dark: #C53030;
+  --lilith-red-darker: #9B2C2C;
+  
+  --lilith-orange: #DD6B20;
+  --lilith-orange-light: #F6AD55;
+  --lilith-orange-dark: #C05621;
+  --lilith-orange-darker: #9C4221;
+  
+  --lilith-yellow: #D69E2E;
+  --lilith-yellow-light: #F6E05E;
+  --lilith-yellow-dark: #B7791F;
+  --lilith-yellow-darker: #975A16;
+}
+
+/* Accent Color Usage Classes */
+.bg-lilith-blue {
+  background-color: var(--lilith-blue);
+}
+
+.bg-lilith-green {
+  background-color: var(--lilith-green);
+}
+
+.bg-lilith-pink {
+  background-color: var(--lilith-pink);
+}
+
+.text-lilith-blue {
+  color: var(--lilith-blue);
+}
+
+.text-lilith-green {
+  color: var(--lilith-green);
+}
+
+.text-lilith-pink {
+  color: var(--lilith-pink);
+}
+
+/* Warning Color Classes */
+.bg-lilith-red {
+  background-color: var(--lilith-red);
+}
+
+.bg-lilith-orange {
+  background-color: var(--lilith-orange);
+}
+
+.bg-lilith-yellow {
+  background-color: var(--lilith-yellow);
+}
+
+.text-lilith-red {
+  color: var(--lilith-red);
+}
+
+.text-lilith-orange {
+  color: var(--lilith-orange);
+}
+
+.text-lilith-yellow {
+  color: var(--lilith-yellow);
+}
+
+/* Accent Gradients */
+.bg-lilith-gradient-ethereal {
+  background: linear-gradient(135deg, var(--lilith-black-light) 0%, var(--lilith-purple-dark) 50%, var(--lilith-pink) 100%);
+}
+
+.bg-lilith-gradient-cosmic {
+  background: linear-gradient(135deg, var(--lilith-black) 0%, var(--lilith-blue) 50%, var(--lilith-green) 100%);
+}
+
+.bg-lilith-gradient-stellar {
+  background: linear-gradient(135deg, var(--lilith-blue-dark) 0%, var(--lilith-blue) 50%, var(--lilith-blue-light) 100%);
+}
+
+.bg-lilith-gradient-mystic {
+  background: linear-gradient(135deg, var(--lilith-green-dark) 0%, var(--lilith-green) 50%, var(--lilith-green-light) 100%);
+}
+
+/* Status Indicators */
+.status-success {
+  color: var(--lilith-green);
+  background-color: rgba(56, 161, 105, 0.1);
+}
+
+.status-warning {
+  color: var(--lilith-orange);
+  background-color: rgba(221, 107, 32, 0.1);
+}
+
+.status-error {
+  color: var(--lilith-red);
+  background-color: rgba(229, 62, 62, 0.1);
+}
+
+.status-info {
+  color: var(--lilith-blue);
+  background-color: rgba(49, 130, 206, 0.1);
+}
+
+/* Interactive States */
+.hover-lilith-blue:hover {
+  color: var(--lilith-blue-light);
+}
+
+.hover-lilith-green:hover {
+  color: var(--lilith-green-light);
+}
+
+.hover-lilith-pink:hover {
+  color: var(--lilith-pink-light);
+}
+
+/* Focus States */
+.focus-lilith-blue:focus {
+  border-color: var(--lilith-blue);
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
+}
+
+.focus-lilith-green:focus {
+  border-color: var(--lilith-green);
+  box-shadow: 0 0 0 3px rgba(56, 161, 105, 0.1);
+}
+
+.focus-lilith-pink:focus {
+  border-color: var(--lilith-pink);
+  box-shadow: 0 0 0 3px rgba(213, 63, 140, 0.1);
+}
+
+/* Animation Colors */
+.animate-lilith-blue {
+  animation: pulse-blue 2s infinite;
+}
+
+.animate-lilith-green {
+  animation: pulse-green 2s infinite;
+}
+
+.animate-lilith-pink {
+  animation: pulse-pink 2s infinite;
+}
+
+@keyframes pulse-blue {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes pulse-green {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes pulse-pink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Accessibility */
+@media (prefers-contrast: high) {
+  :root {
+    --lilith-blue: #2B6CB0;
+    --lilith-green: #2F855A;
+    --lilith-pink: #B83280;
+    --lilith-red: #C53030;
+    --lilith-orange: #C05621;
+    --lilith-yellow: #B7791F;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --lilith-blue: #63B3ED;
+    --lilith-green: #68D391;
+    --lilith-pink: #F687B3;
+    --lilith-red: #FC8181;
+    --lilith-orange: #F6AD55;
+    --lilith-yellow: #F6E05E;
+  }
+} 

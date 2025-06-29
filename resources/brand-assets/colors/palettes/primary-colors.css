@@ -1,0 +1,96 @@
+/* MKWW & LilithOS Primary Color Palette */
+/* Brand Colors - Primary Collection */
+
+:root {
+  /* Deep Space Black */
+  --lilith-black: #0A0A0F;
+  --lilith-black-light: #1A1A2E;
+  --lilith-black-lighter: #2A2A3E;
+  
+  /* Lunar Silver */
+  --lilith-silver: #E8E8E8;
+  --lilith-silver-dark: #C0C0C0;
+  --lilith-silver-darker: #A0A0A0;
+  
+  /* Cosmic Purple */
+  --lilith-purple: #6B46C1;
+  --lilith-purple-light: #9F7AEA;
+  --lilith-purple-dark: #553C9A;
+  --lilith-purple-darker: #44337A;
+}
+
+/* Color Usage Classes */
+.bg-lilith-black {
+  background-color: var(--lilith-black);
+}
+
+.bg-lilith-black-light {
+  background-color: var(--lilith-black-light);
+}
+
+.bg-lilith-silver {
+  background-color: var(--lilith-silver);
+}
+
+.bg-lilith-purple {
+  background-color: var(--lilith-purple);
+}
+
+.text-lilith-black {
+  color: var(--lilith-black);
+}
+
+.text-lilith-silver {
+  color: var(--lilith-silver);
+}
+
+.text-lilith-purple {
+  color: var(--lilith-purple);
+}
+
+.border-lilith-purple {
+  border-color: var(--lilith-purple);
+}
+
+/* Gradient Backgrounds */
+.bg-lilith-gradient-primary {
+  background: linear-gradient(135deg, var(--lilith-black) 0%, var(--lilith-purple) 50%, var(--lilith-purple-light) 100%);
+}
+
+.bg-lilith-gradient-dark {
+  background: linear-gradient(135deg, var(--lilith-black) 0%, var(--lilith-black-light) 100%);
+}
+
+/* Hover States */
+.hover-lilith-purple:hover {
+  color: var(--lilith-purple-light);
+}
+
+.hover-bg-lilith-purple:hover {
+  background-color: var(--lilith-purple);
+}
+
+/* Focus States */
+.focus-lilith-purple:focus {
+  border-color: var(--lilith-purple);
+  box-shadow: 0 0 0 3px rgba(107, 70, 193, 0.1);
+}
+
+/* Accessibility */
+@media (prefers-contrast: high) {
+  :root {
+    --lilith-black: #000000;
+    --lilith-silver: #FFFFFF;
+    --lilith-purple: #4A5568;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --lilith-black: #000000;
+    --lilith-black-light: #1A1A2E;
+    --lilith-silver: #F7FAFC;
+    --lilith-purple: #9F7AEA;
+  }
+} 
