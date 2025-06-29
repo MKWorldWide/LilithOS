@@ -1,59 +1,90 @@
+# LilithOS Git Ignore File
+# Excludes sensitive files and build artifacts
+
 # Build artifacts
 build/
 dist/
-*.pyc
-__pycache__/
-*.pyo
-*.pyd
-.Python
+*.o
+*.a
 *.so
+*.dll
+*.exe
+*.nro
+*.nca
+*.nso
+*.elf
 
-# Virtual environments
-.env
-.venv
-env/
-venv/
-ENV/
+# Switch-specific files (keep private)
+switch/homebrew/lilithos_app/lilithos_app.nro
+switch/homebrew/lilithos_app/source/
+switch/homebrew/lilithos_app/Makefile
+switch/homebrew/lilithos_app/README.md
+switch/homebrew/lilithos_app/LICENSE
 
-# IDE files
-.idea/
-.vscode/
-*.swp
-*.swo
-.DS_Store
+# Configuration files with sensitive data
+config/secrets.yaml
+config/private.json
+*.key
+*.pem
+*.p12
 
-# Project specific
+# Logs and temporary files
 *.log
-*.spec
-*.dmg
-*.app
-*.deb
-*.rpm
-*.iso
-
-# Temporary files
 *.tmp
 *.temp
-*.bak
-*.backup
+.cache/
+logs/
 
-# System files
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
-# Xcode specific
-*.xcodeproj/xcuserdata/
-*.xcodeproj/project.xcworkspace/xcuserdata/
-*.xcworkspace/xcuserdata/
+# Package manager files
+node_modules/
+vendor/
+*.lock
 
-# Build logs and artifacts
-build_ipsw.log
-build.log
+# Backup files
+*.bak
+*.backup
+*.old
 
-# Python packaging
-pyinstaller.spec
+# Test files
+test_results/
+coverage/
 
-# Documentation session files (optional - uncomment to exclude)
-# @memories.md
-# @lessons-learned.md
-# @scratchpad.md 
+# Documentation that might be sensitive
+docs/SWITCH-DRIVE-PREPARATION.md
+docs/LEGAL-HOMEBREW-GUIDE.md
+
+# Scripts that might be sensitive
+scripts/prepare_switch_drive.sh
+scripts/prepare_switch_drive.ps1
+scripts/prepare_switch_drive.bat
+scripts/install_lilithos_app.sh
+scripts/build_switch_sd.sh
+scripts/build_switch_sd_macos.sh
+
+# Private modules
+modules/chips/nintendo-switch/
+modules/features/joycon/
+
+# Memory and scratch files
+@memories.md
+@lessons-learned.md
+@scratchpad.md
+docs/memories.md
+docs/lessons-learned.md
+docs/scratchpad.md 
