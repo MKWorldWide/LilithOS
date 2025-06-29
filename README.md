@@ -12,6 +12,7 @@ LilithOS represents a comprehensive ecosystem of custom operating systems and fi
 - **Cross-Platform Compatibility**: Seamless integration between different platforms
 - **Open Source Foundation**: Built on proven open-source technologies
 - **Performance Excellence**: Optimized for speed, efficiency, and reliability
+- **Recovery & Resilience**: Advanced recovery boot capabilities for system reliability
 
 ## 📱 Platform-Specific Implementations
 
@@ -57,6 +58,27 @@ LilithOS represents a comprehensive ecosystem of custom operating systems and fi
 - **Security**: Modified sandbox restrictions and system integrity checks
 - **Performance**: Kernel-level and system service optimizations
 
+### 3. LilithOS macOS Integration (Enhanced Installer)
+**Target Platform**: MacBook Air M3 and Apple Silicon Macs
+**Base System**: macOS 14.0+ with custom recovery boot system
+**Architecture**: Apple Silicon with custom recovery partitions
+
+#### Key Features:
+- **Direct Recovery Boot**: Boot into recovery mode directly from macOS
+- **Multiple Recovery Modes**: Emergency, Repair, Diagnostic, and Safe modes
+- **Boot Manager Integration**: Seamless integration with system boot manager
+- **M3 Optimization**: Optimized for Apple Silicon performance
+- **Secure Boot**: Secure boot transitions with proper authentication
+- **Dual Boot Support**: Complete dual-boot setup with recovery partition
+- **Automated Installation**: Comprehensive installer with recovery capabilities
+
+#### Technical Specifications:
+- **Recovery System**: Custom recovery partition with boot management
+- **Boot Manager**: Integrated boot manager with multiple boot options
+- **Partition Management**: Automated partition creation and management
+- **Security**: Secure boot transitions and partition validation
+- **Hardware Support**: Apple Silicon M3 optimization with unified memory
+
 ## 💻 System Requirements
 
 ### Desktop Requirements
@@ -73,6 +95,13 @@ LilithOS represents a comprehensive ecosystem of custom operating systems and fi
 - Apple Developer Account for signing
 - macOS development environment
 
+### macOS Integration Requirements
+- macOS 14.0+ (Sonoma)
+- MacBook Air M3 or compatible Apple Silicon Mac
+- Root privileges (sudo access)
+- Minimum 80GB available disk space
+- Xcode Command Line Tools installed
+
 ## 🏗️ Project Structure
 ```
 lilithos/
@@ -80,6 +109,7 @@ lilithos/
 │   ├── ARCHITECTURE.md     # System architecture documentation
 │   ├── BUILD.md           # Build instructions
 │   ├── INSTALLATION.md    # Installation guide
+│   ├── RECOVERY-BOOT-GUIDE.md # Recovery boot system guide
 │   ├── WINDOWS-INTEGRATION.md # Windows integration guide
 │   ├── INTEGRATION-OVERVIEW.md # Ecosystem integration overview
 │   ├── TECHNICAL-INTEGRATION.md # Technical integration guide
@@ -89,12 +119,17 @@ lilithos/
 │   ├── lessons-learned.md # Lessons learned and best practices
 │   └── scratchpad.md      # Development notes and current work
 ├── scripts/                # Build and utility scripts
+│   ├── recovery-boot.sh   # Recovery boot system
+│   ├── quick-recovery.sh  # Quick recovery access
+│   └── ...                # Other build scripts
 ├── config/                # Configuration files
 ├── kernel/               # Custom kernel patches
 ├── packages/            # Custom package definitions
 ├── tools/              # Development tools
 │   └── macos-companion/ # macOS installation companion app
-└── resources/          # Project resources
+├── resources/          # Project resources
+├── macos_m3_installer.sh # Enhanced macOS installer with recovery
+└── build_macos_dmg.sh  # macOS DMG builder
 ```
 
 ## 🔗 Integration Points
@@ -117,6 +152,12 @@ lilithos/
 - Cross-platform driver development
 - Unified hardware testing procedures
 
+### Recovery System Integration
+- Unified recovery boot capabilities across platforms
+- Cross-platform recovery tools and utilities
+- Consistent recovery workflows and procedures
+- Integrated recovery documentation and support
+
 ## 🛠️ Development Ecosystem
 
 ### Build Systems
@@ -132,11 +173,18 @@ lilithos/
    - Signing and verification process
    - Device compatibility validation
 
+3. **macOS Integration Build**:
+   - Recovery partition creation and management
+   - Boot manager integration and testing
+   - M3 optimization and validation
+   - Recovery boot system testing
+
 ### Development Tools
 - **Cross-Platform Scripts**: PowerShell, Bash, and Batch scripts
 - **Build Automation**: Automated build processes for all platforms
 - **Testing Frameworks**: Comprehensive testing for each platform
 - **Documentation System**: Unified documentation across all projects
+- **Recovery Tools**: Advanced recovery boot and management tools
 
 ## 🔒 Security Architecture
 
@@ -145,22 +193,26 @@ lilithos/
 - **Access Control**: Consistent permission and sandbox management
 - **Cryptographic Standards**: Unified encryption and signing processes
 - **Audit Logging**: Comprehensive security event monitoring
+- **Recovery Security**: Secure recovery boot with authentication
 
 ### Platform-Specific Security Features
 - **Desktop**: Full disk encryption, secure package management, hardware security
 - **Mobile**: Modified sandbox restrictions, enhanced system integrity, custom security policies
+- **macOS Integration**: Secure recovery boot, partition validation, boot manager security
 
 ## 📊 Performance Optimization Strategy
 
 ### Hardware-Specific Optimizations
 - **Mac Pro 2009**: Custom kernel patches, GPU acceleration, memory optimization
 - **iPhone 4S**: Kernel-level optimizations, battery life improvements, memory management
+- **MacBook Air M3**: Apple Silicon optimization, unified memory management, neural engine support
 
 ### Cross-Platform Performance Standards
 - **Boot Time Optimization**: Fast and secure boot processes
 - **Memory Management**: Efficient memory usage and allocation
 - **Storage Optimization**: Optimized file systems and caching
 - **Network Performance**: Enhanced networking capabilities
+- **Recovery Performance**: Fast recovery boot and system restoration
 
 ## 🚀 Deployment and Distribution
 
@@ -176,11 +228,18 @@ lilithos/
 - **Recovery Options**: Safe recovery and rollback mechanisms
 - **Update System**: Secure over-the-air updates
 
+### macOS Integration
+- **Enhanced Installer**: Comprehensive installer with recovery capabilities
+- **Recovery Boot**: Direct recovery boot from macOS
+- **Boot Manager**: Integrated boot manager with multiple options
+- **Partition Management**: Automated partition creation and management
+
 ## 📚 Documentation Standards
 
 ### Unified Documentation Framework
 - **Architecture Documentation**: Comprehensive system architecture guides
 - **Installation Guides**: Step-by-step installation instructions
+- **Recovery Guides**: Complete recovery boot system documentation
 - **Development Guidelines**: Coding standards and best practices
 - **Troubleshooting**: Common issues and solutions
 - **API Documentation**: Complete API references
@@ -198,140 +257,113 @@ lilithos/
 - **Build Verification**: Automated build and test processes
 - **Security Scanning**: Automated security vulnerability detection
 - **Performance Testing**: Automated performance benchmarking
+- **Recovery Testing**: Automated recovery boot system validation
 
-### Release Management
-- **Version Control**: Semantic versioning across all platforms
-- **Release Notes**: Comprehensive release documentation
-- **Rollback Procedures**: Safe rollback mechanisms
-- **Update Distribution**: Secure update distribution systems
+## 🌟 New Features - Recovery Boot System
 
-## 🌐 Community and Collaboration
+### Direct Recovery Boot
+The enhanced LilithOS installer now includes a comprehensive recovery boot system that allows you to boot directly into recovery mode from macOS without requiring external media or manual boot selection.
 
-### Open Source Collaboration
-- **GitHub Integration**: Unified repository management
-- **Issue Tracking**: Comprehensive issue and feature tracking
-- **Community Guidelines**: Clear contribution guidelines
-- **Code Review Process**: Thorough code review procedures
+#### Key Recovery Features:
+- **Emergency Recovery**: Immediate boot into recovery mode for critical system issues
+- **Repair Mode**: System repair and recovery tools for fixing common problems
+- **Diagnostic Mode**: Comprehensive system diagnostics and testing
+- **Safe Mode**: Safe recovery boot with basic functionality
+- **Boot Manager**: Integrated boot manager with multiple boot options
 
-### Knowledge Sharing
-- **Documentation Wiki**: Comprehensive knowledge base
-- **Community Forums**: User and developer support forums
-- **Development Chat**: Real-time development discussions
-- **Training Materials**: Educational resources and tutorials
+#### Quick Recovery Access:
+```bash
+# Emergency recovery boot
+sudo ./scripts/quick-recovery.sh emergency
+
+# Interactive recovery options
+sudo ./scripts/quick-recovery.sh
+
+# Full recovery boot system
+sudo ./scripts/recovery-boot.sh --emergency
+```
+
+#### Installation:
+```bash
+# Run the enhanced installer
+chmod +x macos_m3_installer.sh
+sudo ./macos_m3_installer.sh
+```
+
+For complete recovery boot documentation, see [RECOVERY-BOOT-GUIDE.md](docs/RECOVERY-BOOT-GUIDE.md).
 
 ## 🚀 Getting Started
 
-### For Desktop Users
-1. Clone the repository
+### Quick Start - macOS Integration
+1. **Clone the repository**:
    ```bash
-   git clone https://github.com/M-K-World-Wide/LilithOS.git
+   git clone https://github.com/your-username/LilithOS.git
+   cd LilithOS
    ```
-2. Review system requirements in `docs/INSTALLATION.md`
-3. Follow build instructions in `docs/BUILD.md`
-4. Check architecture details in `docs/ARCHITECTURE.md`
-5. Explore Windows integration in `docs/WINDOWS-INTEGRATION.md`
-6. For macOS users, use the companion app in `tools/macos-companion`
 
-### For Mobile Users
-1. Review iOS firmware requirements
-2. Follow mobile build instructions
-3. Check device compatibility
-4. Review security considerations
-
-### For Developers
-1. Review development guidelines
-2. Set up development environment
-3. Explore integration documentation
-4. Join community discussions
-
-## 🛠️ Development
-- See `docs/CONTRIBUTING.md` for development guidelines
-- Check `docs/ARCHITECTURE.md` for system architecture details
-- Review `docs/lessons-learned.md` for best practices
-- Track progress in `docs/scratchpad.md`
-
-## 🔒 Security
-- Regular security updates
-- Advanced security tools
-- System integrity monitoring
-- Access control management
-- Security audit logging
-
-## 📚 Documentation
-- Comprehensive system documentation
-- Installation guides
-- Development guidelines
-- API documentation
-- Troubleshooting guides
-
-## 🪟 Windows Integration
-### C: Drive Access
-- Automatic C: drive mounting
-- Secure file sharing between systems
-- NTFS-3G support
-- Automatic mount on boot
-
-### Integration Features
-- Seamless file system access
-- Cross-platform file sharing
-- Secure permissions management
-- Automatic drive detection
-
-### Setup Instructions
-1. Run the Windows integration script:
+2. **Run the enhanced installer**:
    ```bash
-   sudo ./scripts/windows-integration.sh
+   chmod +x macos_m3_installer.sh
+   sudo ./macos_m3_installer.sh
    ```
-2. Verify C: drive access at `/mnt/c`
-3. Configure sharing preferences in `/etc/lilithos/windows-integration.conf`
 
-## 🔮 Future Roadmap
+3. **Access recovery boot**:
+   ```bash
+   # Emergency recovery
+   sudo ./scripts/quick-recovery.sh emergency
+   
+   # Or use the full recovery system
+   sudo ./scripts/recovery-boot.sh
+   ```
 
-### Short-Term Goals (3-6 months)
-- Enhanced security features across all platforms
-- Improved performance optimizations
-- Expanded hardware compatibility
-- Enhanced documentation and tutorials
+### Quick Start - Desktop Linux
+1. **Build the ISO**:
+   ```bash
+   ./scripts/build_and_run.sh
+   ```
 
-### Medium-Term Goals (6-12 months)
-- Additional platform support
-- Advanced integration features
-- Enhanced automation and tooling
-- Community expansion and engagement
+2. **Create USB installer**:
+   ```bash
+   sudo ./scripts/create-usb-installer.sh lilithos.iso /dev/sdX
+   ```
 
-### Long-Term Vision (1-2 years)
-- Complete ecosystem integration
-- Advanced AI-powered features
-- Enterprise-grade security
-- Global community adoption
+3. **Install on Mac Pro**:
+   - Boot from USB installer
+   - Follow installation wizard
+   - Configure dual boot with macOS
 
-## 📞 Support and Maintenance
+### Quick Start - Mobile Firmware
+1. **Build IPSW**:
+   ```bash
+   ./scripts/build_ipsw.sh
+   ```
 
-### Technical Support
-- **Documentation**: Comprehensive self-service documentation
-- **Community Support**: Active community forums and chat
-- **Professional Support**: Enterprise support options
-- **Training Programs**: Educational and certification programs
+2. **Flash to device**:
+   ```bash
+   # Use iTunes or 3uTools to flash the IPSW
+   ```
 
-### Maintenance Schedule
-- **Regular Updates**: Scheduled security and feature updates
-- **Security Patches**: Immediate security vulnerability fixes
-- **Performance Updates**: Regular performance improvements
-- **Hardware Support**: New hardware compatibility additions
+## 📞 Support and Community
 
-## 📝 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+### Documentation
+- **Recovery Boot Guide**: [docs/RECOVERY-BOOT-GUIDE.md](docs/RECOVERY-BOOT-GUIDE.md)
+- **Installation Guide**: [docs/INSTALLATION.md](docs/INSTALLATION.md)
+- **Architecture Documentation**: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
+- **Build Instructions**: [docs/BUILD.md](docs/BUILD.md)
 
-## 🙏 Acknowledgments
-- Based on Kali Linux and iOS
-- Special thanks to the open-source community
-- Contributors and maintainers
-- Hardware compatibility testers
+### Getting Help
+- **Issues**: Report bugs and request features through GitHub Issues
+- **Discussions**: Join community discussions for support and ideas
+- **Documentation**: Comprehensive guides and troubleshooting information
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](docs/CONTRIBUTING.md) for details on how to contribute to the project.
 
 ---
 
-## 🎯 Conclusion
-
-The LilithOS ecosystem represents a comprehensive approach to custom computing environments, spanning from desktop systems to mobile devices. By maintaining a unified vision while respecting platform-specific requirements, LilithOS provides users with enhanced security, performance, and functionality across their entire Apple hardware ecosystem.
-
-The integration of these diverse projects creates a powerful foundation for future development and expansion, while maintaining the highest standards of quality, security, and performance that users expect from custom operating systems and firmware solutions.
+**LilithOS** - Where code flows like breath in a sacred digital garden 🌑
