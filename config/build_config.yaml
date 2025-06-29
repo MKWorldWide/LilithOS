@@ -1,303 +1,635 @@
-# LilithOS Universal Build Configuration
-# =====================================
-# This configuration defines how LilithOS modules are built and distributed
-# for different chip architectures and platforms.
+# LilithOS Universal Modular Build Configuration
+# Version: 2.0.0
+# Description: Configuration for building LilithOS modules across all platforms
 
-version: "2.0.0"
-name: "LilithOS Universal"
-description: "Modular operating system for any chip architecture"
+# =============================================================================
+# GLOBAL CONFIGURATION
+# =============================================================================
 
-# Build Settings
-build:
-  output_directory: "build"
-  temp_directory: "temp"
-  compression: "gzip"
-  package_format: "tar.gz"
+global:
+  version: "2.0.0"
+  name: "LilithOS"
+  description: "Sacred Digital Garden - Universal Modular OS"
+  author: "M-K-World-Wide"
+  license: "MIT"
+  repository: "https://github.com/M-K-World-Wide/LilithOS"
+  
+  # Build settings
+  build_dir: "build"
+  output_dir: "dist"
+  temp_dir: "temp"
+  cache_dir: "cache"
   
   # Parallel build settings
-  parallel_jobs: 4
-  max_memory: "8GB"
+  max_workers: 4
+  timeout: 3600  # 1 hour
   
-  # Build optimizations
-  optimizations:
-    performance: true
-    security: true
-    power: true
-    size: true
+  # Quality settings
+  compression: true
+  checksums: true
+  signing: false  # Enable for production releases
 
-# Module Configuration
-modules:
-  # Core system (required for all builds)
-  core:
-    required: true
-    dependencies: []
-    architectures: ["universal"]
-    build_steps:
-      - "copy_core_files"
-      - "generate_config"
-      - "create_bootloader"
-    
-  # Chip-specific modules
-  chips:
-    apple-silicon:
-      required: false
-      dependencies: ["core"]
-      architectures: ["arm64"]
-      features: ["neural_engine", "unified_memory", "secure_enclave"]
-      build_steps:
-        - "copy_chip_files"
-        - "optimize_neural_engine"
-        - "configure_unified_memory"
-        - "setup_secure_enclave"
-    
-    intel-x86:
-      required: false
-      dependencies: ["core"]
-      architectures: ["x86_64"]
-      features: ["avx", "turbo_boost", "sgx"]
-      build_steps:
-        - "copy_chip_files"
-        - "optimize_avx"
-        - "configure_turbo_boost"
-        - "setup_sgx"
-    
-    arm64:
-      required: false
-      dependencies: ["core"]
-      architectures: ["arm64"]
-      features: ["neon", "big_little"]
-      build_steps:
-        - "copy_chip_files"
-        - "optimize_neon"
-        - "configure_big_little"
-    
-    risc-v:
-      required: false
-      dependencies: ["core"]
-      architectures: ["riscv64"]
-      features: ["vector", "compressed"]
-      build_steps:
-        - "copy_chip_files"
-        - "optimize_vector"
-        - "configure_compressed"
+# =============================================================================
+# CHIP ARCHITECTURES
+# =============================================================================
 
-  # Platform-specific modules
-  platforms:
-    desktop:
-      required: false
-      dependencies: ["core"]
-      platforms: ["desktop"]
-      build_steps:
-        - "copy_desktop_files"
-        - "setup_window_manager"
-        - "configure_display"
-    
-    mobile:
-      required: false
-      dependencies: ["core"]
-      platforms: ["mobile"]
-      build_steps:
-        - "copy_mobile_files"
-        - "setup_touch_interface"
-        - "configure_sensors"
-    
-    embedded:
-      required: false
-      dependencies: ["core"]
-      platforms: ["embedded"]
-      build_steps:
-        - "copy_embedded_files"
-        - "optimize_size"
-        - "configure_minimal"
-    
-    server:
-      required: false
-      dependencies: ["core"]
-      platforms: ["server"]
-      build_steps:
-        - "copy_server_files"
-        - "setup_services"
-        - "configure_networking"
+chips:
+  apple_silicon:
+    name: "Apple Silicon"
+    architectures: ["arm64"]
+    variants:
+      - m1: "Apple M1"
+      - m1_pro: "Apple M1 Pro"
+      - m1_max: "Apple M1 Max"
+      - m1_ultra: "Apple M1 Ultra"
+      - m2: "Apple M2"
+      - m2_pro: "Apple M2 Pro"
+      - m2_max: "Apple M2 Max"
+      - m2_ultra: "Apple M2 Ultra"
+      - m3: "Apple M3"
+      - m3_pro: "Apple M3 Pro"
+      - m3_max: "Apple M3 Max"
+    features:
+      - neural_engine: true
+      - secure_enclave: true
+      - unified_memory: true
+      - gpu_acceleration: true
+    optimizations:
+      - big_little: false
+      - neural_engine: true
+      - metal_api: true
+      - secure_boot: true
 
-  # Feature modules
-  features:
-    security:
-      required: true
-      dependencies: ["core"]
-      build_steps:
-        - "copy_security_files"
-        - "setup_encryption"
-        - "configure_firewall"
-        - "setup_sandboxing"
-    
-    performance:
-      required: false
-      dependencies: ["core"]
-      build_steps:
-        - "copy_performance_files"
-        - "setup_monitoring"
-        - "configure_optimizations"
-    
-    development:
-      required: false
-      dependencies: ["core"]
-      build_steps:
-        - "copy_development_files"
-        - "setup_toolchain"
-        - "configure_ide"
-    
-    multimedia:
-      required: false
-      dependencies: ["core"]
-      build_steps:
-        - "copy_multimedia_files"
-        - "setup_codecs"
-        - "configure_hardware_acceleration"
-    
-    networking:
-      required: false
-      dependencies: ["core"]
-      build_steps:
-        - "copy_networking_files"
-        - "setup_protocols"
-        - "configure_routing"
+  intel_x86:
+    name: "Intel x86"
+    architectures: ["x86_64"]
+    variants:
+      - core_i3: "Intel Core i3"
+      - core_i5: "Intel Core i5"
+      - core_i7: "Intel Core i7"
+      - core_i9: "Intel Core i9"
+      - xeon: "Intel Xeon"
+    features:
+      - neural_engine: false
+      - secure_enclave: false
+      - unified_memory: false
+      - gpu_acceleration: true
+    optimizations:
+      - big_little: false
+      - avx2: true
+      - avx512: true
+      - secure_boot: true
 
-  # Theme modules
-  themes:
-    dark-glass:
-      required: false
-      dependencies: ["desktop"]
-      type: "theme"
-      build_steps:
-        - "copy_theme_files"
-        - "generate_css"
-        - "create_assets"
-    
-    light-glass:
-      required: false
-      dependencies: ["desktop"]
-      type: "theme"
-      build_steps:
-        - "copy_theme_files"
-        - "generate_css"
-        - "create_assets"
-    
-    red-gold:
-      required: false
-      dependencies: ["desktop"]
-      type: "theme"
-      build_steps:
-        - "copy_theme_files"
-        - "generate_css"
-        - "create_assets"
+  arm64:
+    name: "ARM64"
+    architectures: ["arm64"]
+    variants:
+      - cortex_a72: "ARM Cortex-A72"
+      - cortex_a76: "ARM Cortex-A76"
+      - cortex_a78: "ARM Cortex-A78"
+      - cortex_x1: "ARM Cortex-X1"
+      - cortex_x2: "ARM Cortex-X2"
+    features:
+      - neural_engine: false
+      - secure_enclave: false
+      - unified_memory: false
+      - gpu_acceleration: true
+    optimizations:
+      - big_little: true
+      - neon: true
+      - secure_boot: true
 
-# Distribution Configuration
-distribution:
-  # Package formats
-  formats:
-    - "tar.gz"
-    - "zip"
-    - "iso"
-    - "dmg"
-    - "deb"
-    - "rpm"
-  
-  # Target architectures
-  architectures:
-    - "x86_64"
-    - "arm64"
-    - "arm32"
-    - "riscv64"
-  
-  # Target platforms
-  platforms:
-    - "linux"
-    - "macos"
-    - "windows"
-    - "android"
-    - "ios"
-  
-  # Package metadata
-  metadata:
-    maintainer: "LilithOS Team"
-    license: "MIT"
-    homepage: "https://github.com/M-K-World-Wide/LilithOS"
-    bugs: "https://github.com/M-K-World-Wide/LilithOS/issues"
+  risc_v:
+    name: "RISC-V"
+    architectures: ["riscv64"]
+    variants:
+      - u74: "SiFive U74"
+      - u84: "SiFive U84"
+      - x280: "SiFive X280"
+    features:
+      - neural_engine: false
+      - secure_enclave: false
+      - unified_memory: false
+      - gpu_acceleration: false
+    optimizations:
+      - big_little: false
+      - vector_extensions: true
+      - secure_boot: false
 
-# Security Configuration
-security:
-  # Encryption settings
-  encryption:
-    algorithm: "AES-256"
-    key_derivation: "PBKDF2"
-    iterations: 100000
-  
-  # Authentication
-  authentication:
-    methods: ["password", "key", "biometric"]
-    session_timeout: 3600
-  
-  # Access control
-  access_control:
-    default_policy: "deny"
-    user_isolation: true
-    process_isolation: true
+  nintendo_switch:
+    name: "Nintendo Switch"
+    architectures: ["arm64"]
+    variants:
+      - tegra_x1: "NVIDIA Tegra X1"
+    features:
+      - neural_engine: false
+      - secure_enclave: false
+      - unified_memory: false
+      - gpu_acceleration: true
+      - joycon_support: true
+      - pro_controller: true
+      - docked_mode: true
+      - handheld_mode: true
+    optimizations:
+      - big_little: true
+      - maxwell_gpu: true
+      - thermal_management: true
+      - battery_optimization: true
+      - motion_controls: true
+      - rumble_support: true
+      - ir_camera: true
 
-# Performance Configuration
-performance:
-  # CPU optimization
-  cpu:
-    scheduler: "cfs"
-    governor: "performance"
-    frequency_scaling: true
-  
-  # Memory optimization
-  memory:
-    swappiness: 10
-    huge_pages: true
+# =============================================================================
+# PLATFORM MODULES
+# =============================================================================
+
+platforms:
+  desktop:
+    name: "Desktop"
+    description: "Full desktop environment with GUI"
+    features:
+      - gui: true
+      - window_manager: true
+      - desktop_applications: true
+      - multimedia: true
+      - gaming: true
+    packages:
+      - xorg
+      - gnome
+      - kde
+      - steam
+      - vlc
+      - firefox
+      - libreoffice
+    themes:
+      - dark_glass
+      - light_glass
+      - red_gold
+
+  mobile:
+    name: "Mobile"
+    description: "Mobile-optimized interface"
+    features:
+      - touch_interface: true
+      - gesture_controls: true
+      - mobile_apps: true
+      - battery_optimization: true
+    packages:
+      - wayland
+      - phosh
+      - mobile_apps
+      - battery_monitor
+    themes:
+      - dark_glass
+      - light_glass
+
+  embedded:
+    name: "Embedded"
+    description: "Minimal system for embedded devices"
+    features:
+      - headless: true
+      - minimal_footprint: true
+      - real_time: true
+      - low_power: true
+    packages:
+      - busybox
+      - systemd
+      - network_tools
+    themes:
+      - minimal
+
+  server:
+    name: "Server"
+    description: "Server-optimized system"
+    features:
+      - headless: true
+      - high_performance: true
+      - network_services: true
+      - security_focused: true
+    packages:
+      - nginx
+      - postgresql
+      - docker
+      - kubernetes
+      - monitoring_tools
+    themes:
+      - minimal
+
+  handheld:
+    name: "Handheld"
+    description: "Handheld gaming device optimization"
+    features:
+      - gamepad_support: true
+      - touch_interface: true
+      - battery_optimization: true
+      - thermal_management: true
+    packages:
+      - retroarch
+      - steam
+      - gamepad_drivers
+      - battery_monitor
+    themes:
+      - dark_glass
+      - gaming
+
+# =============================================================================
+# FEATURE MODULES
+# =============================================================================
+
+features:
+  security:
+    name: "Security"
+    description: "Advanced security features"
+    packages:
+      - kali_linux_tools
+      - metasploit
+      - wireshark
+      - nmap
+      - burp_suite
+      - john
+      - hashcat
+    configurations:
+      - firewall_rules
+      - encryption
+      - secure_boot
+      - sandboxing
+
+  performance:
+    name: "Performance"
+    description: "Performance optimization tools"
+    packages:
+      - htop
+      - iotop
+      - perf
+      - valgrind
+      - gprof
+    configurations:
+      - cpu_optimization
+      - memory_optimization
+      - gpu_optimization
+      - storage_optimization
+
+  development:
+    name: "Development"
+    description: "Development tools and environments"
+    packages:
+      - gcc
+      - clang
+      - python
+      - nodejs
+      - rust
+      - go
+      - vscode
+      - git
+    configurations:
+      - development_environment
+      - debugging_tools
+      - version_control
+
+  multimedia:
+    name: "Multimedia"
+    description: "Multimedia creation and playback"
+    packages:
+      - ffmpeg
+      - gimp
+      - blender
+      - audacity
+      - vlc
+      - mpv
+    configurations:
+      - audio_optimization
+      - video_optimization
+      - graphics_acceleration
+
+  gaming:
+    name: "Gaming"
+    description: "Gaming optimization and tools"
+    packages:
+      - steam
+      - retroarch
+      - wine
+      - lutris
+      - gamemode
+    configurations:
+      - gaming_optimization
+      - controller_support
+      - performance_profiles
+
+  networking:
+    name: "Networking"
+    description: "Advanced networking capabilities"
+    packages:
+      - openvpn
+      - wireguard
+      - iptables
+      - networkmanager
+      - wpa_supplicant
+    configurations:
+      - network_optimization
+      - vpn_support
+      - firewall_configuration
+
+# =============================================================================
+# THEME MODULES
+# =============================================================================
+
+themes:
+  dark_glass:
+    name: "Dark Glass"
+    description: "Elegant dark glass aesthetic"
+    colors:
+      primary: "#000000"
+      secondary: "#8B0000"
+      accent: "#FFD700"
+      text: "#FFD700"
+      border: "#8B0000"
+    styles:
+      - glass_effect
+      - dark_background
+      - gold_accent
+      - red_highlights
+
+  light_glass:
+    name: "Light Glass"
+    description: "Clean light glass aesthetic"
+    colors:
+      primary: "#FFFFFF"
+      secondary: "#F0F0F0"
+      accent: "#8B0000"
+      text: "#000000"
+      border: "#CCCCCC"
+    styles:
+      - glass_effect
+      - light_background
+      - red_accent
+      - clean_lines
+
+  red_gold:
+    name: "Red Gold"
+    description: "Luxurious red and gold theme"
+    colors:
+      primary: "#8B0000"
+      secondary: "#FFD700"
+      accent: "#FFA500"
+      text: "#FFD700"
+      border: "#FFA500"
+    styles:
+      - luxury_effect
+      - red_background
+      - gold_accent
+      - premium_look
+
+  minimal:
+    name: "Minimal"
+    description: "Minimalist design"
+    colors:
+      primary: "#FFFFFF"
+      secondary: "#F5F5F5"
+      accent: "#333333"
+      text: "#000000"
+      border: "#CCCCCC"
+    styles:
+      - minimal_design
+      - clean_interface
+      - simple_colors
+
+  gaming:
+    name: "Gaming"
+    description: "Gaming-focused theme"
+    colors:
+      primary: "#1a1a1a"
+      secondary: "#2d2d2d"
+      accent: "#00ff00"
+      text: "#ffffff"
+      border: "#00ff00"
+    styles:
+      - gaming_aesthetic
+      - neon_effects
+      - high_contrast
+
+# =============================================================================
+# PACKAGE FORMATS
+# =============================================================================
+
+package_formats:
+  deb:
+    name: "Debian Package"
+    extension: ".deb"
     compression: true
-  
-  # I/O optimization
-  io:
-    scheduler: "bfq"
-    read_ahead: true
-    write_back: true
+    signing: true
+    platforms: ["linux"]
 
-# Power Management
-power:
-  # CPU power management
-  cpu:
-    idle_states: true
-    frequency_scaling: true
-    thermal_management: true
-  
-  # System power management
-  system:
-    suspend_mode: "deep"
-    hibernate: true
-    power_button: "suspend"
+  rpm:
+    name: "RPM Package"
+    extension: ".rpm"
+    compression: true
+    signing: true
+    platforms: ["linux"]
 
-# Development Configuration
-development:
-  # Build tools
-  tools:
-    compiler: "gcc"
-    linker: "ld"
-    debugger: "gdb"
+  pkg:
+    name: "macOS Package"
+    extension: ".pkg"
+    compression: true
+    signing: true
+    platforms: ["macos"]
+
+  dmg:
+    name: "macOS Disk Image"
+    extension: ".dmg"
+    compression: true
+    signing: true
+    platforms: ["macos"]
+
+  iso:
+    name: "ISO Image"
+    extension: ".iso"
+    compression: true
+    signing: false
+    platforms: ["linux", "windows"]
+
+  img:
+    name: "Disk Image"
+    extension: ".img"
+    compression: true
+    signing: false
+    platforms: ["linux", "windows", "macos"]
+
+  tar:
+    name: "Tarball"
+    extension: ".tar.gz"
+    compression: true
+    signing: false
+    platforms: ["all"]
+
+  zip:
+    name: "ZIP Archive"
+    extension: ".zip"
+    compression: true
+    signing: false
+    platforms: ["all"]
+
+# =============================================================================
+# BUILD PROFILES
+# =============================================================================
+
+build_profiles:
+  minimal:
+    name: "Minimal"
+    description: "Minimal system with core features"
+    chips: ["apple_silicon", "intel_x86", "arm64"]
+    platforms: ["embedded"]
+    features: ["security"]
+    themes: ["minimal"]
+    package_formats: ["tar", "zip"]
+
+  standard:
+    name: "Standard"
+    description: "Standard desktop system"
+    chips: ["apple_silicon", "intel_x86", "arm64"]
+    platforms: ["desktop"]
+    features: ["security", "development", "multimedia"]
+    themes: ["dark_glass", "light_glass"]
+    package_formats: ["deb", "rpm", "pkg", "dmg", "iso"]
+
+  gaming:
+    name: "Gaming"
+    description: "Gaming-optimized system"
+    chips: ["apple_silicon", "intel_x86", "arm64"]
+    platforms: ["desktop", "handheld"]
+    features: ["gaming", "performance", "multimedia"]
+    themes: ["gaming", "dark_glass"]
+    package_formats: ["deb", "rpm", "pkg", "dmg", "iso"]
+
+  server:
+    name: "Server"
+    description: "Server-optimized system"
+    chips: ["apple_silicon", "intel_x86", "arm64"]
+    platforms: ["server"]
+    features: ["security", "networking", "performance"]
+    themes: ["minimal"]
+    package_formats: ["deb", "rpm", "tar", "zip"]
+
+  mobile:
+    name: "Mobile"
+    description: "Mobile-optimized system"
+    chips: ["apple_silicon", "arm64"]
+    platforms: ["mobile"]
+    features: ["security", "multimedia", "networking"]
+    themes: ["dark_glass", "light_glass"]
+    package_formats: ["tar", "zip", "img"]
+
+  nintendo_switch:
+    name: "Nintendo Switch"
+    description: "Nintendo Switch optimized system"
+    chips: ["nintendo_switch"]
+    platforms: ["handheld"]
+    features: ["gaming", "performance", "multimedia"]
+    themes: ["dark_glass", "gaming"]
+    package_formats: ["img", "tar", "zip"]
+    special_configurations:
+      - joycon_support: true
+      - tegra_x1_optimization: true
+      - switch_display_modes: true
+      - switch_power_management: true
+
+# =============================================================================
+# DEPLOYMENT CONFIGURATION
+# =============================================================================
+
+deployment:
+  # Automated deployment settings
+  auto_deploy: false
+  deploy_targets:
+    - github_releases
+    - docker_hub
+    - package_repositories
   
-  # Testing
+  # GitHub releases configuration
+  github:
+    repository: "M-K-World-Wide/LilithOS"
+    release_notes: true
+    assets: true
+    checksums: true
+  
+  # Docker Hub configuration
+  docker:
+    repository: "mkworldwide/lilithos"
+    tags: ["latest", "stable", "development"]
+    multi_arch: true
+  
+  # Package repositories
+  repositories:
+    debian:
+      - "deb https://lilithos.github.io/repo/debian stable main"
+    ubuntu:
+      - "deb https://lilithos.github.io/repo/ubuntu focal main"
+    fedora:
+      - "https://lilithos.github.io/repo/fedora/lilithos.repo"
+
+# =============================================================================
+# QUALITY ASSURANCE
+# =============================================================================
+
+quality_assurance:
+  # Testing configuration
   testing:
-    framework: "pytest"
-    coverage: true
+    unit_tests: true
     integration_tests: true
+    performance_tests: true
+    security_tests: true
   
-  # Documentation
-  documentation:
-    format: "markdown"
-    generator: "sphinx"
-    api_docs: true
+  # Code quality
+  code_quality:
+    linting: true
+    formatting: true
+    documentation: true
+    coverage: true
+  
+  # Security scanning
+  security:
+    vulnerability_scanning: true
+    dependency_checking: true
+    code_analysis: true
+  
+  # Performance benchmarks
+  performance:
+    cpu_benchmarks: true
+    memory_benchmarks: true
+    storage_benchmarks: true
+    network_benchmarks: true
 
-# Monitoring Configuration
+# =============================================================================
+# DOCUMENTATION
+# =============================================================================
+
+documentation:
+  # Documentation generation
+  generate:
+    api_docs: true
+    user_guides: true
+    developer_docs: true
+    installation_guides: true
+  
+  # Documentation formats
+  formats:
+    - markdown
+    - html
+    - pdf
+    - epub
+  
+  # Documentation languages
+  languages:
+    - english
+    - spanish
+    - french
+    - german
+    - japanese
+    - chinese
+
+# =============================================================================
+# MONITORING AND ANALYTICS
+# =============================================================================
+
 monitoring:
   # System monitoring
   system:
@@ -308,120 +640,57 @@ monitoring:
   
   # Application monitoring
   applications:
-    process_monitoring: true
-    resource_tracking: true
-    performance_profiling: true
+    performance: true
+    errors: true
+    usage_statistics: true
   
-  # Logging
-  logging:
-    level: "info"
-    format: "json"
-    rotation: true
-    retention: "30d"
-
-# Network Configuration
-networking:
-  # Protocols
-  protocols:
-    - "tcp"
-    - "udp"
-    - "icmp"
-    - "http"
-    - "https"
-    - "ssh"
-    - "ftp"
-  
-  # Services
-  services:
-    dhcp: true
-    dns: true
-    firewall: true
-    vpn: true
-  
-  # Security
+  # Security monitoring
   security:
-    tls_version: "1.3"
-    certificate_validation: true
-    dnssec: true
+    intrusion_detection: true
+    vulnerability_monitoring: true
+    access_logs: true
 
-# User Interface Configuration
-ui:
-  # Desktop environment
-  desktop:
-    window_manager: "i3-gaps"
-    display_manager: "lightdm"
-    theme_engine: "gtk3"
-  
-  # Mobile interface
-  mobile:
-    launcher: "custom"
-    gesture_support: true
-    touch_optimization: true
-  
-  # Accessibility
-  accessibility:
-    screen_reader: true
-    high_contrast: true
-    font_scaling: true
+# =============================================================================
+# BACKUP AND RECOVERY
+# =============================================================================
 
-# Package Management
-package_management:
-  # Package formats
-  formats:
-    - "deb"
-    - "rpm"
-    - "flatpak"
-    - "snap"
-  
-  # Repositories
-  repositories:
-    main: "https://packages.lilithos.org"
-    security: "https://security.lilithos.org"
-    updates: "https://updates.lilithos.org"
-  
-  # Update policy
-  updates:
-    automatic: false
-    frequency: "weekly"
-    security_only: true
-
-# Backup and Recovery
 backup:
-  # Backup strategy
-  strategy:
-    type: "incremental"
-    frequency: "daily"
-    retention: "30d"
+  # Backup configuration
+  automatic: true
+  frequency: "daily"
+  retention: "30 days"
   
-  # Storage
-  storage:
-    local: true
-    remote: true
-    encryption: true
+  # Backup locations
+  locations:
+    - local: "/backup"
+    - cloud: "s3://lilithos-backups"
+    - remote: "rsync://backup-server"
   
-  # Recovery
-  recovery:
-    boot_recovery: true
-    system_restore: true
-    data_recovery: true
+  # Backup types
+  types:
+    - system_configuration
+    - user_data
+    - application_data
+    - logs
 
-# Customization
-customization:
-  # User preferences
-  preferences:
-    theme: "dark-glass"
-    language: "en"
-    timezone: "UTC"
-    keyboard_layout: "us"
+# =============================================================================
+# UPDATES AND MAINTENANCE
+# =============================================================================
+
+updates:
+  # Update configuration
+  automatic: true
+  frequency: "weekly"
+  security_updates: "immediate"
   
-  # System settings
-  system:
-    hostname: "lilithos"
-    domain: "local"
-    ntp_servers: ["pool.ntp.org"]
+  # Update channels
+  channels:
+    stable: "stable"
+    beta: "beta"
+    development: "development"
   
-  # Applications
-  applications:
-    default_browser: "firefox"
-    default_terminal: "alacritty"
-    default_editor: "code" 
+  # Rollback support
+  rollback:
+    enabled: true
+    snapshots: true
+    version_history: true 
