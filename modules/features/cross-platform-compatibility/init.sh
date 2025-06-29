@@ -37,6 +37,9 @@
 
 cross_platform_init() {
     echo "[Cross-Platform Compatibility] Initializing universal app support..."
+    
+    # Use proper LilithOS home directory
+    export LILITHOS_HOME="${LILITHOS_HOME:-$HOME/LilithOS}"
     export CROSS_PLATFORM_DIR="$LILITHOS_HOME/cross-platform"
     export WINE_DIR="$CROSS_PLATFORM_DIR/wine"
     export MSI_DIR="$CROSS_PLATFORM_DIR/msi"
