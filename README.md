@@ -97,7 +97,7 @@ cd lilithos
 ```
 
 #### **Basic Usage**
-```bash
+   ```bash
 # Start LilithOS
 lilithos start
 
@@ -114,7 +114,7 @@ lilithos config
 ### 🔧 Development
 
 #### **Building from Source**
-```bash
+   ```bash
 # Clone repository
 git clone https://github.com/lilithos/lilithos.git
 cd lilithos
@@ -130,7 +130,7 @@ cd lilithos
 ```
 
 #### **Development Environment**
-```bash
+   ```bash
 # Set up development environment
 ./scripts/setup-dev.sh
 
@@ -159,7 +159,7 @@ We welcome contributions from the community! Please see our [Contributing Guide]
 - Join our development community
 
 #### **Development Setup**
-```bash
+   ```bash
 # Fork and clone the repository
 git clone https://github.com/your-username/lilithos.git
 cd lilithos
