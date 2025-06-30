@@ -110,7 +110,10 @@ verify_installation() {
 create_system_info() {
     print_status "Creating system information..."
     
-    cat > /tmp/lilithos_system_info.txt << EOF
+    # Use a temporary file in the user's home directory
+    TEMP_FILE="$HOME/lilithos_system_info_temp.txt"
+    
+    cat > "$TEMP_FILE" << EOF
 LilithOS System Information
 ==========================
 
@@ -156,7 +159,8 @@ For support and documentation:
 - Review $LILITHOS_ROOT/DUAL_BOOT_GUIDE.md
 EOF
 
-    sudo cp /tmp/lilithos_system_info.txt "$LILITHOS_ROOT/system_info.txt"
+    sudo cp "$TEMP_FILE" "$LILITHOS_ROOT/system_info.txt"
+    rm -f "$TEMP_FILE"
     print_status "System information saved to $LILITHOS_ROOT/system_info.txt"
 }
 
@@ -165,7 +169,9 @@ create_desktop_shortcut() {
     print_status "Creating desktop shortcut..."
     
     # Create a simple launcher script
-    cat > /tmp/LilithOS_Launcher.command << EOF
+    TEMP_LAUNCHER="$HOME/LilithOS_Launcher_temp.command"
+    
+    cat > "$TEMP_LAUNCHER" << EOF
 #!/bin/bash
 # LilithOS Launcher
 
@@ -189,13 +195,14 @@ echo "Starting LilithOS..."
 ./start.sh
 EOF
 
-    sudo cp /tmp/LilithOS_Launcher.command "$LILITHOS_ROOT/LilithOS_Launcher.command"
+    sudo cp "$TEMP_LAUNCHER" "$LILITHOS_ROOT/LilithOS_Launcher.command"
     sudo chmod +x "$LILITHOS_ROOT/LilithOS_Launcher.command"
     
     # Create Applications shortcut
     sudo cp "$LILITHOS_ROOT/LilithOS_Launcher.command" "/Applications/LilithOS Launcher.command"
     sudo chmod +x "/Applications/LilithOS Launcher.command"
     
+    rm -f "$TEMP_LAUNCHER"
     print_status "Desktop shortcut created"
 }
 
@@ -203,7 +210,9 @@ EOF
 create_installation_summary() {
     print_status "Creating installation summary..."
     
-    cat > /tmp/installation_summary.txt << EOF
+    TEMP_SUMMARY="$HOME/installation_summary_temp.txt"
+    
+    cat > "$TEMP_SUMMARY" << EOF
 LilithOS Installation Summary
 ============================
 
@@ -262,7 +271,8 @@ $(ls -1 "$LILITHOS_ROOT/scripts" 2>/dev/null | head -10 | sed 's/^/- /' || echo 
 ✅ Installation completed successfully!
 EOF
 
-    sudo cp /tmp/installation_summary.txt "$LILITHOS_ROOT/installation_summary.txt"
+    sudo cp "$TEMP_SUMMARY" "$LILITHOS_ROOT/installation_summary.txt"
+    rm -f "$TEMP_SUMMARY"
     print_status "Installation summary saved to $LILITHOS_ROOT/installation_summary.txt"
 }
 
