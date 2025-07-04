@@ -1,0 +1,249 @@
+# TWiLight Menu++ Integration Configuration
+
+# System Information
+system:
+  menu_system: "TWiLight Menu++"
+  version: "25.10.0"
+  bootstrap_version: "0.72.0"
+  architecture: "Multi-platform emulation system"
+
+# Supported Platforms
+platforms:
+  nds: "Nintendo DS"
+  gba: "Game Boy Advance"
+  snes: "Super Nintendo"
+  nes: "Nintendo Entertainment System"
+  gb: "Game Boy"
+  gen: "Sega Genesis/Mega Drive"
+  gg: "Sega Game Gear"
+  sms: "Sega Master System"
+  tg16: "TurboGrafx-16"
+  ws: "WonderSwan"
+  a26: "Atari 2600"
+  a52: "Atari 5200"
+  a78: "Atari 7800"
+  col: "ColecoVision"
+  cpc: "Amstrad CPC"
+  m5: "Sega SG-1000"
+  ngp: "Neo Geo Pocket"
+  sg: "Sega SG-1000"
+  dsiware: "DSiWare applications"
+
+# Directory Structure
+directories:
+  roms: "/roms/"
+  nds: "/roms/nds/"
+  gba: "/roms/gba/"
+  snes: "/roms/snes/"
+  nes: "/roms/nes/"
+  gb: "/roms/gb/"
+  gen: "/roms/gen/"
+  gg: "/roms/gg/"
+  sms: "/roms/sms/"
+  tg16: "/roms/tg16/"
+  ws: "/roms/ws/"
+  a26: "/roms/a26/"
+  a52: "/roms/a52/"
+  a78: "/roms/a78/"
+  col: "/roms/col/"
+  cpc: "/roms/cpc/"
+  m5: "/roms/m5/"
+  ngp: "/roms/ngp/"
+  sg: "/roms/sg/"
+  dsiware: "/roms/dsiware/"
+  
+  # System directories
+  _nds: "/_nds/"
+  luma: "/luma/"
+  gm9: "/gm9/"
+  cias: "/cias/"
+  cheats: "/cheats/"
+  themes: "/Themes/"
+  splashes: "/Splashes/"
+
+# NDS Bootstrap Configuration
+nds_bootstrap:
+  debug: false
+  logging: false
+  romread_led: false
+  loading_screen: true
+  console_model: 2
+  dsi_mode: false
+  boost_cpu: false
+  boost_vram: false
+  cardengine_cached: true
+  force_sleep_patch: false
+  extended_memory: false
+  cache_block_size: 0
+  cache_fat_table: false
+  precise_volume_control: false
+  sound_freq: 0
+  use_rom_region: true
+  gui_language: "en"
+  region: 1
+  card_read_dma: true
+  async_card_read: false
+  b4ds_mode: false
+  sdnand: false
+  macro_mode: false
+  hotkey: 284
+
+# SNES Emulator Configuration
+snes_emulator:
+  scaling_modes:
+    0: "not scaled"
+    1: "half scaled"
+    2: "full-screen scaled"
+  sound_emulation: true
+  bg_layers: true
+  transparency_effects: true
+  hdma_support: true
+  fast_dma: true
+  external_memory: true
+  languages:
+    - "Japanese"
+    - "English"
+    - "French"
+    - "German"
+    - "Italian"
+    - "Spanish"
+    - "Portuguese"
+    - "Catalan"
+    - "Polish"
+    - "Dutch"
+    - "Danish"
+    - "Swedish"
+    - "Korean"
+    - "Chinese"
+    - "Russian"
+    - "Greek"
+
+# Advanced Features
+advanced_features:
+  widescreen_support: true
+  ap_patches: true
+  cheat_system: true
+  save_states: true
+  screenshot_support: true
+  ram_disks: true
+  
+  # Widescreen compatibility
+  widescreen_compatibility_file: "Games supported with widescreen.txt"
+  
+  # AP patches
+  ap_patches_file: "AP-Patched Games.txt"
+  
+  # Save file formats
+  save_formats:
+    nds: ".sav"
+    gba: ".sav"
+    snes: ".srm"
+    nes: ".sav"
+    gb: ".sav"
+    gen: ".srm"
+    gg: ".sav"
+    sms: ".sav"
+    tg16: ".sav"
+    ws: ".sav"
+    a26: ".sav"
+    a52: ".sav"
+    a78: ".sav"
+    col: ".sav"
+    cpc: ".sav"
+    m5: ".sav"
+    ngp: ".sav"
+    sg: ".sav"
+    dsiware: ".sav"
+  
+  # Screenshot formats
+  screenshot_format: ".png"
+  
+  # Save state formats
+  save_state_format: ".ss0"
+  
+  # Cheat file formats
+  cheat_format: ".cheats"
+
+# Performance Optimizations
+performance:
+  cpu_boost: false
+  vram_boost: false
+  extended_memory: false
+  cache_system: true
+  dma_card_reading: true
+  async_card_reading: false
+  fast_dma: true
+  external_memory_mapping: true
+
+# Security & Compatibility
+security:
+  anti_piracy_patches: true
+  region_free: true
+  sleep_patch: false
+  sdnand_support: false
+  multi_region_support: true
+  homebrew_support: true
+
+# Network & Updates
+network:
+  ftp_access: true
+  ftp_port: 5000
+  universal_updater: true
+  nightly_builds: true
+  release_versions: true
+  version_tracking: true
+
+# Homebrew Applications
+homebrew_apps:
+  fbi: "CIA installer and file manager"
+  anemone3ds: "Theme manager"
+  universal_updater: "Homebrew app store"
+  checkpoint: "Save manager"
+  mgba: "Game Boy Advance emulator"
+  battery_mark: "Battery testing tool"
+  starcruiser7: "Space shooter game"
+  nzportable: "Portable emulator"
+  ctr_no_timeoffset: "Time offset utility"
+  dspfirm: "DSP firmware"
+
+# NDS Bootstrap Files
+nds_bootstrap_files:
+  homebrew_release: "nds-bootstrap-hb-release.nds"
+  nightly: "nds-bootstrap-nightly.nds"
+  gbarunner2_dsi: "GBARunner2_arm7dldi_dsi.nds"
+  gbarunner2_3ds: "GBARunner2_arm7dldi_3ds.nds"
+  b4ds_release: "b4ds-release.nds"
+  config: "nds-bootstrap.ini"
+  version: "release-bootstrap.ver"
+
+# System Files
+system_files:
+  boot_3dsx: "boot.3dsx"
+  boot_firm: "boot.firm"
+  bios_bin: "bios.bin"
+  version_txt: "version.txt"
+  snemul_cfg: "snemul.cfg"
+
+# Comparison with R4 Setup
+comparison:
+  r4_setup:
+    menu_system: "R4iMenu (2016)"
+    nds_bootstrap: "Basic"
+    emulation: "NDS, GBA, SNES, N64"
+    widescreen: false
+    ap_patches: false
+    cheat_support: "Basic"
+    update_system: "Manual"
+    organization: "Simple folders"
+    modern_features: "Limited"
+  
+  twilight_setup:
+    menu_system: "TWiLight Menu++ (2024)"
+    nds_bootstrap: "Advanced v0.72.0"
+    emulation: "20+ platforms"
+    widescreen: true
+    ap_patches: true
+    cheat_support: "Advanced"
+    update_system: "Universal-Updater"
+    organization: "Structured roms/"
+    modern_features: "Extensive" 
