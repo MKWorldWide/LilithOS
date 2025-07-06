@@ -1,14 +1,27 @@
 {
-  "dev": {
+  "main": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-lilithos-dev-1c246-authRole",
-      "UnauthRoleArn": "arn:aws:iam::869935067006:role/amplify-lilithos-dev-1c246-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::869935067006:role/amplify-lilithos-dev-1c246-authRole",
+      "AuthRoleName": "amplify-lilithos-main-eaab8-authRole",
+      "UnauthRoleArn": "arn:aws:iam::869935067006:role/amplify-lilithos-main-eaab8-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::869935067006:role/amplify-lilithos-main-eaab8-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-lilithos-dev-1c246-deployment",
-      "UnauthRoleName": "amplify-lilithos-dev-1c246-unauthRole",
-      "StackName": "amplify-lilithos-dev-1c246",
-      "StackId": "arn:aws:cloudformation:us-east-1:869935067006:stack/amplify-lilithos-dev-1c246/f52ff2b0-5a27-11f0-abbb-12c07667d191",
+      "DeploymentBucketName": "amplify-lilithos-main-eaab8-deployment",
+      "UnauthRoleName": "amplify-lilithos-main-eaab8-unauthRole",
+      "StackName": "amplify-lilithos-main-eaab8",
+      "StackId": "arn:aws:cloudformation:us-east-1:869935067006:stack/amplify-lilithos-main-eaab8/7f1c8170-5a30-11f0-8d25-12e1e2ec4969",
+      "AmplifyAppId": "d1ti0j6zchevfh"
+    }
+  },
+  "master": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-lilithos-master-135d7-authRole",
+      "UnauthRoleArn": "arn:aws:iam::869935067006:role/amplify-lilithos-master-135d7-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::869935067006:role/amplify-lilithos-master-135d7-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-lilithos-master-135d7-deployment",
+      "UnauthRoleName": "amplify-lilithos-master-135d7-unauthRole",
+      "StackName": "amplify-lilithos-master-135d7",
+      "StackId": "arn:aws:cloudformation:us-east-1:869935067006:stack/amplify-lilithos-master-135d7/c235ef50-5a30-11f0-9e14-128f27019d0b",
       "AmplifyAppId": "d1ti0j6zchevfh"
     }
   }
