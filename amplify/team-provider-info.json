@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-lilithos-dev-1c246-authRole",
+      "UnauthRoleArn": "arn:aws:iam::869935067006:role/amplify-lilithos-dev-1c246-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::869935067006:role/amplify-lilithos-dev-1c246-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-lilithos-dev-1c246-deployment",
+      "UnauthRoleName": "amplify-lilithos-dev-1c246-unauthRole",
+      "StackName": "amplify-lilithos-dev-1c246",
+      "StackId": "arn:aws:cloudformation:us-east-1:869935067006:stack/amplify-lilithos-dev-1c246/f52ff2b0-5a27-11f0-abbb-12c07667d191",
+      "AmplifyAppId": "d1ti0j6zchevfh"
+    }
+  }
+}
