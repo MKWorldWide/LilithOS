@@ -26,21 +26,21 @@ struct kernel_patch {
 static struct kernel_patch patches[] = {
     // Disable code signing
     {
-        .offset = 0x12345678,  // TODO: Find actual offset
+        .offset = 0x12345678,  // FIXME: Find actual offset for iOS 9.3.6 kernel
         .original = 0xE3500000,
         .patched = 0xE3A00000,
         .description = "Disable code signing"
     },
     // Enable custom entitlements
     {
-        .offset = 0x87654321,  // TODO: Find actual offset
+        .offset = 0x87654321,  // FIXME: Find actual offset for iOS 9.3.6 kernel
         .original = 0xE3500001,
         .patched = 0xE3A00001,
         .description = "Enable custom entitlements"
     },
     // Modify sandbox restrictions
     {
-        .offset = 0x11223344,  // TODO: Find actual offset
+        .offset = 0x11223344,  // FIXME: Find actual offset for iOS 9.3.6 kernel
         .original = 0xE3500002,
         .patched = 0xE3A00002,
         .description = "Modify sandbox restrictions"
@@ -63,9 +63,10 @@ kern_return_t apply_kernel_patches(void) {
     for (int i = 0; i < sizeof(patches) / sizeof(patches[0]); i++) {
         struct kernel_patch *patch = &patches[i];
         
-        // TODO: Implement actual patch application
+        // FIXME: Implement actual patch application
         // This is a placeholder for the actual implementation
         // which would involve memory manipulation and verification
+        // Requires kernel memory mapping and write protection bypass
         
         printf("Applied patch: %s\n", patch->description);
     }
@@ -75,6 +76,8 @@ kern_return_t apply_kernel_patches(void) {
 
 // Verify kernel patches
 kern_return_t verify_kernel_patches(void) {
-    // TODO: Implement patch verification
+    // FIXME: Implement patch verification
+    // Should read kernel memory and verify patches were applied correctly
+    // Return KERN_SUCCESS if all patches are verified, KERN_FAILURE otherwise
     return KERN_SUCCESS;
 } 

@@ -29,8 +29,8 @@ from typing import Optional, Dict, List, Tuple
 
 ROUTER_MODEL = "Netgear Nighthawk R7000P"
 ROUTER_IP = "192.168.1.1"
-ROUTER_USERNAME = "admin"
-ROUTER_PASSWORD = "password"
+ROUTER_USERNAME = os.getenv("ROUTER_USERNAME", "admin")
+ROUTER_PASSWORD = os.getenv("ROUTER_PASSWORD", "")
 FIRMWARE_PATH = "../firmware/lilithos_router_r7000p_1.0.0.bin"
 BACKUP_PATH = "backup/"
 TFTP_PORT = 69
@@ -549,6 +549,12 @@ class LilithOSRouterFlasher:
                 print_error("This tool must be run as root")
                 return False
         
+        # Check credentials
+        if not ROUTER_PASSWORD:
+            print_error("ROUTER_PASSWORD environment variable not set")
+            print_info("Please set ROUTER_PASSWORD environment variable before running")
+            return False
+        
         # Check network connectivity
         if not self.detector.ping_router():
             print_error("Router not reachable")
@@ -570,6 +576,7 @@ class LilithOSRouterFlasher:
         print_info(f"Router: {ROUTER_MODEL}")
         print_info(f"Router IP: {self.router_ip}")
         print_info(f"Firmware: {self.firmware_path}")
+        print_info("Credentials: Set ROUTER_USERNAME and ROUTER_PASSWORD environment variables")
         print()
         
         response = input("Do you want to continue with flashing? (yes/NO): ")
@@ -608,7 +615,7 @@ class LilithOSRouterFlasher:
         print_success("LilithOS Router firmware flashing completed successfully!")
         print_info("Router is now running LilithOS firmware")
         print_info(f"Web interface: http://{self.router_ip}")
-        print_info("Default credentials: admin / password")
+        print_info("Default credentials: admin / [from environment]")
         
         return True
 

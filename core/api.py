@@ -169,7 +169,9 @@ class APIAuthenticator:
     
     async def _validate_api_key(self, api_key: str) -> bool:
         """Validate an API key"""
-        # TODO: Implement API key validation
+        # FIXME: Implement API key validation
+        # This should validate API keys against a secure database or service
+        # and check for proper permissions and rate limiting
         # For now, accept any non-empty key
         return bool(api_key and len(api_key) > 0)
 

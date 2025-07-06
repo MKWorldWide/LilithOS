@@ -343,7 +343,9 @@ class AccessControlManager:
                     return True
             
             # Check group permissions (if implemented)
-            # TODO: Implement group-based permissions
+            # FIXME: Implement group-based permissions
+        # This should check user groups and apply appropriate access controls
+        # based on group membership (admin, user, guest, etc.)
             
             return False
             

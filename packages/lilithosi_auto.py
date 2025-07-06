@@ -20,7 +20,9 @@ class FullFirmwareRebirth:
     def patch_components(self):
         # Phase 2: Modify core components (placeholder)
         print("[LilithOSi] Patching system components (SpringBoard, kernelcache, Setup.app)...")
-        # TODO: Integrate actual patching logic/scripts here
+        # FIXME: Integrate actual patching logic/scripts here
+# This should call the appropriate patching functions based on the target system
+# and available patches in the kernel/patches.c file
         pass
 
     def resign_components(self):

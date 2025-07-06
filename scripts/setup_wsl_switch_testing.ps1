@@ -107,7 +107,19 @@ sudo apt install -y dotnet-sdk-6.0
 echo "Creating switch user and directories..."
 sudo useradd -m -s /bin/bash switchuser
 sudo usermod -aG sudo switchuser
-echo "switchuser:switchpass" | sudo chpasswd
+# Use environment variables or prompt for credentials
+$switchUser = $env:SWITCH_USER
+$switchPass = $env:SWITCH_PASS
+
+if (-not $switchUser -or -not $switchPass) {
+    Write-Host "Please set SWITCH_USER and SWITCH_PASS environment variables"
+    Write-Host "Or the script will prompt for credentials"
+    $switchUser = Read-Host "Enter Switch username"
+    $switchPass = Read-Host "Enter Switch password" -AsSecureString
+    $switchPass = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($switchPass))
+}
+
+echo "$switchUser`:$switchPass" | sudo chpasswd
 
 # Create project directory
 sudo mkdir -p $ProjectPath
