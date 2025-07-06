@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "main": {
     "awscloudformation": {
       "AuthRoleName": "amplify-lilithos-main-eaab8-authRole",
@@ -22,6 +23,18 @@
       "UnauthRoleName": "amplify-lilithos-master-135d7-unauthRole",
       "StackName": "amplify-lilithos-master-135d7",
       "StackId": "arn:aws:cloudformation:us-east-1:869935067006:stack/amplify-lilithos-master-135d7/c235ef50-5a30-11f0-9e14-128f27019d0b",
+=======
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-lilithos-dev-1c246-authRole",
+      "UnauthRoleArn": "arn:aws:iam::869935067006:role/amplify-lilithos-dev-1c246-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::869935067006:role/amplify-lilithos-dev-1c246-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-lilithos-dev-1c246-deployment",
+      "UnauthRoleName": "amplify-lilithos-dev-1c246-unauthRole",
+      "StackName": "amplify-lilithos-dev-1c246",
+      "StackId": "arn:aws:cloudformation:us-east-1:869935067006:stack/amplify-lilithos-dev-1c246/f52ff2b0-5a27-11f0-abbb-12c07667d191",
+>>>>>>> master
       "AmplifyAppId": "d1ti0j6zchevfh"
     }
   }

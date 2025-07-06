@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # LilithOS Git Ignore File
 # Excludes sensitive files and build artifacts
 
@@ -89,6 +90,8 @@ docs/memories.md
 docs/lessons-learned.md
 docs/scratchpad.md
 
+=======
+>>>>>>> master
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
 amplify/.config/local-*
@@ -109,4 +112,8 @@ amplify-gradle-config.json
 amplifytools.xcconfig
 .secret-*
 **.sample
+<<<<<<< HEAD
 #amplify-do-not-edit-end
+=======
+#amplify-do-not-edit-end
+>>>>>>> master

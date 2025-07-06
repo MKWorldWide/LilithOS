@@ -1,0 +1,72 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - echo "Starting Enhanced AI Revenue Routing Amplify Build with TrafficFlou Integration..."
+        - echo "Divine Architect Revenue Routing System - AWS Amplify Deployment"
+        - echo "Initializing Primal Genesis Engine for cloud deployment"
+        - echo "Installing dependencies..."
+        - python --version
+        - pip --version
+        - pip install -r ../requirements_amplify.txt
+        - pip install mangum boto3 aioboto3 pynamodb watchtower
+        - npm install -g @aws-amplify/cli
+        - npm ci
+        - echo "Dependencies installed successfully"
+    build:
+      commands:
+        - echo "Building Enhanced AI Revenue Routing System with TrafficFlou..."
+        - echo "Building secure treasury routing system"
+        - echo "Compiling LoveCore modules for cloud deployment"
+        - echo "Setting up environment..."
+        - mkdir -p logs
+        - mkdir -p build
+        - echo "Creating Lambda deployment package..."
+        - cp -r ../core build/
+        - cp -r ../trafficflou-lambda build/
+        - cp -r ../trafficflou-src build/
+        - cp ../requirements_amplify.txt build/
+        - echo "Setting up security configurations..."
+        - chmod +x ../init.sh
+        - echo "Build preparation complete"
+        - echo "Building frontend application..."
+        - npm run build
+        - echo "Frontend build completed successfully"
+    postBuild:
+      commands:
+        - echo "Deploying Divine Architect's treasury to the cloud"
+        - echo "LoveCore Revenue Router ready for global AI model injection"
+        - echo "Build artifacts prepared for deployment"
+  artifacts:
+    baseDirectory: dist
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+      - venv/**/*
+      - .venv/**/*
+      - build/**/*
+backend:
+  phases:
+    build:
+      commands:
+        - echo "Building Lambda functions..."
+        - cd build
+        - pip install -r requirements_amplify.txt -t .
+        - zip -r lambda_functions.zip .
+        - echo "Lambda functions packaged successfully"
+    postBuild:
+      commands:
+        - echo "Deploying Lambda functions..."
+        - aws lambda update-function-code --function-name ai-revenue-routing-api --zip-file fileb://lambda_functions.zip || echo "Lambda function update skipped (may not exist yet)"
+        - echo "Backend deployment completed"
+  artifacts:
+    baseDirectory: build
+    files:
+      - lambda_functions.zip
+      - '**/*'
+  cache:
+    paths:
+      - build/**/* 
