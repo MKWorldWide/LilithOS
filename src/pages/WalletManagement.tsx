@@ -18,21 +18,16 @@
  * @since 2024-12-19
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   Row, 
   Col, 
   Card, 
   Statistic, 
-  Progress, 
   Typography, 
   Space, 
   Badge, 
-  Alert,
-  Spin,
-  Tooltip,
   Button,
-  Divider,
   Table,
   Input,
   Select,
@@ -41,8 +36,6 @@ import {
   Form,
   message,
   Tabs,
-  List,
-  Avatar,
   Descriptions
 } from 'antd';
 import { 
@@ -53,18 +46,11 @@ import {
   ClockCircleOutlined,
   DollarOutlined,
   ThunderboltOutlined,
-  SafetyOutlined,
-  CheckCircleOutlined,
-  ExclamationCircleOutlined,
   CopyOutlined,
-  EyeOutlined,
-  EyeInvisibleOutlined,
-  DownloadOutlined,
-  UploadOutlined
 } from '@ant-design/icons';
 
 const { Title, Text, Paragraph } = Typography;
-const { Search } = Input;
+
 const { Option } = Select;
 const { TabPane } = Tabs;
 
@@ -179,11 +165,10 @@ const MOCK_TRANSACTIONS: WalletTransaction[] = [
 const WalletManagement: React.FC = () => {
   // State management
   const [wallets, setWallets] = useState<Wallet[]>(MOCK_WALLETS);
-  const [transactions, setTransactions] = useState<WalletTransaction[]>(MOCK_TRANSACTIONS);
+  const [transactions] = useState<WalletTransaction[]>(MOCK_TRANSACTIONS);
   const [loading, setLoading] = useState(false);
   const [selectedWallet, setSelectedWallet] = useState<Wallet | null>(null);
   const [newWalletModalVisible, setNewWalletModalVisible] = useState(false);
-  const [showPrivateKeys, setShowPrivateKeys] = useState(false);
   const [form] = Form.useForm();
 
   // Calculate totals

@@ -1,11 +1,13 @@
 #!/bin/bash
 
 # 🔐 Scrypt Mining Framework - Complete Startup Script
-# Sets up and starts the entire Scrypt Mining Framework
+# Advanced Scrypt Cryptocurrency Mining Framework
+# 
+# @author M-K-World-Wide Scrypt Team
+# @version 1.0.0
+# @license MIT
 
 set -e
-
-echo "🔐 Starting Scrypt Mining Framework..."
 
 # Colors for output
 RED='\033[0;31m'
@@ -16,348 +18,294 @@ PURPLE='\033[0;35m'
 CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
-# Function to print colored output
-print_status() {
-    echo -e "${BLUE}[INFO]${NC} $1"
+# Configuration
+FRONTEND_PORT=3000
+BACKEND_PORT=3001
+FRONTEND_URL="http://localhost:${FRONTEND_PORT}"
+BACKEND_URL="http://localhost:${BACKEND_PORT}"
+
+# Logging function
+log() {
+    echo -e "${GREEN}[$(date +'%Y-%m-%d %H:%M:%S')] $1${NC}"
 }
 
-print_success() {
-    echo -e "${GREEN}[SUCCESS]${NC} $1"
+warn() {
+    echo -e "${YELLOW}[$(date +'%Y-%m-%d %H:%M:%S')] WARNING: $1${NC}"
 }
 
-print_warning() {
-    echo -e "${YELLOW}[WARNING]${NC} $1"
+error() {
+    echo -e "${RED}[$(date +'%Y-%m-%d %H:%M:%S')] ERROR: $1${NC}"
 }
 
-print_error() {
-    echo -e "${RED}[ERROR]${NC} $1"
+info() {
+    echo -e "${BLUE}[$(date +'%Y-%m-%d %H:%M:%S')] INFO: $1${NC}"
 }
 
-print_header() {
-    echo -e "${PURPLE}================================${NC}"
-    echo -e "${PURPLE}$1${NC}"
-    echo -e "${PURPLE}================================${NC}"
+# Check if running on macOS
+check_os() {
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        log "✅ macOS detected - proceeding with setup"
+    else
+        warn "This script is optimized for macOS. Other systems may require manual adjustments."
+    fi
 }
 
-# Check if running as root
-if [[ $EUID -eq 0 ]]; then
-   print_warning "This script should not be run as root"
-   exit 1
-fi
-
-# Function to check if command exists
-command_exists() {
-    command -v "$1" >/dev/null 2>&1
-}
-
-# Function to check if port is available
-port_available() {
-    ! nc -z localhost $1 2>/dev/null
-}
-
-# Function to wait for service
-wait_for_service() {
-    local url=$1
-    local max_attempts=30
-    local attempt=1
+# Check dependencies
+check_dependencies() {
+    log "🔍 Checking system dependencies..."
     
-    print_status "Waiting for service at $url..."
+    # Check Node.js
+    if ! command -v node &> /dev/null; then
+        error "Node.js is not installed. Please install Node.js 18+ first."
+        exit 1
+    fi
     
-    while [ $attempt -le $max_attempts ]; do
-        if curl -s "$url" >/dev/null 2>&1; then
-            print_success "Service is ready!"
+    # Check npm
+    if ! command -v npm &> /dev/null; then
+        error "npm is not installed. Please install npm first."
+        exit 1
+    fi
+    
+    # Check Node.js version
+    NODE_VERSION=$(node -v | cut -d'v' -f2 | cut -d'.' -f1)
+    if [ "$NODE_VERSION" -lt 18 ]; then
+        error "Node.js version 18+ is required. Current version: $(node -v)"
+        exit 1
+    fi
+    
+    log "✅ Node.js $(node -v) and npm $(npm -v) are available"
+}
+
+# Kill existing processes
+kill_existing_processes() {
+    log "🛑 Stopping existing processes..."
+    
+    # Kill Vite dev server
+    pkill -f "vite" || true
+    sleep 2
+    
+    # Kill mining controller
+    pkill -f "mining-controller.js" || true
+    sleep 2
+    
+    # Kill any processes on our ports
+    lsof -ti:${FRONTEND_PORT} | xargs kill -9 2>/dev/null || true
+    lsof -ti:${BACKEND_PORT} | xargs kill -9 2>/dev/null || true
+    
+    log "✅ Existing processes stopped"
+}
+
+# Install dependencies
+install_dependencies() {
+    log "📦 Installing/updating dependencies..."
+    
+    if [ ! -d "node_modules" ]; then
+        log "Installing frontend dependencies..."
+        npm install
+    else
+        log "Frontend dependencies already installed"
+    fi
+    
+    if [ ! -d "backend/node_modules" ]; then
+        log "Installing backend dependencies..."
+        cd backend && npm install && cd ..
+    else
+        log "Backend dependencies already installed"
+    fi
+    
+    log "✅ Dependencies installed"
+}
+
+# Start backend mining controller
+start_backend() {
+    log "🚀 Starting backend mining controller..."
+    
+    cd backend
+    
+    # Start mining controller in background
+    nohup node mining-controller.js > ../mining-controller.log 2>&1 &
+    BACKEND_PID=$!
+    echo $BACKEND_PID > ../backend.pid
+    
+    cd ..
+    
+    # Wait for backend to start
+    log "⏳ Waiting for backend to start..."
+    for i in {1..30}; do
+        if curl -s "${BACKEND_URL}/api/health" > /dev/null 2>&1; then
+            log "✅ Backend mining controller started successfully (PID: $BACKEND_PID)"
             return 0
         fi
-        
-        print_status "Attempt $attempt/$max_attempts - Service not ready yet..."
-        sleep 2
-        attempt=$((attempt + 1))
+        sleep 1
     done
     
-    print_error "Service failed to start within expected time"
+    error "Backend failed to start within 30 seconds"
     return 1
 }
 
-# Function to setup environment
-setup_environment() {
-    print_header "Setting up Environment"
-    
-    # Check Node.js
-    if ! command_exists node; then
-        print_error "Node.js is not installed. Please install Node.js 16+ first."
-        exit 1
-    fi
-    
-    NODE_VERSION=$(node -v | cut -d'v' -f2 | cut -d'.' -f1)
-    if [ "$NODE_VERSION" -lt 16 ]; then
-        print_error "Node.js version 16+ is required. Current version: $(node -v)"
-        exit 1
-    fi
-    
-    print_success "Node.js version: $(node -v)"
-    
-    # Check npm
-    if ! command_exists npm; then
-        print_error "npm is not installed"
-        exit 1
-    fi
-    
-    print_success "npm version: $(npm -v)"
-    
-    # Check if backend directory exists
-    if [ ! -d "backend" ]; then
-        print_error "Backend directory not found. Please run this script from the project root."
-        exit 1
-    fi
-    
-    # Check if frontend directory exists
-    if [ ! -d "src" ]; then
-        print_error "Frontend source directory not found. Please run this script from the project root."
-        exit 1
-    fi
-}
-
-# Function to setup backend
-setup_backend() {
-    print_header "Setting up Backend Mining Controller"
-    
-    cd backend
-    
-    # Install dependencies
-    print_status "Installing backend dependencies..."
-    npm install
-    
-    # Setup miners
-    print_status "Setting up mining binaries..."
-    if [ -f "setup-miners.sh" ]; then
-        chmod +x setup-miners.sh
-        ./setup-miners.sh
-    else
-        print_warning "setup-miners.sh not found, skipping miner setup"
-    fi
-    
-    # Create .env file if it doesn't exist
-    if [ ! -f ".env" ]; then
-        print_status "Creating .env file from template..."
-        cp .env.example .env
-        print_warning "Please edit backend/.env with your wallet addresses and pool settings"
-    fi
-    
-    cd ..
-}
-
-# Function to setup frontend
-setup_frontend() {
-    print_header "Setting up Frontend"
-    
-    # Install dependencies
-    print_status "Installing frontend dependencies..."
-    npm install
-    
-    # Create .env file for frontend if it doesn't exist
-    if [ ! -f ".env" ]; then
-        print_status "Creating frontend .env file..."
-        cat > .env << EOF
-# Scrypt Mining Framework - Frontend Environment
-REACT_APP_API_URL=http://localhost:3001/api
-REACT_APP_WS_URL=ws://localhost:3002
-REACT_APP_TITLE=Scrypt Mining Framework
-EOF
-    fi
-}
-
-# Function to start backend
-start_backend() {
-    print_header "Starting Backend Mining Controller"
-    
-    cd backend
-    
-    # Check if ports are available
-    if ! port_available 3001; then
-        print_error "Port 3001 is already in use. Please stop the service using that port."
-        exit 1
-    fi
-    
-    if ! port_available 3002; then
-        print_error "Port 3002 is already in use. Please stop the service using that port."
-        exit 1
-    fi
-    
-    # Start the mining controller
-    print_status "Starting mining controller on port 3001..."
-    print_status "WebSocket server will run on port 3002..."
-    
-    # Start in background
-    nohup node mining-controller.js > mining-controller.log 2>&1 &
-    BACKEND_PID=$!
-    
-    # Wait for backend to start
-    if wait_for_service "http://localhost:3001/api/health"; then
-        print_success "Backend mining controller started successfully (PID: $BACKEND_PID)"
-    else
-        print_error "Failed to start backend mining controller"
-        exit 1
-    fi
-    
-    cd ..
-}
-
-# Function to start frontend
+# Start frontend development server
 start_frontend() {
-    print_header "Starting Frontend"
+    log "🌐 Starting frontend development server..."
     
-    # Check if port 3000 is available
-    if ! port_available 3000; then
-        print_error "Port 3000 is already in use. Please stop the service using that port."
-        exit 1
-    fi
-    
-    print_status "Starting frontend development server on port 3000..."
-    
-    # Start in background
-    nohup npm start > frontend.log 2>&1 &
+    # Start Vite dev server in background
+    nohup npm run dev > frontend.log 2>&1 &
     FRONTEND_PID=$!
+    echo $FRONTEND_PID > frontend.pid
     
     # Wait for frontend to start
-    if wait_for_service "http://localhost:3000"; then
-        print_success "Frontend started successfully (PID: $FRONTEND_PID)"
-    else
-        print_error "Failed to start frontend"
-        exit 1
-    fi
+    log "⏳ Waiting for frontend to start..."
+    for i in {1..30}; do
+        if curl -s "${FRONTEND_URL}" > /dev/null 2>&1; then
+            log "✅ Frontend development server started successfully (PID: $FRONTEND_PID)"
+            return 0
+        fi
+        sleep 1
+    done
+    
+    error "Frontend failed to start within 30 seconds"
+    return 1
 }
 
-# Function to show status
+# Health check
+health_check() {
+    log "🏥 Performing health check..."
+    
+    # Check backend
+    if curl -s "${BACKEND_URL}/api/health" > /dev/null 2>&1; then
+        log "✅ Backend is healthy"
+    else
+        error "❌ Backend health check failed"
+        return 1
+    fi
+    
+    # Check frontend
+    if curl -s "${FRONTEND_URL}" > /dev/null 2>&1; then
+        log "✅ Frontend is healthy"
+    else
+        error "❌ Frontend health check failed"
+        return 1
+    fi
+    
+    log "✅ All services are healthy"
+    return 0
+}
+
+# Display status
 show_status() {
-    print_header "Service Status"
+    log "📊 Current Status:"
     
-    echo ""
-    echo -e "${CYAN}Backend Mining Controller:${NC}"
-    if curl -s "http://localhost:3001/api/health" >/dev/null 2>&1; then
-        echo -e "  ${GREEN}✓ Running on http://localhost:3001${NC}"
-        echo -e "  ${GREEN}✓ WebSocket on ws://localhost:3002${NC}"
+    # Check backend
+    if [ -f "backend.pid" ] && kill -0 $(cat backend.pid) 2>/dev/null; then
+        echo -e "  ${GREEN}✅ Backend (PID: $(cat backend.pid))${NC}"
     else
-        echo -e "  ${RED}✗ Not running${NC}"
+        echo -e "  ${RED}❌ Backend not running${NC}"
     fi
     
-    echo ""
-    echo -e "${CYAN}Frontend:${NC}"
-    if curl -s "http://localhost:3000" >/dev/null 2>&1; then
-        echo -e "  ${GREEN}✓ Running on http://localhost:3000${NC}"
+    # Check frontend
+    if [ -f "frontend.pid" ] && kill -0 $(cat frontend.pid) 2>/dev/null; then
+        echo -e "  ${GREEN}✅ Frontend (PID: $(cat frontend.pid))${NC}"
     else
-        echo -e "  ${RED}✗ Not running${NC}"
+        echo -e "  ${RED}❌ Frontend not running${NC}"
     fi
     
     echo ""
-    echo -e "${CYAN}Mining Status:${NC}"
-    if command_exists curl; then
-        curl -s "http://localhost:3001/api/mining/status" | python3 -m json.tool 2>/dev/null || echo "  Unable to fetch mining status"
-    fi
+    echo -e "${CYAN}🌐 Frontend URL: ${FRONTEND_URL}${NC}"
+    echo -e "${CYAN}🔧 Backend URL: ${BACKEND_URL}${NC}"
+    echo -e "${CYAN}📊 Health Check: ${BACKEND_URL}/api/health${NC}"
 }
 
-# Function to stop services
+# Stop all services
 stop_services() {
-    print_header "Stopping Services"
-    
-    # Stop backend
-    if [ ! -z "$BACKEND_PID" ]; then
-        print_status "Stopping backend (PID: $BACKEND_PID)..."
-        kill $BACKEND_PID 2>/dev/null || true
-    fi
+    log "🛑 Stopping all services..."
     
     # Stop frontend
-    if [ ! -z "$FRONTEND_PID" ]; then
-        print_status "Stopping frontend (PID: $FRONTEND_PID)..."
-        kill $FRONTEND_PID 2>/dev/null || true
+    if [ -f "frontend.pid" ]; then
+        kill $(cat frontend.pid) 2>/dev/null || true
+        rm -f frontend.pid
+        log "✅ Frontend stopped"
+    fi
+    
+    # Stop backend
+    if [ -f "backend.pid" ]; then
+        kill $(cat backend.pid) 2>/dev/null || true
+        rm -f backend.pid
+        log "✅ Backend stopped"
     fi
     
     # Kill any remaining processes
-    pkill -f "mining-controller.js" 2>/dev/null || true
-    pkill -f "npm start" 2>/dev/null || true
+    pkill -f "vite" || true
+    pkill -f "mining-controller.js" || true
     
-    print_success "Services stopped"
+    log "✅ All services stopped"
 }
 
-# Function to show help
-show_help() {
-    echo "🔐 Scrypt Mining Framework - Startup Script"
+# Show logs
+show_logs() {
+    log "📋 Recent logs:"
     echo ""
-    echo "Usage: $0 [OPTION]"
+    echo -e "${YELLOW}=== Backend Logs ===${NC}"
+    tail -20 mining-controller.log 2>/dev/null || echo "No backend logs found"
     echo ""
-    echo "Options:"
-    echo "  start     Start the complete Scrypt Mining Framework"
-    echo "  stop      Stop all running services"
-    echo "  status    Show status of running services"
-    echo "  setup     Setup environment and dependencies"
-    echo "  help      Show this help message"
-    echo ""
-    echo "Examples:"
-    echo "  $0 start    # Start the complete framework"
-    echo "  $0 stop     # Stop all services"
-    echo "  $0 status   # Check service status"
-    echo ""
-    echo "The framework includes:"
-    echo "  - Backend mining controller (port 3001)"
-    echo "  - WebSocket server (port 3002)"
-    echo "  - Frontend UI (port 3000)"
-    echo "  - Mining binaries and configuration"
+    echo -e "${YELLOW}=== Frontend Logs ===${NC}"
+    tail -20 frontend.log 2>/dev/null || echo "No frontend logs found"
 }
 
-# Main execution
-case "${1:-start}" in
-    "start")
-        print_header "Starting Scrypt Mining Framework"
-        setup_environment
-        setup_backend
-        setup_frontend
-        start_backend
-        start_frontend
-        
-        echo ""
-        print_header "🎉 Scrypt Mining Framework Started Successfully!"
-        echo ""
-        echo -e "${GREEN}Frontend UI:${NC} http://localhost:3000"
-        echo -e "${GREEN}Backend API:${NC} http://localhost:3001/api"
-        echo -e "${GREEN}WebSocket:${NC} ws://localhost:3002"
-        echo ""
-        echo -e "${YELLOW}Next Steps:${NC}"
-        echo "1. Open http://localhost:3000 in your browser"
-        echo "2. Configure your wallet address in backend/.env"
-        echo "3. Start your first mining operation"
-        echo ""
-        echo -e "${CYAN}To stop the framework:${NC} $0 stop"
-        echo -e "${CYAN}To check status:${NC} $0 status"
-        echo ""
-        
-        # Keep script running and handle signals
-        trap stop_services EXIT INT TERM
-        wait
-        ;;
-        
-    "stop")
-        stop_services
-        ;;
-        
-    "status")
-        show_status
-        ;;
-        
-    "setup")
-        print_header "Setting up Scrypt Mining Framework"
-        setup_environment
-        setup_backend
-        setup_frontend
-        print_success "Setup completed successfully!"
-        ;;
-        
-    "help"|"-h"|"--help")
-        show_help
-        ;;
-        
-    *)
-        print_error "Unknown option: $1"
-        echo ""
-        show_help
-        exit 1
-        ;;
-esac 
+# Main function
+main() {
+    case "${1:-start}" in
+        "start")
+            log "🔐 Starting Scrypt Mining Framework..."
+            check_os
+            check_dependencies
+            kill_existing_processes
+            install_dependencies
+            start_backend
+            start_frontend
+            sleep 3
+            health_check
+            show_status
+            log "🎉 Scrypt Mining Framework is ready!"
+            log "🌐 Open your browser to: ${FRONTEND_URL}"
+            ;;
+        "stop")
+            stop_services
+            ;;
+        "restart")
+            stop_services
+            sleep 2
+            $0 start
+            ;;
+        "status")
+            show_status
+            ;;
+        "logs")
+            show_logs
+            ;;
+        "health")
+            health_check
+            ;;
+        "setup")
+            log "🔧 Setting up Scrypt Mining Framework..."
+            check_os
+            check_dependencies
+            install_dependencies
+            log "✅ Setup completed"
+            ;;
+        *)
+            echo "Usage: $0 {start|stop|restart|status|logs|health|setup}"
+            echo ""
+            echo "Commands:"
+            echo "  start   - Start the mining framework (default)"
+            echo "  stop    - Stop all services"
+            echo "  restart - Restart all services"
+            echo "  status  - Show current status"
+            echo "  logs    - Show recent logs"
+            echo "  health  - Perform health check"
+            echo "  setup   - Initial setup"
+            exit 1
+            ;;
+    esac
+}
+
+# Run main function
+main "$@" 

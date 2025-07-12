@@ -18,46 +18,36 @@
  * @since 2024-12-19
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   Row, 
   Col, 
   Card, 
   Statistic, 
-  Progress, 
-  Typography, 
-  Space, 
-  Badge, 
-  Alert,
-  Spin,
-  Tooltip,
+    Progress,
+  Typography,
+  Space,
   Button,
   Divider,
   Table,
   Select,
-  DatePicker,
+
   Tag,
   Tabs
 } from 'antd';
 import { 
   BarChartOutlined, 
-  LineChartOutlined, 
-  PieChartOutlined,
-  ReloadOutlined,
+    ReloadOutlined,
   DollarOutlined,
   ThunderboltOutlined,
-  SafetyOutlined,
-  CheckCircleOutlined,
-  ExclamationCircleOutlined,
-  TrendingUpOutlined,
-  TrendingDownOutlined
+  ArrowUpOutlined,
+  ArrowDownOutlined
 } from '@ant-design/icons';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from 'recharts';
 
 const { Title, Text, Paragraph } = Typography;
 const { Option } = Select;
-const { RangePicker } = DatePicker;
-const { TabPane } = Tabs;
+
 
 /**
  * Mining performance data interface
@@ -112,8 +102,8 @@ const MOCK_POOL_PERFORMANCE: PoolPerformance[] = [
  */
 const MiningAnalytics: React.FC = () => {
   // State management
-  const [performanceData, setPerformanceData] = useState<MiningPerformance[]>(MOCK_PERFORMANCE_DATA);
-  const [poolPerformance, setPoolPerformance] = useState<PoolPerformance[]>(MOCK_POOL_PERFORMANCE);
+  const [performanceData] = useState<MiningPerformance[]>(MOCK_PERFORMANCE_DATA);
+  const [poolPerformance] = useState<PoolPerformance[]>(MOCK_POOL_PERFORMANCE);
   const [loading, setLoading] = useState(false);
   const [timeRange, setTimeRange] = useState<'24h' | '7d' | '30d' | '90d'>('24h');
   const [selectedMetric, setSelectedMetric] = useState<'hashRate' | 'rewards' | 'profit'>('hashRate');
@@ -311,7 +301,7 @@ const MiningAnalytics: React.FC = () => {
               title="Total Profit"
               value={totalProfit}
               suffix="USD"
-              prefix={<TrendingUpOutlined />}
+              prefix={<ArrowUpOutlined />}
               valueStyle={{ color: '#722ed1' }}
             />
           </Card>

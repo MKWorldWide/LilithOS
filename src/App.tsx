@@ -33,7 +33,7 @@ import { useAuth } from './hooks/useAuth';
 import { useSystemStatus } from './hooks/useSystemStatus';
 
 // Import types
-import { SystemStatus } from './types/system';
+// import { SystemStatus } from './types/system';
 
 // Import styles
 import './App.css';

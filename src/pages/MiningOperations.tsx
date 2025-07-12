@@ -21,17 +21,14 @@ import {
   InputNumber,
   Table,
   Tag,
-  Progress,
   Alert,
   Space,
   Typography,
   Divider,
   Badge,
-  Tooltip,
   Modal,
   message,
   Statistic,
-  Descriptions,
   Switch,
   Slider,
 } from 'antd';
@@ -75,7 +72,6 @@ const MiningOperations: React.FC = () => {
   // Local state
   const [form] = Form.useForm();
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [selectedMiner, setSelectedMiner] = useState<MiningStatus | null>(null);
   const [autoRefresh, setAutoRefresh] = useState(true);
 
   // Mining statistics

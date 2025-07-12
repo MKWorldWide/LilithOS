@@ -18,39 +18,31 @@
  * @since 2024-12-19
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   Row, 
   Col, 
   Card, 
   Statistic, 
-  Progress, 
   Typography, 
   Space, 
   Badge, 
-  Alert,
-  Spin,
-  Tooltip,
   Button,
-  Divider,
   Table,
   Input,
   Select,
   Tag,
-  Timeline,
-  Descriptions
+  Descriptions,
+  message
 } from 'antd';
 import { 
   LinkOutlined, 
   SearchOutlined, 
   ReloadOutlined,
   BarChartOutlined,
-  ClockCircleOutlined,
-  DollarOutlined,
+    ClockCircleOutlined,
   ThunderboltOutlined,
   SafetyOutlined,
-  CheckCircleOutlined,
-  ExclamationCircleOutlined,
   EyeOutlined
 } from '@ant-design/icons';
 
@@ -155,8 +147,8 @@ const MOCK_TRANSACTIONS: Transaction[] = [
  */
 const BlockchainExplorer: React.FC = () => {
   // State management
-  const [blocks, setBlocks] = useState<Block[]>(MOCK_BLOCKS);
-  const [transactions, setTransactions] = useState<Transaction[]>(MOCK_TRANSACTIONS);
+  const [blocks] = useState<Block[]>(MOCK_BLOCKS);
+  const [transactions] = useState<Transaction[]>(MOCK_TRANSACTIONS);
   const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchType, setSearchType] = useState<'block' | 'transaction' | 'address'>('block');

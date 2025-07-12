@@ -95,7 +95,7 @@ const Dashboard: React.FC<DashboardProps> = ({
 }) => {
   // Local state for component interactions
   const [lastRefresh, setLastRefresh] = useState<Date>(new Date());
-  const [autoRefresh, setAutoRefresh] = useState<boolean>(true);
+  const [autoRefresh] = useState<boolean>(true);
 
   /**
    * Auto-refresh system status every 30 seconds

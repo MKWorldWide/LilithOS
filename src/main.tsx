@@ -1,12 +1,12 @@
 /**
- * 🚀 Enhanced AI Revenue Routing System - Main Entry Point
+ * 🔐 Scrypt Mining Framework - Main Entry Point
  * 
- * Divine Architect Revenue Routing System with TrafficFlou Integration
- * Advanced React application with TypeScript, Vite, and comprehensive features
+ * Advanced Scrypt Cryptocurrency Mining Framework
+ * React application with TypeScript, Vite, and comprehensive mining features
  * 
- * @author Divine Architect + TrafficFlou Team
- * @version 3.0.0
- * @license LilithOS
+ * @author M-K-World-Wide Scrypt Team
+ * @version 1.0.0
+ * @license MIT
  */
 
 import React from 'react';
@@ -15,19 +15,12 @@ import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ConfigProvider } from 'antd';
 import { Toaster } from 'react-hot-toast';
-import { Amplify } from 'aws-amplify';
 
 // Import main application component
 import App from './App';
 
 // Import styles
 import './index.css';
-
-// Import AWS Amplify configuration
-import awsconfig from './aws-exports.js';
-
-// Configure AWS Amplify
-Amplify.configure(awsconfig);
 
 // Create React Query client with enhanced configuration
 const queryClient = new QueryClient({
@@ -46,7 +39,7 @@ const queryClient = new QueryClient({
 // Ant Design theme configuration
 const theme = {
   token: {
-    colorPrimary: '#722ed1', // LilithOS purple
+    colorPrimary: '#722ed1', // Scrypt purple
     colorSuccess: '#52c41a',
     colorWarning: '#faad14',
     colorError: '#ff4d4f',
@@ -115,16 +108,14 @@ ReactDOM.createRoot(rootElement).render(
 );
 
 // Performance monitoring
-if (import.meta.env.PROD) {
-  console.log('🚀 Enhanced AI Revenue Routing System v3.0.0');
-  console.log('💎 Divine Architect + TrafficFlou Integration');
-  console.log('🧠 Primal Genesis Engine Active');
-  console.log('🛡️ Treasury Gateway Secure');
-  console.log('🌟 LilithOS Process Management Enabled');
-}
+console.log('🔐 Scrypt Mining Framework v1.0.0');
+console.log('⛏️ Mining Controller Active');
+console.log('💰 ProHashing Integration Ready');
+console.log('🚀 Real-time Mining Operations');
+console.log('📊 Mining Analytics Enabled');
 
 // Service Worker registration for PWA features
-if ('serviceWorker' in navigator && import.meta.env.PROD) {
+if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker
       .register('/sw.js')
