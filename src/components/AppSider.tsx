@@ -1,11 +1,11 @@
 /**
- * 🚀 App Sider Component - Enhanced AI Revenue Routing System
+ * 🔐 App Sider Component - Scrypt Mining Framework
  * 
- * Sidebar navigation component with menu items
+ * Sidebar navigation component with mining menu items
  * 
- * @author Divine Architect + TrafficFlou Team
- * @version 3.0.0
- * @license LilithOS
+ * @author M-K-World-Wide Scrypt Team
+ * @version 1.0.0
+ * @license MIT
  */
 
 import React from 'react';
@@ -13,10 +13,10 @@ import { Layout, Menu } from 'antd';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
   DashboardOutlined,
-  DollarOutlined,
+  ThunderboltOutlined,
+  LinkOutlined,
+  WalletOutlined,
   BarChartOutlined,
-  BankOutlined,
-  CrownOutlined,
   SettingOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -40,24 +40,24 @@ const AppSider: React.FC<AppSiderProps> = ({ collapsed, onCollapse }) => {
       label: 'Dashboard',
     },
     {
-      key: '/revenue-routing',
-      icon: <DollarOutlined />,
-      label: 'Revenue Routing',
+      key: '/mining-operations',
+      icon: <ThunderboltOutlined />,
+      label: 'Mining Operations',
     },
     {
-      key: '/traffic-analytics',
+      key: '/blockchain-explorer',
+      icon: <LinkOutlined />,
+      label: 'Blockchain Explorer',
+    },
+    {
+      key: '/wallet-management',
+      icon: <WalletOutlined />,
+      label: 'Wallet Management',
+    },
+    {
+      key: '/mining-analytics',
       icon: <BarChartOutlined />,
-      label: 'Traffic Analytics',
-    },
-    {
-      key: '/treasury',
-      icon: <BankOutlined />,
-      label: 'Treasury Management',
-    },
-    {
-      key: '/primal-genesis',
-      icon: <CrownOutlined />,
-      label: 'Primal Genesis',
+      label: 'Mining Analytics',
     },
     {
       key: '/settings',

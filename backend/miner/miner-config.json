@@ -1,0 +1,20 @@
+{
+  "defaults": {
+    "algorithm": "scrypt",
+    "threads": 4,
+    "intensity": 8,
+    "worker_name": "worker1"
+  },
+  "algorithms": {
+    "scrypt": {
+      "miner": "cpuminer-multi",
+      "supported_pools": ["litecoin", "dogecoin", "aikapool"],
+      "description": "Scrypt algorithm for Litecoin/Dogecoin"
+    },
+    "randomx": {
+      "miner": "xmrig",
+      "supported_pools": ["monero"],
+      "description": "RandomX algorithm for Monero"
+    }
+  }
+}

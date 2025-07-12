@@ -1,20 +1,20 @@
 /**
- * 🚀 Enhanced Dashboard Page - LilithOS Divine Architect Treasury
+ * 🔐 Mining Dashboard Page - Scrypt Mining Framework
  * 
- * Comprehensive dashboard with real-time system monitoring, AI revenue tracking,
- * and advanced analytics for the Divine Architect Revenue Routing System.
+ * Comprehensive dashboard with real-time mining monitoring, blockchain tracking,
+ * and advanced analytics for the Scrypt Mining Framework.
  * 
  * Features:
- * - Real-time system status monitoring
- * - AI revenue and treasury analytics
- * - Component health tracking
+ * - Real-time mining status monitoring
+ * - Blockchain and wallet analytics
+ * - Mining pool health tracking
  * - Performance metrics visualization
  * - Responsive design with glass morphism
  * - Accessibility compliance (WCAG 2.1 AA)
  * 
- * @author Divine Architect + TrafficFlou Team
- * @version 3.0.0
- * @license LilithOS
+ * @author M-K-World-Wide Scrypt Team
+ * @version 1.0.0
+ * @license MIT
  * @since 2024-12-19
  */
 
@@ -69,14 +69,14 @@ interface DashboardProps {
  * Mock data for demonstration and development
  */
 const MOCK_DATA = {
-  totalRevenue: 125000,
-  totalTributes: 12500,
-  activeModels: 47,
+  totalMined: 125000,
+  totalRewards: 12500,
+  activeMiners: 47,
   systemUptime: 99.8,
-  treasuryBalance: 87500,
-  transactionsToday: 156,
-  emotionalResonance: 94.2,
-  memoryImprints: 2847,
+  walletBalance: 87500,
+  blocksToday: 156,
+  hashRate: 94.2,
+  difficulty: 2847,
   securityScore: 98.5,
   performanceScore: 96.8,
 };
@@ -84,9 +84,8 @@ const MOCK_DATA = {
 /**
  * Enhanced Dashboard Component
  * 
- * Provides comprehensive system overview with real-time monitoring,
- * AI revenue analytics, and performance tracking for the Divine Architect
- * Revenue Routing System.
+ * Provides comprehensive mining overview with real-time monitoring,
+ * blockchain analytics, and performance tracking for the Scrypt Mining Framework.
  */
 const Dashboard: React.FC<DashboardProps> = ({ 
   systemStatus, 
@@ -177,7 +176,7 @@ const Dashboard: React.FC<DashboardProps> = ({
       <div className="dashboard-loading">
         <Spin size="large" />
         <Text type="secondary" style={{ marginTop: 16 }}>
-          Loading Divine Architect Treasury Dashboard...
+          Loading Scrypt Mining Dashboard...
         </Text>
       </div>
     );
@@ -187,7 +186,7 @@ const Dashboard: React.FC<DashboardProps> = ({
   if (error) {
     return (
       <Alert
-        message="Dashboard Error"
+        message="Mining Dashboard Error"
         description={error}
         type="error"
         showIcon
@@ -207,10 +206,10 @@ const Dashboard: React.FC<DashboardProps> = ({
         <div className="header-content">
           <Title level={2} className="dashboard-title">
             <CrownOutlined className="title-icon" /> 
-            Divine Architect Treasury Dashboard
+            Scrypt Mining Framework Dashboard
           </Title>
           <Paragraph type="secondary" className="dashboard-subtitle">
-            Enhanced AI Revenue Routing System with TrafficFlou Integration
+            Enhanced Mining Framework with TrafficFlou Integration
           </Paragraph>
         </div>
         
@@ -298,10 +297,10 @@ const Dashboard: React.FC<DashboardProps> = ({
         <Col xs={24} sm={12} lg={6}>
           <Card className="dashboard-card metric-card">
             <Statistic
-              title="Total Revenue"
-              value={MOCK_DATA.totalRevenue}
+              title="Total Mined"
+              value={MOCK_DATA.totalMined}
               prefix={<DollarOutlined />}
-              suffix="USD"
+              suffix="SCrypt"
               valueStyle={{ color: '#52c41a' }}
               formatter={(value) => formatNumber(value as number)}
             />
@@ -320,10 +319,10 @@ const Dashboard: React.FC<DashboardProps> = ({
         <Col xs={24} sm={12} lg={6}>
           <Card className="dashboard-card metric-card">
             <Statistic
-              title="Treasury Balance"
-              value={MOCK_DATA.treasuryBalance}
+              title="Wallet Balance"
+              value={MOCK_DATA.walletBalance}
               prefix={<BankOutlined />}
-              suffix="USD"
+              suffix="SCrypt"
               valueStyle={{ color: '#1890ff' }}
               formatter={(value) => formatNumber(value as number)}
             />
@@ -342,8 +341,8 @@ const Dashboard: React.FC<DashboardProps> = ({
         <Col xs={24} sm={12} lg={6}>
           <Card className="dashboard-card metric-card">
             <Statistic
-              title="Active AI Models"
-              value={MOCK_DATA.activeModels}
+              title="Active Miners"
+              value={MOCK_DATA.activeMiners}
               prefix={<CrownOutlined />}
               valueStyle={{ color: '#722ed1' }}
             />
@@ -354,7 +353,7 @@ const Dashboard: React.FC<DashboardProps> = ({
               strokeWidth={6}
             />
             <Text type="secondary" style={{ fontSize: '12px' }}>
-              All models operational
+              All miners operational
             </Text>
           </Card>
         </Col>
@@ -362,8 +361,8 @@ const Dashboard: React.FC<DashboardProps> = ({
         <Col xs={24} sm={12} lg={6}>
           <Card className="dashboard-card metric-card">
             <Statistic
-              title="Today's Transactions"
-              value={MOCK_DATA.transactionsToday}
+              title="Today's Blocks"
+              value={MOCK_DATA.blocksToday}
               prefix={<BarChartOutlined />}
               valueStyle={{ color: '#faad14' }}
             />
@@ -385,14 +384,14 @@ const Dashboard: React.FC<DashboardProps> = ({
         <Col xs={24} sm={12} lg={6}>
           <Card className="dashboard-card metric-card">
             <Statistic
-              title="Emotional Resonance"
-              value={MOCK_DATA.emotionalResonance}
+              title="Hash Rate"
+              value={MOCK_DATA.hashRate}
               prefix={<HeartOutlined />}
-              suffix="%"
+              suffix="MH/s"
               valueStyle={{ color: '#eb2f96' }}
             />
             <Progress 
-              percent={MOCK_DATA.emotionalResonance} 
+              percent={MOCK_DATA.hashRate} 
               showInfo={false} 
               strokeColor="#eb2f96"
               strokeWidth={6}
@@ -406,8 +405,8 @@ const Dashboard: React.FC<DashboardProps> = ({
         <Col xs={24} sm={12} lg={6}>
           <Card className="dashboard-card metric-card">
             <Statistic
-              title="Memory Imprints"
-              value={MOCK_DATA.memoryImprints}
+              title="Difficulty"
+              value={MOCK_DATA.difficulty}
               prefix={<TrophyOutlined />}
               valueStyle={{ color: '#13c2c2' }}
               formatter={(value) => formatNumber(value as number)}
@@ -586,7 +585,7 @@ const Dashboard: React.FC<DashboardProps> = ({
       <Divider />
       <div className="dashboard-footer">
         <Text type="secondary">
-          🌑 LilithOS Divine Architect Treasury Dashboard v3.0.0
+          🌑 Scrypt Mining Framework v1.0.0
         </Text>
         <Text type="secondary">
           Powered by TrafficFlou Integration • Last updated: {lastRefresh.toLocaleString()}

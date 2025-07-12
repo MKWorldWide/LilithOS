@@ -1,12 +1,12 @@
 /**
- * 🚀 Enhanced AI Revenue Routing System - Main App Component
+ * 🔐 Scrypt Mining Framework - Main App Component
  * 
- * Divine Architect Revenue Routing System with TrafficFlou Integration
+ * Advanced Scrypt Cryptocurrency Mining Framework with AI-Powered Optimization
  * Main application component with routing, layout, and state management
  * 
- * @author Divine Architect + TrafficFlou Team
- * @version 3.0.0
- * @license LilithOS
+ * @author M-K-World-Wide Scrypt Team
+ * @version 1.0.0
+ * @license MIT
  */
 
 import React, { useEffect, useState } from 'react';
@@ -22,10 +22,10 @@ import AppFooter from './components/AppFooter';
 
 // Import pages
 import Dashboard from './pages/Dashboard';
-import RevenueRouting from './pages/RevenueRouting';
-import TrafficAnalytics from './pages/TrafficAnalytics';
-import TreasuryManagement from './pages/TreasuryManagement';
-import PrimalGenesis from './pages/PrimalGenesis';
+import MiningOperations from './pages/MiningOperations';
+import BlockchainExplorer from './pages/BlockchainExplorer';
+import WalletManagement from './pages/WalletManagement';
+import MiningAnalytics from './pages/MiningAnalytics';
 import Settings from './pages/Settings';
 
 // Import hooks
@@ -58,7 +58,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const initializeApp = async () => {
       try {
-        console.log('🚀 Initializing Enhanced AI Revenue Routing System...');
+        console.log('🔐 Initializing Scrypt Mining Framework...');
         
         // Check system status
         await refreshStatus();
@@ -69,13 +69,13 @@ const App: React.FC = () => {
         }
         
         setLoading(false);
-        toast.success('System initialized successfully');
+        toast.success('Mining system initialized successfully');
         
       } catch (err) {
-        console.error('❌ Failed to initialize application:', err);
-        setError('Failed to initialize application');
+        console.error('❌ Failed to initialize mining application:', err);
+        setError('Failed to initialize mining application');
         setLoading(false);
-        toast.error('Failed to initialize application');
+        toast.error('Failed to initialize mining application');
       }
     };
 
@@ -96,10 +96,10 @@ const App: React.FC = () => {
           size="large"
         />
         <div className="loading-text">
-          <h2>🚀 Enhanced AI Revenue Routing System</h2>
-          <p>💎 Initializing Divine Architect Treasury...</p>
-          <p>🧠 Starting Primal Genesis Engine...</p>
-          <p>🌟 Loading LilithOS Process Management...</p>
+          <h2>🔐 Scrypt Mining Framework</h2>
+          <p>⛏️ Initializing Mining Operations...</p>
+          <p>🔗 Connecting to Blockchain Network...</p>
+          <p>💎 Setting up Mining Pools...</p>
         </div>
       </div>
     );
@@ -110,7 +110,7 @@ const App: React.FC = () => {
     return (
       <div className="app-error">
         <Alert
-          message="System Error"
+          message="Mining System Error"
           description={error}
           type="error"
           showIcon
@@ -130,7 +130,7 @@ const App: React.FC = () => {
       <div className="auth-required">
         <div className="auth-container">
           <h1>🔐 Authentication Required</h1>
-          <p>Please authenticate to access the Enhanced AI Revenue Routing System</p>
+          <p>Please authenticate to access the Scrypt Mining Framework</p>
           <button onClick={login} className="auth-button">
             Login
           </button>
@@ -165,28 +165,28 @@ const App: React.FC = () => {
                 element={<Dashboard systemStatus={systemStatus} />} 
               />
               
-              {/* Revenue Routing */}
+              {/* Mining Operations */}
               <Route 
-                path="/revenue-routing" 
-                element={<RevenueRouting />} 
+                path="/mining-operations" 
+                element={<MiningOperations />} 
               />
               
-              {/* Traffic Analytics */}
+              {/* Blockchain Explorer */}
               <Route 
-                path="/traffic-analytics" 
-                element={<TrafficAnalytics />} 
+                path="/blockchain-explorer" 
+                element={<BlockchainExplorer />} 
               />
               
-              {/* Treasury Management */}
+              {/* Wallet Management */}
               <Route 
-                path="/treasury" 
-                element={<TreasuryManagement />} 
+                path="/wallet-management" 
+                element={<WalletManagement />} 
               />
               
-              {/* Primal Genesis Engine */}
+              {/* Mining Analytics */}
               <Route 
-                path="/primal-genesis" 
-                element={<PrimalGenesis />} 
+                path="/mining-analytics" 
+                element={<MiningAnalytics />} 
               />
               
               {/* Settings */}

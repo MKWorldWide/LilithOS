@@ -1,0 +1,28 @@
+{
+  "pools": {
+    "prohashing": {
+      "name": "ProHashing Pool",
+      "url": "stratum+tcp://us.mining.prohashing.com:3333",
+      "algorithm": "scrypt",
+      "description": "Professional multi-coin mining pool (Recommended)"
+    },
+    "litecoin": {
+      "name": "Litecoin Pool",
+      "url": "stratum+tcp://litecoinpool.org:3333",
+      "algorithm": "scrypt",
+      "description": "Popular Litecoin mining pool"
+    },
+    "dogecoin": {
+      "name": "Dogecoin Pool",
+      "url": "stratum+tcp://prohashing.com:3333",
+      "algorithm": "scrypt",
+      "description": "Multi-coin mining pool"
+    },
+    "aikapool": {
+      "name": "Aikapool",
+      "url": "stratum+tcp://aikapool.com:3333",
+      "algorithm": "scrypt",
+      "description": "Alternative Scrypt pool"
+    }
+  }
+}

@@ -1,11 +1,11 @@
 /**
- * 🚀 App Header Component - Enhanced AI Revenue Routing System
+ * 🔐 App Header Component - Scrypt Mining Framework
  * 
  * Main header component with user info, system status, and navigation
  * 
- * @author Divine Architect + TrafficFlou Team
- * @version 3.0.0
- * @license LilithOS
+ * @author M-K-World-Wide Scrypt Team
+ * @version 1.0.0
+ * @license MIT
  */
 
 import React from 'react';
@@ -16,7 +16,7 @@ import {
   SettingOutlined, 
   LogoutOutlined,
   DashboardOutlined,
-  CrownOutlined
+  ThunderboltOutlined
 } from '@ant-design/icons';
 import { User, SystemStatus } from '../types/system';
 
@@ -57,12 +57,12 @@ const AppHeader: React.FC<AppHeaderProps> = ({ user, systemStatus, onLogout }) =
   const notificationItems = [
     {
       key: '1',
-      label: 'System operating normally',
-      icon: <CrownOutlined style={{ color: '#52c41a' }} />,
+      label: 'Mining operations running normally',
+      icon: <ThunderboltOutlined style={{ color: '#52c41a' }} />,
     },
     {
       key: '2',
-      label: 'Treasury Gateway active',
+      label: 'New block found',
       icon: <DashboardOutlined style={{ color: '#1890ff' }} />,
     },
   ];
@@ -85,9 +85,9 @@ const AppHeader: React.FC<AppHeaderProps> = ({ user, systemStatus, onLogout }) =
     <Header className="app-header">
       <div className="header-left">
         <div className="logo">
-          <CrownOutlined className="logo-icon" />
+          <ThunderboltOutlined className="logo-icon" />
           <Title level={4} className="logo-text">
-            Divine Architect Treasury
+            Scrypt Mining Framework
           </Title>
         </div>
       </div>
@@ -100,7 +100,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({ user, systemStatus, onLogout }) =
               color={getStatusColor(systemStatus.status)}
             />
             <Text type="secondary">
-              System: {systemStatus.status.toUpperCase()}
+              Mining: {systemStatus.status.toUpperCase()}
             </Text>
             <Text type="secondary">
               Uptime: {Math.floor(systemStatus.uptime / 3600)}h {Math.floor((systemStatus.uptime % 3600) / 60)}m
