@@ -19,6 +19,7 @@ import {
   ThunderboltOutlined
 } from '@ant-design/icons';
 import { User, SystemStatus } from '../types/system';
+import ConnectWalletButton from './ConnectWalletButton';
 
 const { Header } = Layout;
 const { Text, Title } = Typography;
@@ -126,6 +127,9 @@ const AppHeader: React.FC<AppHeaderProps> = ({ user, systemStatus, onLogout }) =
               />
             </Badge>
           </Dropdown>
+
+          {/* Unified Connect Wallet Button */}
+          <ConnectWalletButton />
 
           {/* User Menu */}
           <Dropdown

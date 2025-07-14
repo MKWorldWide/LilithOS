@@ -15,6 +15,14 @@ import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ConfigProvider } from 'antd';
 import { Toaster } from 'react-hot-toast';
+import { Web3ReactProvider } from '@web3-react/core';
+import { MetaMask } from '@web3-react/metamask';
+import { ethers } from 'ethers';
+import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
+import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
+import { PhantomWalletAdapter, SolflareWalletAdapter } from '@solana/wallet-adapter-wallets';
+import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
+import { clusterApiUrl } from '@solana/web3.js';
 
 // Import main application component
 import App from './App';
@@ -62,6 +70,24 @@ const theme = {
   },
 };
 
+// EVM getLibrary function
+function getLibrary(provider: any): ethers.BrowserProvider {
+  return new ethers.BrowserProvider(provider);
+}
+
+// Create connectors
+const metamask = new MetaMask({
+  options: {
+    shimDisconnect: true,
+  },
+});
+
+const connectors = [metamask];
+
+const network = WalletAdapterNetwork.Mainnet;
+const endpoint = clusterApiUrl(network);
+const wallets = [new PhantomWalletAdapter(), new SolflareWalletAdapter()];
+
 // Root element
 const rootElement = document.getElementById('root');
 
@@ -72,38 +98,46 @@ if (!rootElement) {
 // Render application
 ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <ConfigProvider theme={theme}>
-        <BrowserRouter>
-          <App />
-          <Toaster
-            position="top-right"
-            toastOptions={{
-              duration: 4000,
-              style: {
-                background: '#363636',
-                color: '#fff',
-                borderRadius: 8,
-              },
-              success: {
-                duration: 3000,
-                iconTheme: {
-                  primary: '#52c41a',
-                  secondary: '#fff',
-                },
-              },
-              error: {
-                duration: 5000,
-                iconTheme: {
-                  primary: '#ff4d4f',
-                  secondary: '#fff',
-                },
-              },
-            }}
-          />
-        </BrowserRouter>
-      </ConfigProvider>
-    </QueryClientProvider>
+    <Web3ReactProvider connectors={connectors} getLibrary={getLibrary}>
+      <ConnectionProvider endpoint={endpoint}>
+        <WalletProvider wallets={wallets} autoConnect>
+          <WalletModalProvider>
+            <QueryClientProvider client={queryClient}>
+              <ConfigProvider theme={theme}>
+                <BrowserRouter>
+                  <App />
+                  <Toaster
+                    position="top-right"
+                    toastOptions={{
+                      duration: 4000,
+                      style: {
+                        background: '#363636',
+                        color: '#fff',
+                        borderRadius: 8,
+                      },
+                      success: {
+                        duration: 3000,
+                        iconTheme: {
+                          primary: '#52c41a',
+                          secondary: '#fff',
+                        },
+                      },
+                      error: {
+                        duration: 5000,
+                        iconTheme: {
+                          primary: '#ff4d4f',
+                          secondary: '#fff',
+                        },
+                      },
+                    }}
+                  />
+                </BrowserRouter>
+              </ConfigProvider>
+            </QueryClientProvider>
+          </WalletModalProvider>
+        </WalletProvider>
+      </ConnectionProvider>
+    </Web3ReactProvider>
   </React.StrictMode>
 );
 
