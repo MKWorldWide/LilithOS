@@ -1,0 +1,21 @@
+LilithOS Memory Scanner VPK
+===========================
+
+Title: LilithOS Memory Scanner
+Title ID: LILITHSCAN
+Version: 1.0.0
+Category: application
+
+Description:
+Runtime memory scanning and analysis system for LilithOS.
+Provides real-time memory monitoring and anomaly detection.
+
+Features:
+- Runtime memory scanning
+- Pattern recognition and analysis
+- Anomaly detection and reporting
+- Integration with whisperer system
+- Performance-optimized scanning
+
+Author: LilithOS Development Team
+License: MIT

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+LilithOS LiveArea Animation: lilybear_idle.anim
+===============================================
+Quantum-detailed animation descriptor for Lilybear idle frames in Vita LiveArea.
+
+📋 Feature Context:
+    - Defines idle animation sequence for Lilybear mascot
+    - Integrates with LiveArea background for subtle movement
+    - Triggers sound effects for enhanced user experience
+    - Optimized for Vita screen refresh rates
+
+🧩 Dependency Listings:
+    - Requires lilybear_idle_frames/ directory with PNG assets
+    - Integrates with LiveArea XML configuration
+    - Uses lilith_whisper.wav for sound effects
+
+💡 Usage Example:
+    - Referenced in livearea.xml for automatic playback
+    - Loops continuously during LiveArea display
+
+⚡ Performance Considerations:
+    - Frame rate optimized for Vita (30fps)
+    - Minimal memory usage with compressed assets
+    - Efficient sound triggering
+
+🔒 Security Implications:
+    - Validates frame asset integrity
+    - Safe sound file handling
+
+📜 Changelog Entries:
+    - v1.0.0: Initial quantum-detailed scaffold
+-->
+
+<animation name="lilybear_idle" version="1.0">
+    <!-- Animation Metadata -->
+    <metadata>
+        <title>Lilybear Idle Animation</title>
+        <description>Subtle idle animation for Lilybear mascot</description>
+        <author>LilithOS Team</author>
+        <category>mascot</category>
+    </metadata>
+    
+    <!-- Animation Properties -->
+    <properties>
+        <frame_rate>30</frame_rate>
+        <loop>true</loop>
+        <duration>2000</duration> <!-- 2 seconds per cycle -->
+        <position>bottom-right</position>
+        <size>64x64</size>
+    </properties>
+    
+    <!-- Frame Sequence -->
+    <frames>
+        <frame src="lilybear_idle_frames/frame_001.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_002.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_003.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_004.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_005.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_006.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_007.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_008.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_009.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_010.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_011.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_012.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_013.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_014.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_015.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_016.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_017.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_018.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_019.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_020.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_021.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_022.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_023.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_024.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_025.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_026.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_027.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_028.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_029.png" duration="66" />
+        <frame src="lilybear_idle_frames/frame_030.png" duration="66" />
+    </frames>
+    
+    <!-- Sound Integration -->
+    <sounds>
+        <sound src="lilith_whisper.wav" trigger="loop_start" volume="0.3" />
+        <sound src="lilith_whisper.wav" trigger="frame_015" volume="0.1" />
+    </sounds>
+    
+    <!-- Animation Events -->
+    <events>
+        <event frame="1" action="start" />
+        <event frame="15" action="whisper" />
+        <event frame="30" action="loop" />
+    </events>
+    
+    <!-- Performance Settings -->
+    <performance>
+        <memory_limit>1024</memory_limit> <!-- 1KB -->
+        <cpu_limit>5</cpu_limit> <!-- 5% CPU max -->
+        <battery_optimized>true</battery_optimized>
+    </performance>
+</animation> 

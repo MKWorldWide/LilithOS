@@ -1,0 +1,50 @@
+# LilithOS Voice Daemon Dependencies
+# ===================================
+
+# Core TTS Libraries
+pyttsx3>=2.90
+gTTS>=2.3.2
+espeak-ng>=0.1.0
+
+# Audio Processing
+pyaudio>=0.2.11
+numpy>=1.21.0
+scipy>=1.7.0
+
+# Configuration and Utilities
+pyyaml>=6.0
+click>=8.0.0
+colorama>=0.4.4
+
+# Threading and Concurrency
+threading2>=0.3.1
+asyncio-mqtt>=0.11.0
+
+# Logging and Monitoring
+structlog>=21.5.0
+prometheus-client>=0.14.0
+
+# Network and Integration
+requests>=2.28.0
+websockets>=10.3
+aiohttp>=3.8.0
+
+# Security and Validation
+cryptography>=3.4.8
+jsonschema>=4.0.0
+
+# Development and Testing
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+black>=22.0.0
+flake8>=4.0.0
+
+# Optional: Advanced TTS
+# azure-cognitiveservices-speech>=1.25.0
+# google-cloud-texttospeech>=2.14.0
+# amazon-polly>=0.1.0
+
+# Optional: Audio Enhancement
+# librosa>=0.9.0
+# soundfile>=0.10.0
+# pydub>=0.25.0 

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<livearea>
+  <!-- 🐾 LilithDaemon LiveArea Configuration -->
+  <!-- Divine-Black Theme with Lilybear Mascot -->
+  
+  <title>LilithDaemon</title>
+  <description>PSP Core • Signal Watchdog • OTA Sync</description>
+  
+  <!-- 🎨 Divine-Black Theme Assets -->
+  <image src="bg.png"/>
+  <icon src="icon.png"/>
+  <startup sound="boot.wav"/>
+  
+  <!-- 🚀 Launch Actions -->
+  <actions>
+    <launch>EBOOT.PBP</launch>
+  </actions>
+  
+  <!-- 🎭 LiveArea Theme Configuration -->
+  <theme>
+    <background>
+      <image src="bg.png"/>
+      <color>#0a0a0a</color>
+    </background>
+    
+    <foreground>
+      <color>#ffffff</color>
+      <alpha>0.9</alpha>
+    </foreground>
+    
+    <!-- 🐻 Lilybear Mascot Integration -->
+    <mascot>
+      <image src="lilybear.png"/>
+      <position>bottom-right</position>
+      <animation>subtle</animation>
+    </mascot>
+  </theme>
+  
+  <!-- 📱 LiveArea Metadata -->
+  <metadata>
+    <version>1.0.0</version>
+    <author>LilithOS Team</author>
+    <category>System</category>
+    <tags>
+      <tag>PSP</tag>
+      <tag>Daemon</tag>
+      <tag>Core</tag>
+      <tag>Signal</tag>
+      <tag>OTA</tag>
+    </tags>
+  </metadata>
+</livearea> 

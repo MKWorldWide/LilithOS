@@ -1,0 +1,35 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineSystem.cmake:200 (message)"
+      - "CMakeLists.txt:35 (project)"
+    message: |
+      The target system is: Generic -  - arm
+      The host system is: Darwin - 24.5.0 - arm64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:35 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /Users/sovereign/vitasdk/bin/arm-vita-eabi-gcc 
+      Build flags: -O2;-g;-Wall;-Wextra;-std=c99;-fno-builtin-printf;-DVITA;-D__PSP2__;-D__ARM__;-D__VITA__
+      Id flags:  
+      
+      The output was:
+      4
+      dyld[42458]: Library not loaded: /usr/local/opt/zstd/lib/libzstd.1.dylib
+        Referenced from: <36C1EDA0-AD1D-3EFC-92F1-26543CED8D57> /Users/sovereign/vitasdk/lib/gcc/arm-vita-eabi/10.3.0/cc1
+        Reason: tried: '/usr/local/opt/zstd/lib/libzstd.1.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/usr/local/opt/zstd/lib/libzstd.1.dylib' (no such file), '/usr/local/opt/zstd/lib/libzstd.1.dylib' (no such file), '/usr/local/lib/libzstd.1.dylib' (no such file), '/usr/lib/libzstd.1.dylib' (no such file, not in dyld cache)
+      arm-vita-eabi-gcc: internal compiler error: Abort trap: 6 signal terminated program cc1
+      Please submit a full bug report,
+      with preprocessed source if appropriate.
+      See <https://gcc.gnu.org/bugs/> for instructions.
+      
+      

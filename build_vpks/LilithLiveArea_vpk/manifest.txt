@@ -1,0 +1,21 @@
+LilithOS LiveArea VPK
+=====================
+
+Title: LilithOS LiveArea
+Title ID: LILITHLIVE
+Version: 1.0.0
+Category: application
+
+Description:
+LiveArea interface for LilithOS.
+Provides divine-black theme, Lilybear mascot, and interactive elements.
+
+Features:
+- Divine-black theme with blue accents
+- Animated Lilybear mascot
+- Interactive LiveArea elements
+- Sound integration and effects
+- Performance-optimized animations
+
+Author: LilithOS Development Team
+License: MIT

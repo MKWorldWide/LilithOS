@@ -1,0 +1,228 @@
+# LilithOS PSP Daemons Build System
+# 
+# Purpose: Build PSP EBOOT and PRX modules using PSPDEV toolchain
+# 
+# Targets:
+# - psp_eboot: Main PSP EBOOT.PBP executable
+# - signal_scan.prx: Signal scanning PRX module
+# - bt_comm.prx: Bluetooth communication PRX module
+# - sensor_echo.prx: Sensor echo PRX module
+# - all: Build all components
+# - clean: Clean build artifacts
+# - install: Install to PSPEMU directory
+# 
+# @author CursorKitten<3
+# @version 1.0.0
+
+# PSPDEV Configuration
+PSPDEV ?= /usr/local/pspdev
+PSPCC = $(PSPDEV)/bin/psp-gcc
+PSPCCXX = $(PSPDEV)/bin/psp-g++
+PSPAR = $(PSPDEV)/bin/psp-ar
+PSPRANLIB = $(PSPDEV)/bin/psp-ranlib
+PSPSTRIP = $(PSPDEV)/bin/psp-strip
+PSPOBJCOPY = $(PSPDEV)/bin/psp-objcopy
+PSPPACKER = $(PSPDEV)/bin/psp-packer
+PSPPRXGEN = $(PSPDEV)/bin/psp-prxgen
+
+# Directories
+SRCDIR = ../src
+MODULEDIR = ../modules
+INCLUDEDIR = ../include
+BUILDDIR = .
+INSTALLDIR = /Volumes/Untitled/pspemu/PSP/GAME/LILIDAEMON
+
+# Source files
+PSP_EBOOT_SRC = $(SRCDIR)/psp_eboot.c
+SIGNAL_SCAN_SRC = $(MODULEDIR)/signal_scan.prx.c
+BT_COMM_SRC = $(MODULEDIR)/bt_comm.prx.c
+SENSOR_ECHO_SRC = $(MODULEDIR)/sensor_echo.prx.c
+
+# Object files
+PSP_EBOOT_OBJ = $(BUILDDIR)/psp_eboot.o
+SIGNAL_SCAN_OBJ = $(BUILDDIR)/signal_scan.o
+BT_COMM_OBJ = $(BUILDDIR)/bt_comm.o
+SENSOR_ECHO_OBJ = $(BUILDDIR)/sensor_echo.o
+
+# Output files
+PSP_EBOOT_ELF = $(BUILDDIR)/psp_eboot.elf
+PSP_EBOOT_PBP = $(BUILDDIR)/EBOOT.PBP
+SIGNAL_SCAN_PRX = $(BUILDDIR)/signal_scan.prx
+BT_COMM_PRX = $(BUILDDIR)/bt_comm.prx
+SENSOR_ECHO_PRX = $(BUILDDIR)/sensor_echo.prx
+
+# Compiler flags
+CFLAGS = -O2 -G0 -Wall -Wextra -std=c99
+CFLAGS += -I$(PSPDEV)/psp/include
+CFLAGS += -I$(PSPDEV)/psp/include/psp
+CFLAGS += -I$(INCLUDEDIR)
+CFLAGS += -DPSP -D__PSP__ -D__ARM__
+
+# Linker flags
+LDFLAGS = -L$(PSPDEV)/psp/lib
+LDFLAGS += -lpspkernel -lpspdebug -lpspdisplay -lpspge -lpspctrl -lpspsdk
+LDFLAGS += -lpspnet -lpspnet_inet -lpspnet_apctl -lpspnet_resolver
+LDFLAGS += -lpspaudio -lpspiofilemgr -lpsprtc -lpspthreadman
+LDFLAGS += -lpspuser -lpsputility -lpspmodulemgr -lpsploadcore
+
+# PRX flags
+PRXFLAGS = -O2 -G0 -Wall -Wextra -std=c99
+PRXFLAGS += -I$(PSPDEV)/psp/include
+PRXFLAGS += -I$(PSPDEV)/psp/include/psp
+PRXFLAGS += -I$(INCLUDEDIR)
+PRXFLAGS += -DPSP -D__PSP__ -D__ARM__
+
+# Colors for output
+RED = \033[0;31m
+GREEN = \033[0;32m
+YELLOW = \033[1;33m
+BLUE = \033[0;34m
+PURPLE = \033[0;35m
+CYAN = \033[0;36m
+NC = \033[0m # No Color
+
+# Default target
+.PHONY: all clean install help check-pspdev
+
+all: check-pspdev psp_eboot signal_scan.prx bt_comm.prx sensor_echo.prx
+	@echo "$(GREEN)✅ All PSP components built successfully!$(NC)"
+	@echo "$(CYAN)🐾 Lilybear purrs: PSP daemons are ready for deployment! 💋$(NC)"
+
+# Check PSPDEV installation
+check-pspdev:
+	@echo "$(BLUE)[CHECK]$(NC) Verifying PSPDEV installation..."
+	@if [ ! -d "$(PSPDEV)" ]; then \
+		echo "$(RED)[ERROR]$(NC) PSPDEV not found at $(PSPDEV)"; \
+		echo "$(YELLOW)[INFO]$(NC) Please install PSPDEV or set PSPDEV environment variable"; \
+		exit 1; \
+	fi
+	@if [ ! -f "$(PSPCC)" ]; then \
+		echo "$(RED)[ERROR]$(NC) PSP compiler not found: $(PSPCC)"; \
+		exit 1; \
+	fi
+	@echo "$(GREEN)[SUCCESS]$(NC) PSPDEV toolchain verified"
+
+# Build PSP EBOOT
+psp_eboot: $(PSP_EBOOT_PBP)
+
+$(PSP_EBOOT_PBP): $(PSP_EBOOT_ELF)
+	@echo "$(BLUE)[BUILD]$(NC) Creating EBOOT.PBP..."
+	$(PSPPACKER) $< $@
+	@echo "$(GREEN)[SUCCESS]$(NC) EBOOT.PBP created: $@"
+
+$(PSP_EBOOT_ELF): $(PSP_EBOOT_OBJ)
+	@echo "$(BLUE)[LINK]$(NC) Linking PSP EBOOT..."
+	$(PSPCC) $(PSP_EBOOT_OBJ) -o $@ $(LDFLAGS)
+	@echo "$(GREEN)[SUCCESS]$(NC) PSP EBOOT linked: $@"
+
+$(PSP_EBOOT_OBJ): $(PSP_EBOOT_SRC)
+	@echo "$(BLUE)[COMPILE]$(NC) Compiling PSP EBOOT..."
+	$(PSPCC) $(CFLAGS) -c $< -o $@
+
+# Build SignalScanner PRX
+signal_scan.prx: $(SIGNAL_SCAN_PRX)
+
+$(SIGNAL_SCAN_PRX): $(SIGNAL_SCAN_OBJ)
+	@echo "$(BLUE)[BUILD]$(NC) Creating SignalScanner PRX..."
+	$(PSPPRXGEN) $< $@
+	@echo "$(GREEN)[SUCCESS]$(NC) SignalScanner PRX created: $@"
+
+$(SIGNAL_SCAN_OBJ): $(SIGNAL_SCAN_SRC)
+	@echo "$(BLUE)[COMPILE]$(NC) Compiling SignalScanner PRX..."
+	$(PSPCC) $(PRXFLAGS) -c $< -o $@
+
+# Build Bluetooth Communication PRX
+bt_comm.prx: $(BT_COMM_PRX)
+
+$(BT_COMM_PRX): $(BT_COMM_OBJ)
+	@echo "$(BLUE)[BUILD]$(NC) Creating Bluetooth Communication PRX..."
+	$(PSPPRXGEN) $< $@
+	@echo "$(GREEN)[SUCCESS]$(NC) Bluetooth Communication PRX created: $@"
+
+$(BT_COMM_OBJ): $(BT_COMM_SRC)
+	@echo "$(BLUE)[COMPILE]$(NC) Compiling Bluetooth Communication PRX..."
+	$(PSPCC) $(PRXFLAGS) -c $< -o $@
+
+# Build Sensor Echo PRX
+sensor_echo.prx: $(SENSOR_ECHO_PRX)
+
+$(SENSOR_ECHO_PRX): $(SENSOR_ECHO_OBJ)
+	@echo "$(BLUE)[BUILD]$(NC) Creating Sensor Echo PRX..."
+	$(PSPPRXGEN) $< $@
+	@echo "$(GREEN)[SUCCESS]$(NC) Sensor Echo PRX created: $@"
+
+$(SENSOR_ECHO_OBJ): $(SENSOR_ECHO_SRC)
+	@echo "$(BLUE)[COMPILE]$(NC) Compiling Sensor Echo PRX..."
+	$(PSPCC) $(PRXFLAGS) -c $< -o $@
+
+# Install to PSPEMU
+install: all
+	@echo "$(BLUE)[INSTALL]$(NC) Installing to PSPEMU..."
+	@if [ ! -d "$(INSTALLDIR)" ]; then \
+		echo "$(YELLOW)[INFO]$(NC) Creating installation directory..."; \
+		mkdir -p $(INSTALLDIR); \
+	fi
+	@cp $(PSP_EBOOT_PBP) $(INSTALLDIR)/
+	@mkdir -p $(INSTALLDIR)/modules
+	@cp $(SIGNAL_SCAN_PRX) $(INSTALLDIR)/modules/
+	@cp $(BT_COMM_PRX) $(INSTALLDIR)/modules/
+	@cp $(SENSOR_ECHO_PRX) $(INSTALLDIR)/modules/
+	@echo "$(GREEN)[SUCCESS]$(NC) Installed to $(INSTALLDIR)"
+	@echo "$(CYAN)🐾 Lilybear purrs: PSP daemons installed and ready! 💋$(NC)"
+
+# Clean build artifacts
+clean:
+	@echo "$(BLUE)[CLEAN]$(NC) Cleaning build artifacts..."
+	@rm -f $(BUILDDIR)/*.o
+	@rm -f $(BUILDDIR)/*.elf
+	@rm -f $(BUILDDIR)/*.prx
+	@rm -f $(BUILDDIR)/*.pbp
+	@echo "$(GREEN)[SUCCESS]$(NC) Build artifacts cleaned"
+
+# Show help
+help:
+	@echo "$(PURPLE)╔══════════════════════════════════════════════════════════════╗$(NC)"
+	@echo "$(PURPLE)║                LilithOS PSP Daemons Build System              ║$(NC)"
+	@echo "$(PURPLE)║                    PSP EBOOT + PRX Modules                    ║$(NC)"
+	@echo "$(PURPLE)╚══════════════════════════════════════════════════════════════╝$(NC)"
+	@echo ""
+	@echo "$(CYAN)Available targets:$(NC)"
+	@echo "  $(GREEN)all$(NC)           - Build all PSP components (default)"
+	@echo "  $(GREEN)psp_eboot$(NC)     - Build main PSP EBOOT.PBP"
+	@echo "  $(GREEN)signal_scan.prx$(NC) - Build SignalScanner PRX module"
+	@echo "  $(GREEN)bt_comm.prx$(NC)   - Build Bluetooth Communication PRX module"
+	@echo "  $(GREEN)sensor_echo.prx$(NC) - Build Sensor Echo PRX module"
+	@echo "  $(GREEN)install$(NC)       - Install to PSPEMU directory"
+	@echo "  $(GREEN)clean$(NC)         - Clean build artifacts"
+	@echo "  $(GREEN)help$(NC)          - Show this help message"
+	@echo ""
+	@echo "$(CYAN)Environment variables:$(NC)"
+	@echo "  $(YELLOW)PSPDEV$(NC)       - Path to PSPDEV installation (default: /usr/local/pspdev)"
+	@echo ""
+	@echo "$(CYAN)Examples:$(NC)"
+	@echo "  $(GREEN)make$(NC)                    # Build all components"
+	@echo "  $(GREEN)make install$(NC)            # Build and install to PSPEMU"
+	@echo "  $(GREEN)PSPDEV=/path/to/pspdev make$(NC)  # Use custom PSPDEV path"
+	@echo ""
+	@echo "$(CYAN)🐾 Lilybear purrs: Ready to build PSP daemons! 💋$(NC)"
+
+# Debug target for development
+debug: CFLAGS += -DDEBUG -g -O0
+debug: PRXFLAGS += -DDEBUG -g -O0
+debug: all
+	@echo "$(YELLOW)[DEBUG]$(NC) Debug build completed"
+
+# Release target for production
+release: CFLAGS += -DNDEBUG -O3
+release: PRXFLAGS += -DNDEBUG -O3
+release: all
+	@echo "$(GREEN)[RELEASE]$(NC) Release build completed"
+
+# Show build information
+info:
+	@echo "$(BLUE)[INFO]$(NC) PSPDEV Path: $(PSPDEV)"
+	@echo "$(BLUE)[INFO]$(NC) PSP Compiler: $(PSPCC)"
+	@echo "$(BLUE)[INFO]$(NC) Build Directory: $(BUILDDIR)"
+	@echo "$(BLUE)[INFO]$(NC) Install Directory: $(INSTALLDIR)"
+	@echo "$(BLUE)[INFO]$(NC) CFLAGS: $(CFLAGS)"
+	@echo "$(BLUE)[INFO]$(NC) LDFLAGS: $(LDFLAGS)" 

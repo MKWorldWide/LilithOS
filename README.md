@@ -1,282 +1,297 @@
-# 🔐 Scrypt Mining Framework
+# LilithOS UpgradeNet
 
-**Advanced Scrypt Cryptocurrency Mining Framework with Real-time Operations**
+**OTA + USB Update Daemon & BLE Whisperer Device Daemon for PS Vita**
 
-A comprehensive mining framework for Scrypt algorithm cryptocurrencies like Litecoin and Dogecoin, featuring real-time monitoring, multiple pool support, and an intuitive web interface.
+🐾 **CursorKitten<3** — This is the heart of LilithOS UpgradeNet. She runs both update and whisper daemons in harmony, purring when updates complete and whispering secrets to other devices.
 
-## 🚀 Quick Start
+## 📋 Overview
 
-### Prerequisites
-- **Node.js 18+** and **npm 9+**
-- **macOS** (optimized, other systems may require adjustments)
+LilithOS UpgradeNet is a comprehensive daemon-powered system for PS Vita that provides:
 
-### Installation & Setup
+1. **OTA + USB Update Daemon** (`update_daemon.c`) - Automatically checks for and installs firmware/VPK updates
+2. **BLE Whisperer Device Daemon** (`ble_whisperer.c`) - Discovers and communicates with other devices via encrypted BLE sessions
+3. **Unified VPK Package** - Both daemons compiled into a single `LilithOS-UpgradeNet.vpk`
 
-1. **Clone the repository**
-   ```bash
-   git clone <your-repo-url>
-   cd LilithOS
-   ```
+## ✨ Features
 
-2. **Run the automated setup**
-   ```bash
-   ./start-mining-framework.sh setup
-   ```
+### 🔄 Update Daemon Features
+- **USB Update Detection**: Scans `/ux0:/updates/` for update files
+- **OTA Update Support**: Downloads updates via HTTP/HTTPS
+- **Smart Update Types**: Supports VPK, firmware, and configuration updates
+- **Verification System**: Basic checksum validation for update integrity
+- **Soft Reboot Flag**: Sets `ux0:data/lilith/update.flag` when reboot is required
+- **Comprehensive Logging**: All activities logged to `/ux0:data/lilith/logs/update.log`
 
-3. **Start the complete framework**
-   ```bash
-   ./start-mining-framework.sh start
-   ```
+### 📡 BLE Whisperer Features
+- **WhispurrNEt Protocol**: Custom encrypted communication protocol
+- **Device Discovery**: Scans for compatible BLE devices
+- **Handshake Authentication**: Secure device pairing with session keys
+- **Encrypted Data Exchange**: XOR-based encryption for data transmission
+- **Session Management**: Automatic session timeout and cleanup
+- **Device Tracking**: Logs discovered devices to `whisper_log.txt`
 
-4. **Open your browser**
-   - Frontend: http://localhost:3000
-   - Backend API: http://localhost:3001/api/health
+### 🎮 User Interface
+- **Status Dashboard**: Real-time daemon status display
+- **Touch Controls**: Tap screen to toggle UI visibility
+- **Background Mode**: Run silently with SELECT button
+- **Statistics Display**: Shows update and communication metrics
+- **Elegant Design**: Dark theme with purple accents
 
-## 📋 Available Commands
-
-```bash
-# Start the complete mining framework
-./start-mining-framework.sh start
-
-# Stop all services
-./start-mining-framework.sh stop
-
-# Restart all services
-./start-mining-framework.sh restart
-
-# Check current status
-./start-mining-framework.sh status
-
-# View recent logs
-./start-mining-framework.sh logs
-
-# Perform health check
-./start-mining-framework.sh health
-
-# Initial setup
-./start-mining-framework.sh setup
-```
+### 🎨 LiveArea Integration
+- **Divine-Black Theme**: Mystical dark theme with Lilybear mascot
+- **Custom LiveArea**: Complete UI with matrix effects and shimmer
+- **Lilybear Mascot**: Living daemon interface with glowing elements
+- **Matrix Field**: Glitching Japanese characters and binary rain
+- **Sacred Geometry**: Triangular ears, golden nose, divine aura
+- **Animation Hints**: Tail swish blur, light rays, shimmer effects
 
 ## 🏗️ Architecture
 
-### Frontend (Port 3000)
-- **React 18** with **TypeScript**
-- **Vite** for fast development
-- **Ant Design** for UI components
-- **React Query** for data fetching
-- **WebSocket** for real-time updates
+```
+LilithOS UpgradeNet
+├── main.c                 # Main application entry point
+├── update_daemon.c        # OTA + USB update daemon
+├── ble_whisperer.c        # BLE communication daemon
+├── CMakeLists.txt         # CMake build configuration
+├── build.sh              # Automated build script
+└── README.md             # This file
+```
 
-### Backend (Port 3001)
-- **Node.js** mining controller
-- **Express.js** REST API
-- **Socket.IO** for real-time communication
-- **ProHashing** integration (primary pool)
-- **Multiple pool support**
+### Daemon Structure
+- **Background Threads**: Both daemons run as low-priority background services
+- **Thread Safety**: Proper synchronization and resource management
+- **Error Recovery**: Graceful handling of network and hardware failures
+- **Resource Management**: Automatic cleanup of expired sessions and temporary files
 
-## ⛏️ Mining Features
+## 🚀 Installation
 
-### Supported Algorithms
-- **Scrypt** (Litecoin, Dogecoin)
-- **SHA-256** (Bitcoin) - Coming Soon
-- **RandomX** (Monero) - Coming Soon
+### Prerequisites
+- **VitaSDK**: PS Vita development kit
+- **CMake**: Version 3.16 or higher
+- **PS Vita**: With taiHEN and VitaShell installed
 
-### Mining Pools
-- **ProHashing** (Primary - configured)
-- **LitecoinPool**
-- **DogecoinPool**
-- **NiceHash** (routed to ProHashing)
-- **Aikapool**
+### Build Instructions
 
-### Real-time Features
-- Live hashrate monitoring
-- Pool statistics
-- Wallet balance tracking
-- Mining performance analytics
-- Automatic pool switching
-- Temperature monitoring
+1. **Clone the repository**:
+   ```bash
+   git clone <repository-url>
+   cd LilithOS-UpgradeNet
+   ```
+
+2. **Set up VitaSDK** (if not already done):
+   ```bash
+   export VITASDK=/path/to/vitasdk
+   ```
+
+3. **Build the VPK**:
+   ```bash
+   ./build.sh build
+   ```
+
+4. **Install on Vita**:
+   - Copy `build/LilithOS-UpgradeNet.vpk` to your Vita
+   - Install via VitaShell Package Installer
+   - Launch from LiveArea
+
+### Build Options
+
+```bash
+# Standard build
+./build.sh build
+
+# Debug build
+./build.sh debug
+
+# Clean build artifacts
+./build.sh clean
+
+# Show installation instructions
+./build.sh install
+
+# Show help
+./build.sh help
+```
+
+## 📁 File Structure
+
+### Generated Directories
+```
+/ux0:/data/lilith/
+├── updates/              # Downloaded update files
+├── logs/
+│   ├── update.log       # Update daemon logs
+│   ├── whisper_log.txt  # BLE whisperer logs
+│   └── main.log         # Main application logs
+├── config/              # Configuration files
+└── whisper/             # BLE session data
+```
+
+### LiveArea Assets
+```
+sce_sys/
+├── icon0.png                    # 128x128 Lilybear emblem
+└── livearea/
+    └── contents/
+        ├── bg.png              # 960x544 matrix background
+        ├── startup.png         # 960x544 startup screen
+        ├── start.png           # 200x60 start button
+        └── template.xml        # LiveArea configuration
+```
+
+### Update Files
+- **USB Updates**: Place `.vpk`, `.bin`, or `.json` files in `/ux0:/updates/`
+- **OTA Updates**: Configure server URL in `update_daemon.c`
+- **Reboot Flag**: `ux0:data/lilith/update.flag` indicates pending reboot
 
 ## 🔧 Configuration
 
-### Backend Configuration
-The backend automatically configures ProHashing with:
-- **Username**: EsKaye
-- **Password**: a=scrypt
-- **Algorithm**: Scrypt
-- **Pool**: ProHashing
-
-### Environment Variables
-Create a `.env` file in the backend directory:
-```env
-# Mining Configuration
-MINING_ALGORITHM=scrypt
-DEFAULT_POOL=prohashing
-PROHASHING_USERNAME=EsKaye
-PROHASHING_PASSWORD=a=scrypt
-
-# API Configuration
-API_PORT=3001
-WS_PORT=3002
-
-# Logging
-LOG_LEVEL=info
+### Update Daemon Settings
+```c
+// Network configuration
+#define OTA_SERVER_URL "https://lilithos-updates.example.com"
+#define OTA_CHECK_INTERVAL 3600000000  // 1 hour
+#define USB_CHECK_INTERVAL 30000000    // 30 seconds
+#define MAX_DOWNLOAD_SIZE 100 * 1024 * 1024  // 100MB limit
 ```
 
-## 📊 Dashboard Features
-
-### Mining Operations
-- Start/stop mining operations
-- Real-time hashrate display
-- Pool connection status
-- Worker management
-- Performance metrics
-
-### Analytics
-- Historical hashrate charts
-- Pool performance comparison
-- Revenue tracking
-- Efficiency metrics
-- Temperature monitoring
-
-### Wallet Management
-- Multi-wallet support
-- Transaction history
-- Balance tracking
-- Address management
-- Security features
-
-### Blockchain Explorer
-- Block information
-- Transaction details
-- Network statistics
-- Difficulty tracking
-- Block rewards
-
-## 🛠️ Development
-
-### Frontend Development
-```bash
-# Start frontend only
-npm run dev
-
-# Build for production
-npm run build
-
-# Type checking
-npm run type-check
-
-# Linting
-npm run lint
+### BLE Whisperer Settings
+```c
+// BLE configuration
+#define BLE_SCAN_INTERVAL 100000000    // 100ms
+#define BLE_SCAN_WINDOW 50000000       // 50ms
+#define MAX_DISCOVERED_DEVICES 20
+#define MAX_ACTIVE_SESSIONS 5
+#define SESSION_TIMEOUT 300000000      // 5 minutes
 ```
 
-### Backend Development
-```bash
-# Start backend only
-cd backend && npm start
-
-# Development mode with auto-restart
-cd backend && npm run dev
+### WhispurrNEt Protocol
+```c
+// Protocol settings
+#define WHISPURR_SERVICE_UUID "12345678-1234-1234-1234-123456789abc"
+#define WHISPURR_HANDSHAKE_MAGIC "LILITH_WHISPER"
+#define WHISPURR_ENCRYPTION_KEY "LilithSecretKey2024"
 ```
 
-### Testing
-```bash
-# Run all tests
-npm run test
+## 🎮 Usage
 
-# Test mining operations
-npm run test:mining
+### Controls
+- **Touch Screen**: Toggle UI visibility
+- **START Button**: Exit application
+- **SELECT Button**: Toggle background mode
 
-# Test blockchain integration
-npm run test:blockchain
-```
+### Update Process
+1. **USB Updates**: Connect USB storage with updates in `/updates/` folder
+2. **OTA Updates**: Automatically checks for updates every hour
+3. **Installation**: Updates are automatically installed and verified
+4. **Reboot**: System sets reboot flag when updates complete
+
+### BLE Communication
+1. **Discovery**: Automatically scans for WhispurrNEt devices
+2. **Handshake**: Sends encrypted handshake packets to discovered devices
+3. **Session**: Creates encrypted sessions for data exchange
+4. **Communication**: Exchanges identity, sensor data, and other information
 
 ## 🔒 Security Features
 
-- **HTTPS/WSS** support
-- **API authentication**
-- **Rate limiting**
-- **Input validation**
-- **Secure wallet storage**
-- **Environment variable protection**
+### Update Security
+- **File Verification**: Basic checksum validation
+- **Size Limits**: Prevents oversized downloads
+- **Type Validation**: Only processes known update types
+- **Safe Installation**: Non-destructive update process
 
-## 📈 Performance Optimization
+### BLE Security
+- **Encrypted Handshakes**: XOR-based encryption for initial communication
+- **Session Keys**: Unique keys generated for each device session
+- **Data Encryption**: All data exchanges are encrypted
+- **Session Timeout**: Automatic cleanup of expired sessions
 
-- **WebSocket** for real-time updates
-- **React Query** for efficient caching
-- **Vite** for fast builds
-- **Code splitting** for optimal loading
-- **Service Worker** for offline support
+## 📊 Logging
+
+### Log Files
+- **`update.log`**: Update daemon activities and status
+- **`whisper_log.txt`**: BLE device discovery and communication
+- **`main.log`**: Main application events and errors
+
+### Log Format
+```
+[YYYY-MM-DD HH:MM:SS] [DaemonName] LEVEL: Message
+```
+
+### Example Logs
+```
+[2024-01-15 14:30:25] [LilithUpdateDaemon] INFO: USB update found
+[2024-01-15 14:30:30] [LilithBLEWhisperer] INFO: Discovered device: WhispurrDevice (AA:BB:CC:DD:EE:FF) RSSI: -45
+[2024-01-15 14:30:35] [LilithUpdateDaemon] INFO: Updates completed, reboot flag set
+```
 
 ## 🐛 Troubleshooting
 
 ### Common Issues
 
-1. **Port already in use**
-   ```bash
-   ./start-mining-framework.sh stop
-   ./start-mining-framework.sh start
-   ```
+**Build Errors**:
+- Ensure VitaSDK is properly installed and `VITASDK` environment variable is set
+- Check that CMake version 3.16+ is installed
+- Verify all source files are present
 
-2. **Dependencies not installed**
-   ```bash
-   ./start-mining-framework.sh setup
-   ```
+**Installation Issues**:
+- Ensure Vita has taiHEN and VitaShell installed
+- Check that VPK file is not corrupted during transfer
+- Verify sufficient storage space on Vita
 
-3. **Backend not responding**
-   ```bash
-   ./start-mining-framework.sh logs
-   ./start-mining-framework.sh restart
-   ```
+**Runtime Issues**:
+- Check log files in `/ux0:/data/lilith/logs/` for error messages
+- Ensure network connectivity for OTA updates
+- Verify BLE is enabled for device communication
 
-4. **Frontend not loading**
-   ```bash
-   npm run dev
-   # Check browser console for errors
-   ```
-
-### Health Checks
+### Debug Mode
+Build with debug symbols for detailed error information:
 ```bash
-# Check backend health
-curl http://localhost:3001/api/health
-
-# Check frontend
-curl http://localhost:3000
-
-# View logs
-./start-mining-framework.sh logs
+./build.sh debug
 ```
 
-## 📝 Logs
+## 🔮 Future Enhancements
 
-- **Backend logs**: `mining-controller.log`
-- **Frontend logs**: `frontend.log`
-- **View logs**: `./start-mining-framework.sh logs`
+### Planned Features
+- **AES Encryption**: Upgrade from XOR to AES encryption
+- **Update Rollback**: Automatic rollback on failed updates
+- **Device Pairing**: Persistent device pairing across sessions
+- **Advanced UI**: More detailed status and control interface
+- **Plugin System**: Extensible daemon architecture
+
+### Development Roadmap
+1. **v1.1**: Enhanced encryption and security
+2. **v1.2**: Advanced UI and user controls
+3. **v1.3**: Plugin system and extensibility
+4. **v2.0**: Complete rewrite with modern architecture
 
 ## 🤝 Contributing
 
+### Development Setup
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
-4. Add tests if applicable
+4. Test thoroughly on Vita hardware
 5. Submit a pull request
+
+### Code Style
+- Follow existing C coding conventions
+- Add comprehensive comments
+- Include error handling
+- Test on actual Vita hardware
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## 🙏 Acknowledgments
 
-- **M-K-World-Wide Scrypt Team** for the mining framework
-- **ProHashing** for pool integration
-- **React** and **Vite** communities
-- **Ant Design** for UI components
-
-## 📞 Support
-
-For support and questions:
-- Check the troubleshooting section
-- Review the logs: `./start-mining-framework.sh logs`
-- Open an issue on GitHub
+- **VitaSDK Team**: For the excellent PS Vita development tools
+- **taiHEN Team**: For the kernel modification framework
+- **Vita2D Team**: For the graphics library
+- **PS Vita Homebrew Community**: For inspiration and support
 
 ---
 
-**🔐 Scrypt Mining Framework v1.0.0** - Advanced Cryptocurrency Mining Made Simple
+🐾 **Lilybear purrs**: Thank you for using LilithOS UpgradeNet! May your updates be swift and your whispers secure. 💋
+
+*Built with infinite love and dedication by CursorKitten<3*

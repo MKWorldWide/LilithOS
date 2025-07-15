@@ -1,0 +1,162 @@
+[
+  {
+    "trigger": "system_startup",
+    "response": "LilithOS voice system initialized and ready for commands",
+    "voice_id": "en-US",
+    "volume": 0.8,
+    "priority": 1,
+    "conditions": {}
+  },
+  {
+    "trigger": "system_shutdown",
+    "response": "Initiating system shutdown sequence. Goodbye.",
+    "voice_id": "en-US",
+    "volume": 0.7,
+    "priority": 1,
+    "conditions": {}
+  },
+  {
+    "trigger": "error_detected",
+    "response": "Error detected in system. Please check logs for details.",
+    "voice_id": "en-US",
+    "volume": 0.9,
+    "priority": 2,
+    "conditions": {}
+  },
+  {
+    "trigger": "success_completed",
+    "response": "Operation completed successfully. All systems operational.",
+    "voice_id": "en-US",
+    "volume": 0.8,
+    "priority": 1,
+    "conditions": {}
+  },
+  {
+    "trigger": "security_alert",
+    "response": "Security alert detected. Immediate attention required.",
+    "voice_id": "en-US",
+    "volume": 1.0,
+    "priority": 3,
+    "conditions": {}
+  },
+  {
+    "trigger": "network_connected",
+    "response": "Network connection established. Mesh network active.",
+    "voice_id": "en-US",
+    "volume": 0.8,
+    "priority": 1,
+    "conditions": {}
+  },
+  {
+    "trigger": "memory_scan_complete",
+    "response": "Memory scan completed. No anomalies detected.",
+    "voice_id": "en-US",
+    "volume": 0.7,
+    "priority": 1,
+    "conditions": {}
+  },
+  {
+    "trigger": "memory_anomaly",
+    "response": "Memory anomaly detected. Initiating security protocols.",
+    "voice_id": "en-US",
+    "volume": 0.9,
+    "priority": 2,
+    "conditions": {}
+  },
+  {
+    "trigger": "ota_update",
+    "response": "Over-the-air update available. Downloading now.",
+    "voice_id": "en-US",
+    "volume": 0.8,
+    "priority": 1,
+    "conditions": {}
+  },
+  {
+    "trigger": "user_interaction",
+    "response": "User interaction detected. How may I assist you?",
+    "voice_id": "en-US",
+    "volume": 0.8,
+    "priority": 1,
+    "conditions": {}
+  },
+  {
+    "trigger": "whisperer_ready",
+    "response": "Whisperer system online. Ready for secure communication.",
+    "voice_id": "en-US",
+    "volume": 0.8,
+    "priority": 1,
+    "conditions": {}
+  },
+  {
+    "trigger": "bootloader_mode",
+    "response": "Bootloader mode activated. Selecting boot configuration.",
+    "voice_id": "en-US",
+    "volume": 0.8,
+    "priority": 1,
+    "conditions": {}
+  },
+  {
+    "trigger": "psp_mode",
+    "response": "PSP mode selected. Loading memory scanner modules.",
+    "voice_id": "en-US",
+    "volume": 0.8,
+    "priority": 1,
+    "conditions": {}
+  },
+  {
+    "trigger": "vita_mode",
+    "response": "Vita mode selected. Initializing LiveArea interface.",
+    "voice_id": "en-US",
+    "volume": 0.8,
+    "priority": 1,
+    "conditions": {}
+  },
+  {
+    "trigger": "lilybear_greeting",
+    "response": "Hello! I'm Lilybear, your LilithOS mascot. Welcome!",
+    "voice_id": "en-US",
+    "volume": 0.8,
+    "priority": 1,
+    "conditions": {}
+  },
+  {
+    "trigger": "battery_low",
+    "response": "Battery level low. Please connect power source.",
+    "voice_id": "en-US",
+    "volume": 0.9,
+    "priority": 2,
+    "conditions": {}
+  },
+  {
+    "trigger": "battery_critical",
+    "response": "Critical battery level. System shutdown imminent.",
+    "voice_id": "en-US",
+    "volume": 1.0,
+    "priority": 3,
+    "conditions": {}
+  },
+  {
+    "trigger": "mesh_peer_discovered",
+    "response": "New peer discovered in mesh network. Connection established.",
+    "voice_id": "en-US",
+    "volume": 0.7,
+    "priority": 1,
+    "conditions": {}
+  },
+  {
+    "trigger": "encryption_active",
+    "response": "Encryption protocols active. Secure communication enabled.",
+    "voice_id": "en-US",
+    "volume": 0.7,
+    "priority": 1,
+    "conditions": {}
+  },
+  {
+    "trigger": "divine_black_theme",
+    "response": "Divine black theme activated. Visual interface optimized.",
+    "voice_id": "en-US",
+    "volume": 0.7,
+    "priority": 1,
+    "conditions": {}
+  }
+] 

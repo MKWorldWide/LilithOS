@@ -388,27 +388,7 @@ class ThemeManager:
 
 ## 🚀 Deployment Strategies
 
-### 1. **Containerized Deployment**
-```dockerfile
-# Dockerfile.universal
-FROM lilithos/core:latest
-
-# Detect and install chip-specific modules
-RUN lilithos-detect-chip && \
-    lilithos-install-modules
-
-# Install platform-specific components
-RUN lilithos-detect-platform && \
-    lilithos-install-platform
-
-# Configure system
-RUN lilithos-configure-system
-
-# Set default theme
-RUN lilithos-apply-theme dark-glass
-```
-
-### 2. **Package Distribution**
+### 1. **Package Distribution**
 ```bash
 # tools/create_package.sh
 #!/bin/bash

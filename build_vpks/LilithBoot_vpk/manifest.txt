@@ -1,0 +1,21 @@
+LilithOS Bootloader VPK
+=======================
+
+Title: LilithOS Bootloader
+Title ID: LILITHBOOT
+Version: 1.0.0
+Category: application
+
+Description:
+Dual-mode bootloader for LilithOS.
+Provides PSP and Vita mode selection and boot management.
+
+Features:
+- Dual-mode boot selection (PSP/Vita)
+- USB passthrough support
+- Debug logging and monitoring
+- Integration with enso_ex and adrenaline
+- Live scan hooks and monitoring
+
+Author: LilithOS Development Team
+License: MIT

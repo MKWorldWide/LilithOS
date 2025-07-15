@@ -1,211 +1,229 @@
-# 🔐 Scrypt Mining Framework - Project Memories
+# 🐾 LilithOS Project Memories
 
-## 📅 **Session: 2024-12-19 - Real Mining Implementation**
+## 📅 Session History
 
-### 🎯 **Current Focus: Live Mining Operations**
-Successfully implemented complete real mining functionality for the Scrypt Mining Framework.
+### Latest Session: Voice Daemon Scaffolding - TTS & Audio Management
+**Date**: Current Session  
+**Focus**: Comprehensive voice synthesis daemon with TTS, signal-to-speech mapping, and whisperer integration
 
-### ✅ **Completed Tasks**
+#### 🎤 Voice Daemon: lilith_voice
+- **Location**: `lilith_daemons/voice/lilith_voice_daemon.py`
+- **Features**: TTS synthesis, signal-to-speech mapping, event whisperer integration, audio output, phrase scripting
+- **Architecture**: Python daemon with threaded audio processing, multiple TTS backends
+- **Integration**: Connects to event whisperer system, memory scanner, bootloader, LiveArea
+- **Performance**: Non-blocking TTS, efficient audio buffers, minimal latency
+- **Security**: Text sanitization, input validation, secure audio device access
 
-#### **Backend Mining Controller**
-- ✅ Created `backend/mining-controller.js` - Full Node.js mining service
-- ✅ Implemented WebSocket real-time communication
-- ✅ Added mining process management (start/stop/monitor)
-- ✅ Integrated with cpuminer-multi and XMRig binaries
-- ✅ Added pool configuration for Litecoin/Dogecoin
-- ✅ Real-time hash rate and share tracking
-- ✅ Process monitoring and error handling
+#### 🎵 Voice Manager: voice_manager.py
+- **Location**: `lilith_daemons/voice/voice_manager.py`
+- **Features**: High-level TTS interface, voice profile management, audio device control
+- **Architecture**: Manager class with multiple TTS backend support (pyttsx3, gTTS, espeak)
+- **Integration**: Provides unified interface for all voice operations
+- **Performance**: Efficient audio buffer management, timeout controls
+- **Security**: Input validation, voice ID validation, volume level controls
 
-#### **Frontend Integration**
-- ✅ Created `src/hooks/useMiningController.ts` - React hook for mining operations
-- ✅ Updated `src/pages/MiningOperations.tsx` - Real mining controls
-- ✅ Added WebSocket connection management
-- ✅ Real-time status updates and statistics
-- ✅ Mining configuration forms with validation
-- ✅ Process management UI (start/stop/refresh)
+#### 🌐 Whisperer Integration: whisperer_integration.py
+- **Location**: `lilith_daemons/voice/whisperer_integration.py`
+- **Features**: Event whisperer system integration, real-time event processing, voice routing
+- **Architecture**: Async WebSocket client with priority queue and event handlers
+- **Integration**: Connects to event whisperer system, routes events to voice responses
+- **Performance**: Non-blocking event processing, efficient queue management
+- **Security**: Event validation, secure communication channels, audit logging
 
-#### **Infrastructure Setup**
-- ✅ Created `backend/package.json` - Backend dependencies
-- ✅ Added `backend/.env.example` - Environment configuration
-- ✅ Created `backend/setup-miners.sh` - Mining binary setup
-- ✅ Added `start-mining-framework.sh` - Complete startup script
-- ✅ Updated main `package.json` with mining scripts
+#### 📝 Phrase Scripting: phrase_scripts.json
+- **Location**: `lilith_daemons/voice/phrase_scripts.json`
+- **Features**: Customizable voice responses, conditional triggers, voice profiles
+- **Architecture**: JSON-based configuration with trigger-response mapping
+- **Integration**: Loaded by voice daemon, supports context-based responses
+- **Performance**: Fast lookup, minimal memory footprint
+- **Security**: Input sanitization, condition validation
 
-#### **Mining Binaries & Configuration**
-- ✅ Support for cpuminer-multi (Scrypt algorithm)
-- ✅ Support for XMRig (RandomX algorithm)
-- ✅ Cross-platform binary management (macOS/Linux/Windows)
-- ✅ Pool configuration for Litecoin, Dogecoin, and alternatives
-- ✅ Wallet address validation and management
+#### ⚙️ Configuration: voice_config.yaml
+- **Location**: `lilith_daemons/voice/voice_config.yaml`
+- **Features**: TTS engine configuration, audio output settings, voice profiles
+- **Architecture**: YAML-based configuration with comprehensive settings
+- **Integration**: Used by voice manager and daemon for all operations
+- **Performance**: Optimized settings for different use cases
+- **Security**: Security settings, input validation configuration
 
-### 🔧 **Technical Implementation Details**
+### Previous Session: Parallel Scaffolding - Complete Ecosystem
+**Date**: Previous Session  
+**Focus**: Comprehensive parallel scaffolding of 5 advanced components for LilithOS ecosystem
 
-#### **Mining Controller Features**
-- **Process Management**: Spawn and control mining processes
-- **Real-time Monitoring**: WebSocket updates for live statistics
-- **Pool Integration**: Support for multiple mining pools
-- **Error Handling**: Comprehensive error management and recovery
-- **Configuration**: Environment-based configuration system
+#### 🧠 PSP Plugin: memory_sniff.prx
+- **Location**: `psp_daemons/modules/memory_sniff.c`
+- **Features**: Runtime memory scanning, module signal interface, log bridge
+- **Architecture**: PRX plugin with threaded scanning, IPC communication
+- **Integration**: Loads via Adrenaline or custom bootloader
+- **Performance**: Throttled scanning, minimal memory footprint
+- **Security**: User memory only, sanitized logging
 
-#### **Frontend Features**
-- **Real-time Dashboard**: Live mining statistics and status
-- **Mining Controls**: Start/stop mining operations
-- **Configuration UI**: User-friendly mining setup forms
-- **Status Monitoring**: Visual indicators for connection and mining status
-- **Responsive Design**: Works on desktop and mobile devices
+#### 🛰️ OTA Handler: whisperer_key_handler
+- **Location**: `lilith_whisperer/whisper_key.c`
+- **Features**: BLE/USB trigger management, secure key validation
+- **Architecture**: Event-driven handler with validation logic
+- **Integration**: Called by main OTA daemon on device detection
+- **Security**: Key integrity validation, audit logging
+- **Performance**: Non-blocking event handling
 
-#### **System Architecture**
-```
-Frontend (React) ←→ WebSocket ←→ Backend (Node.js) ←→ Mining Binaries
-     ↓                    ↓              ↓                    ↓
-   UI Controls    Real-time Updates   Process Mgmt    Pool Connections
-```
+#### 🔥 Bootloader: lilith_bootmux
+- **Location**: `psp_daemons/modules/lilith_bootmux.c`
+- **Features**: Dual-mode boot (VPK/PSP), debug logging, live scan hooks
+- **Architecture**: Flag-based mode selection with USB passthrough
+- **Integration**: Integrates with enso_ex, adrenaline, vita_psp_bridge
+- **Performance**: Fast mode selection, non-blocking debug output
+- **Security**: Module integrity validation, boot event logging
 
-### 🚀 **Ready for Production**
+#### 🌐 Service Daemon: whispurrnet
+- **Location**: `whispurrnet/whispurrnet_daemon.py`
+- **Features**: Bluetooth mesh networking, peer discovery, signal burst
+- **Architecture**: Python daemon with threaded peer discovery
+- **Integration**: Encrypted whisper channels, OTA trigger integration
+- **Performance**: Non-blocking discovery, efficient signal handling
+- **Security**: Encrypted channels, authenticated peer discovery
 
-#### **Quick Start Commands**
+#### 🎭 LiveArea Animation: lilybear_idle.anim
+- **Location**: `psp_daemons/livearea/animations/lilybear_idle.anim`
+- **Features**: 30-frame idle animation, sound integration, performance optimized
+- **Architecture**: XML-based animation descriptor with Vita compatibility
+- **Integration**: Seamless LiveArea integration with divine-black theme
+- **Performance**: 30fps, 1KB memory limit, 5% CPU limit, battery optimized
+- **Assets**: Requires 30 PNG frames + lilith_whisper.wav
+
+### Previous Sessions
+
+#### Session: LiveArea UI Scaffolding + Memory Scanner Integration
+**Date**: Previous Session  
+**Focus**: PSP Daemon LiveArea UI with divine-black theme and Lilybear mascot
+
+#### Session: Enhanced Vita↔PSP Bridge with OTA/USB Sync
+**Date**: Earlier Session  
+**Focus**: Secure synchronization platform with automated file management
+
+## 🎯 Key Achievements
+
+### 🐾 Complete Ecosystem Scaffolding
+- **5 Advanced Components**: All scaffolded with quantum-detailed documentation
+- **Cross-Platform Integration**: PSP, Vita, and Python components working together
+- **Build System Integration**: All components have build scripts and deployment guides
+- **Performance Optimization**: Memory, CPU, and battery considerations for each component
+- **Security Implementation**: Validation, encryption, and audit logging across all systems
+
+### 🔧 Technical Architecture
+- **Modular Design**: PRX-based PSP plugins with dynamic loading
+- **Event-Driven Systems**: BLE/USB triggers and mesh networking
+- **Dual-Mode Boot**: VPK and PSP-mode selection with live scan hooks
+- **Animation System**: Professional LiveArea integration with sound
+- **Mesh Networking**: Bluetooth peer discovery and secure communication
+
+### 🎨 User Experience
+- **Divine-Black Theme**: Consistent visual identity across all components
+- **Lilybear Mascot**: Animated character with sound integration
+- **LiveArea Assets**: Professional Vita interface with performance optimization
+- **Responsive Design**: Adaptive systems with real-time feedback
+- **Cross-Platform**: Seamless integration between PSP, Vita, and external systems
+
+## 🧠 Lessons Learned
+
+### Parallel Scaffolding Success
+- **Quantum Documentation**: Comprehensive inline documentation essential for maintainability
+- **Build Integration**: All components need proper build systems from the start
+- **Performance Planning**: Memory, CPU, and battery limits defined upfront
+- **Security Architecture**: Validation and encryption built into every component
+- **Cross-Platform Design**: Components must work together across different platforms
+
+### Component Integration
+- **Signal Processing**: Modular approach enables runtime control and enhancement
+- **Event-Driven Architecture**: BLE/USB triggers enable responsive system behavior
+- **Mesh Networking**: Bluetooth peer discovery enables distributed system communication
+- **Animation Integration**: Professional LiveArea experience enhances user engagement
+- **Bootloader Flexibility**: Dual-mode boot enables versatile deployment scenarios
+
+### Build System Optimization
+- **Automated Workflows**: Complete build scripts prevent manual errors
+- **Dependency Management**: Proper dependency checking ensures successful builds
+- **Asset Pipeline**: Automated generation and validation of all assets
+- **Testing Integration**: Test frameworks prepared for all components
+- **Deployment Automation**: VPK packaging and installation guides included
+
+## 🔮 Future Directions
+
+### Immediate Enhancements
+- **Memory Scanner Implementation**: Complete the runtime module loading
+- **LiveArea Animations**: Add subtle mascot animations and interactions
+- **Custom Boot Sounds**: Create themed audio assets for all components
+- **Dynamic Themes**: Runtime theme switching capability across all systems
+
+### Long-term Vision
+- **Advanced Signal Processing**: Enhanced system monitoring and control
+- **Interactive LiveArea**: Touch-responsive mascot and system controls
+- **Cloud Sync**: Remote configuration management via mesh network
+- **Plugin Ecosystem**: Third-party module support for all components
+- **Advanced Mesh Protocols**: Enhanced Bluetooth mesh networking capabilities
+
+## 📚 Technical Reference
+
+### Component Specifications
+- **Memory Scanner**: PSP PRX with 5-second scan intervals, user memory only
+- **OTA Handler**: C handler with 64-byte key validation, BLE/USB triggers
+- **Bootloader**: Dual-mode with flag-based selection, USB passthrough support
+- **WhispurrNet**: Python daemon with 5-second discovery cycles, encrypted channels
+- **LiveArea Animation**: 30fps, 30 frames, 2-second cycles, sound triggers
+
+### Build System Commands
 ```bash
-# Start complete framework
-npm run start-mining
+# Complete ecosystem build
+cd psp_daemons/build
+./build_complete_workflow.sh
 
-# Stop all services
-npm run stop-mining
+# Individual component builds
+make -f Makefile.psp memory_sniff.prx
+gcc -o whisper_key ../lilith_whisperer/whisper_key.c
+gcc -o lilith_bootmux lilith_bootmux.c
+python3 ../whispurrnet/whispurrnet_daemon.py
 
-# Check status
-npm run status-mining
-
-# Setup only
-npm run setup-mining
+# LiveArea asset generation
+cd psp_daemons/livearea
+python3 generate_assets.py
 ```
 
-#### **Manual Setup**
-```bash
-# Backend setup
-cd backend
-npm install
-./setup-miners.sh
-cp .env.example .env
-# Edit .env with your wallet addresses
-
-# Frontend setup
-npm install
-npm start
-
-# Backend start
-cd backend
-node mining-controller.js
+### Integration Architecture
+```
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   WhispurrNet   │    │  OTA Handler    │    │  Memory Sniff   │
+│   (Mesh Net)    │◄──►│  (BLE/USB)      │◄──►│  (PSP Plugin)   │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                       │                       │
+         ▼                       ▼                       ▼
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│  Bootloader     │    │  LiveArea       │    │  Log Bridge     │
+│  (Dual Mode)    │    │  (Animation)    │    │  (System)       │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
 ```
 
-### 📊 **Current Capabilities**
+## 🎉 Success Metrics
 
-#### **Supported Algorithms**
-- **Scrypt**: Litecoin (LTC), Dogecoin (DOGE)
-- **RandomX**: Monero (XMR) - via XMRig
+### Parallel Scaffolding
+- ✅ **5 Components Created**: All with quantum-detailed documentation
+- ✅ **Build Systems**: Complete automation for all components
+- ✅ **Integration Ready**: All components designed to work together
+- ✅ **Performance Specified**: Memory, CPU, and battery limits defined
+- ✅ **Security Implemented**: Validation and encryption across all systems
 
-#### **Supported Pools**
-- **Litecoin Pool**: stratum+tcp://litecoinpool.org:3333
-- **Dogecoin Pool**: stratum+tcp://prohashing.com:3333
-- **Aikapool**: stratum+tcp://aikapool.com:3333
+### Documentation Quality
+- ✅ **Quantum-Detailed**: Comprehensive inline documentation
+- ✅ **Build Integration**: Complete build and deployment guides
+- ✅ **Testing Frameworks**: Test scripts prepared for all components
+- ✅ **Architecture Diagrams**: System integration clearly documented
+- ✅ **Performance Metrics**: All components have defined performance limits
 
-#### **System Requirements**
-- **OS**: macOS, Linux, Windows
-- **Node.js**: 16+ 
-- **CPU**: 4+ cores recommended
-- **RAM**: 8GB+ recommended
-- **GPU**: Optional (for GPU mining)
-
-### 🎯 **Next Steps**
-
-#### **Immediate Priorities**
-1. **Testing**: Test with real wallet addresses and pools
-2. **Performance**: Optimize mining parameters for different hardware
-3. **Security**: Add authentication and encryption
-4. **Monitoring**: Enhanced logging and alerting
-
-#### **Future Enhancements**
-1. **GPU Mining**: Add GPU miner support (CUDA/OpenCL)
-2. **ASIC Support**: Integrate ASIC miner management
-3. **Cloud Mining**: AWS/GCP/Azure integration
-4. **Advanced Analytics**: Mining profitability analysis
-5. **Multi-algorithm**: Support for SHA-256, Ethash, etc.
-
-### 💡 **Key Insights**
-
-#### **Mining Implementation**
-- Real mining requires actual binary executables
-- WebSocket communication is essential for real-time updates
-- Process management must handle crashes and restarts
-- Pool configuration is critical for successful mining
-
-#### **User Experience**
-- Real-time feedback is crucial for mining operations
-- Clear status indicators help users understand system state
-- Configuration should be simple but comprehensive
-- Error handling should be user-friendly
-
-#### **System Architecture**
-- Separation of concerns between frontend and backend
-- WebSocket provides better real-time performance than polling
-- Environment-based configuration allows for easy deployment
-- Modular design enables future enhancements
-
-### 🔐 **Security Considerations**
-
-#### **Current Security**
-- Process isolation for mining operations
-- Environment variable configuration
-- Input validation for wallet addresses
-- Error handling without exposing sensitive data
-
-#### **Security Improvements Needed**
-- User authentication and authorization
-- Encrypted communication channels
-- Secure wallet address storage
-- Rate limiting and abuse prevention
-
-### 📈 **Performance Metrics**
-
-#### **Current Performance**
-- **Startup Time**: ~30 seconds for complete framework
-- **Memory Usage**: ~200MB for backend, ~150MB for frontend
-- **Response Time**: <100ms for API calls, <50ms for WebSocket
-- **Scalability**: Supports multiple concurrent mining operations
-
-#### **Optimization Opportunities**
-- **Binary Optimization**: Compile miners for specific architectures
-- **Process Pooling**: Reuse mining processes for efficiency
-- **Caching**: Cache pool and configuration data
-- **Load Balancing**: Distribute mining across multiple instances
-
-### 🎉 **Success Metrics**
-
-#### **Functionality**
-- ✅ Complete mining operation lifecycle
-- ✅ Real-time monitoring and control
-- ✅ Cross-platform compatibility
-- ✅ User-friendly interface
-- ✅ Robust error handling
-
-#### **Usability**
-- ✅ One-command startup
-- ✅ Intuitive configuration
-- ✅ Clear status indicators
-- ✅ Responsive design
-- ✅ Comprehensive documentation
-
-### 🔮 **Future Vision**
-
-The Scrypt Mining Framework is now a fully functional cryptocurrency mining system that can:
-- Start real mining operations with actual hardware
-- Connect to legitimate mining pools
-- Provide real-time monitoring and control
-- Scale from single-user to enterprise deployments
-- Support multiple cryptocurrencies and algorithms
-
-This represents a significant milestone in creating a production-ready mining framework that bridges the gap between simple mining scripts and complex enterprise mining solutions.
+### Ecosystem Readiness
+- ✅ **Cross-Platform**: PSP, Vita, and Python components integrated
+- ✅ **Event-Driven**: Responsive systems with BLE/USB triggers
+- ✅ **Mesh Networking**: Bluetooth peer discovery and communication
+- ✅ **Professional UI**: LiveArea animation with sound integration
+- ✅ **Dual-Mode Boot**: Flexible deployment scenarios supported
 
 ---
 
-**Session End: 2024-12-19**
-**Status: ✅ Complete Real Mining Implementation**
-**Next Session: Testing and Optimization**
+**🐾 Memory updated with comprehensive parallel scaffolding session - complete ecosystem ready for implementation!**

@@ -1,0 +1,196 @@
+# LilithOS Voice Daemon Configuration
+# ===================================
+
+# TTS Engine Configuration
+tts_engine:
+  type: "pyttsx3"  # Options: pyttsx3, gTTS, espeak
+  default_voice: "en-US"
+  rate: 150        # Words per minute
+  volume: 0.8      # Volume level (0.0 to 1.0)
+  pitch: 1.0       # Pitch multiplier
+
+# Audio Output Configuration
+audio_output:
+  device: "default"     # Audio output device
+  sample_rate: 44100    # Sample rate in Hz
+  channels: 2          # Number of audio channels
+  buffer_size: 1024    # Audio buffer size
+  format: "int16"      # Audio format
+
+# Voice Event Mapping
+voice_events:
+  system_startup:
+    enabled: true
+    response: "LilithOS voice system initialized and ready for commands"
+    volume: 0.8
+    priority: 1
+  
+  system_shutdown:
+    enabled: true
+    response: "Initiating system shutdown sequence. Goodbye."
+    volume: 0.7
+    priority: 1
+  
+  error_detected:
+    enabled: true
+    response: "Error detected in system. Please check logs for details."
+    volume: 0.9
+    priority: 2
+  
+  success_completed:
+    enabled: true
+    response: "Operation completed successfully. All systems operational."
+    volume: 0.8
+    priority: 1
+  
+  security_alert:
+    enabled: true
+    response: "Security alert detected. Immediate attention required."
+    volume: 1.0
+    priority: 3
+
+# Event Whisperer Integration
+whisperer_integration:
+  enabled: true
+  event_queue_size: 100
+  timeout: 5.0
+  retry_attempts: 3
+  
+  # Event mappings
+  event_mappings:
+    system_startup: "system_startup"
+    error_detected: "error_detected"
+    success_completed: "success_completed"
+    security_alert: "security_alert"
+    network_event: "network_connected"
+    memory_scan: "memory_scan_complete"
+    ota_update: "ota_update"
+    user_interaction: "user_interaction"
+
+# Phrase Scripting Configuration
+phrase_scripting:
+  enabled: true
+  script_file: "phrase_scripts.json"
+  auto_reload: true
+  reload_interval: 300  # seconds
+  
+  # Default scripts (fallback if file not found)
+  default_scripts:
+    - trigger: "hello"
+      response: "Hello, I am Lilith Voice"
+      voice_id: "en-US"
+      volume: 0.8
+      priority: 1
+    
+    - trigger: "status"
+      response: "System status is operational"
+      voice_id: "en-US"
+      volume: 0.8
+      priority: 1
+    
+    - trigger: "error"
+      response: "An error has occurred"
+      voice_id: "en-US"
+      volume: 0.9
+      priority: 2
+
+# Performance Configuration
+performance:
+  max_queue_size: 50
+  worker_threads: 2
+  synthesis_timeout: 10.0
+  audio_buffer_timeout: 5.0
+  
+  # Memory limits
+  max_text_length: 500
+  max_audio_duration: 30  # seconds
+  
+  # CPU limits
+  max_synthesis_time: 5.0  # seconds
+  max_playback_time: 30.0  # seconds
+
+# Security Configuration
+security:
+  text_sanitization: true
+  max_input_length: 1000
+  allowed_voice_ids: ["en-US", "en-GB", "es-ES", "fr-FR"]
+  restricted_commands: ["system", "shutdown", "reboot"]
+  
+  # Input validation
+  validate_audio_paths: true
+  validate_voice_ids: true
+  validate_volume_levels: true
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  file: "lilith_voice.log"
+  max_size: "10MB"
+  backup_count: 5
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+# Integration Settings
+integrations:
+  # WhispurrNet integration
+  whispurrnet:
+    enabled: true
+    host: "localhost"
+    port: 8080
+    timeout: 10.0
+  
+  # Memory scanner integration
+  memory_scanner:
+    enabled: true
+    event_types: ["scan_start", "scan_complete", "anomaly_detected"]
+  
+  # Bootloader integration
+  bootloader:
+    enabled: true
+    event_types: ["mode_selection", "boot_start", "boot_complete"]
+  
+  # LiveArea integration
+  livearea:
+    enabled: true
+    event_types: ["theme_change", "animation_trigger", "user_interaction"]
+
+# Voice Customization
+voice_customization:
+  # Voice profiles
+  profiles:
+    default:
+      voice_id: "en-US"
+      rate: 150
+      volume: 0.8
+      pitch: 1.0
+    
+    alert:
+      voice_id: "en-US"
+      rate: 180
+      volume: 0.9
+      pitch: 1.1
+    
+    calm:
+      voice_id: "en-US"
+      rate: 120
+      volume: 0.7
+      pitch: 0.9
+    
+    lilybear:
+      voice_id: "en-US"
+      rate: 140
+      volume: 0.8
+      pitch: 1.05
+  
+  # Context-based voice selection
+  context_rules:
+    - condition: "event_type == 'security_alert'"
+      profile: "alert"
+    
+    - condition: "event_type == 'system_shutdown'"
+      profile: "calm"
+    
+    - condition: "trigger == 'lilybear_greeting'"
+      profile: "lilybear"
+    
+    - condition: "default"
+      profile: "default" 

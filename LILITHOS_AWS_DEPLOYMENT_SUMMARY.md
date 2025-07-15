@@ -18,7 +18,7 @@
 
 ### Deployment Method
 - **User Data Script**: Automatic deployment via instance user data
-- **Dependencies**: Automatically installed (git, docker, nginx, etc.)
+- **Dependencies**: Automatically installed (git, nginx, etc.)
 - **LilithOS**: Automatically cloned and initialized
 - **Web Server**: Automatically configured
 - **Security**: Automatically enabled (firewall, fail2ban)
@@ -29,7 +29,6 @@
 - ✅ 11 Advanced Features (Quantum Vault, Celestial Monitor, etc.)
 - ✅ Security Framework with encryption and monitoring
 - ✅ Web Interface with Nginx configuration
-- ✅ Docker support for containerized applications
 
 ### Management Commands
 ```bash
@@ -37,7 +36,7 @@
 ssh -i lilithos-key-new.pem ubuntu@13.222.161.110 'cat /home/ubuntu/lilithos_status.txt'
 
 # Check service status
-ssh -i lilithos-key-new.pem ubuntu@13.222.161.110 'sudo systemctl status nginx docker'
+ssh -i lilithos-key-new.pem ubuntu@13.222.161.110 'sudo systemctl status nginx'
 
 # Start LilithOS
 ssh -i lilithos-key-new.pem ubuntu@13.222.161.110 './start_lilithos.sh'

@@ -1,0 +1,21 @@
+LilithOS WhispurrNet VPK
+========================
+
+Title: LilithOS WhispurrNet
+Title ID: LILITHWHIS
+Version: 1.0.0
+Category: application
+
+Description:
+Bluetooth mesh networking daemon for LilithOS.
+Provides peer discovery, encrypted communication, and mesh networking.
+
+Features:
+- Bluetooth mesh networking
+- Peer discovery and management
+- Encrypted communication channels
+- Signal burst and event handling
+- Integration with OTA triggers
+
+Author: LilithOS Development Team
+License: MIT

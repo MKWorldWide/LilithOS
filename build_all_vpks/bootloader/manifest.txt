@@ -1,0 +1,18 @@
+LilithOS LilithOS Bootloader VPK
+===============================
+
+Title: LilithOS Bootloader
+Title ID: LILITHBOOT
+Version: 1.0.0
+Category: application
+
+Description:
+LilithOS LilithOS Bootloader component for PlayStation Vita.
+
+Installation:
+1. Copy VPK to ux0:/VPKS/
+2. Install via VitaShell
+3. Run from LiveArea
+
+Author: LilithOS Development Team
+License: MIT

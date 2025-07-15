@@ -1,0 +1,21 @@
+LilithOS Voice Daemon VPK
+=========================
+
+Title: LilithOS Voice Daemon
+Title ID: LILITHVOICE
+Version: 1.0.0
+Category: application
+
+Description:
+Quantum-detailed voice synthesis system for LilithOS.
+Provides TTS, signal-to-speech mapping, and event whisperer integration.
+
+Features:
+- Text-to-Speech synthesis with multiple backends
+- Signal-to-speech mapping for system events
+- Event whisperer integration for real-time feedback
+- Audio output management with voice profiles
+- Phrase scripting for customizable responses
+
+Author: LilithOS Development Team
+License: MIT

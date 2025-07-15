@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<livearea>
+    <bg>
+        <image>assets/bg.png</image>
+    </bg>
+    <icon>
+        <image>assets/icon.png</image>
+    </icon>
+    <title>
+        <text>LilithOS WhispurrNet</text>
+    </title>
+    <description>
+        <text>Bluetooth mesh networking daemon</text>
+    </description>
+    <info>
+        <text>Version 1.0.0</text>
+    </info>
+</livearea>

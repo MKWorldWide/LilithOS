@@ -66,10 +66,9 @@ ssh -i lilithos-key-new.pem ubuntu@54.165.89.110
 ```bash
 # 1. Update system and install dependencies
 sudo apt-get update
-sudo apt-get install -y git curl wget build-essential python3 python3-pip nodejs npm docker.io docker-compose nginx ufw fail2ban
+sudo apt-get install -y git curl wget build-essential python3 python3-pip nodejs npm nginx ufw fail2ban
 
 # 2. Start services
-sudo systemctl enable docker && sudo systemctl start docker
 sudo systemctl enable nginx && sudo systemctl start nginx
 sudo systemctl enable fail2ban && sudo systemctl start fail2ban
 
@@ -106,7 +105,6 @@ Once deployed, access LilithOS at:
 ```bash
 # Check service status
 sudo systemctl status nginx
-sudo systemctl status docker
 sudo systemctl status fail2ban
 
 # View logs

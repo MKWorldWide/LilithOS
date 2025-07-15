@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<livearea>
+    <bg>
+        <image>assets/bg.png</image>
+    </bg>
+    <icon>
+        <image>assets/icon.png</image>
+    </icon>
+    <title>
+        <text>LilithOS Bootloader</text>
+    </title>
+    <description>
+        <text>Dual-mode bootloader for PSP/Vita</text>
+    </description>
+    <info>
+        <text>Version 1.0.0</text>
+    </info>
+</livearea>

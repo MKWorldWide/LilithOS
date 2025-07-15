@@ -1,0 +1,18 @@
+LilithOS LilithOS Mesh Network VPK
+===============================
+
+Title: LilithOS Mesh Network
+Title ID: LILITHMESH
+Version: 1.0.0
+Category: application
+
+Description:
+LilithOS LilithOS Mesh Network component for PlayStation Vita.
+
+Installation:
+1. Copy VPK to ux0:/VPKS/
+2. Install via VitaShell
+3. Run from LiveArea
+
+Author: LilithOS Development Team
+License: MIT
