@@ -31,6 +31,7 @@ config/private.json
 
 # Logs and temporary files
 *.log
+!codex/index.log
 *.tmp
 *.temp
 .cache/
