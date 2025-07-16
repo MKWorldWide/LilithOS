@@ -1,0 +1,6 @@
+{
+  "default": { "voice": "quiet", "theme": "dark" },
+  "obsidian": { "voice": "cold", "theme": "grayscale" },
+  "scarlet": { "voice": "flirtatious", "theme": "red mist" },
+  "eclipse": { "voice": "divine", "theme": "celestial gold" }
+}
