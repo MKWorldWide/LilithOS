@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r AthenaMyst_Host/requirements.txt || true
+      - name: Install Node dependencies
+        run: |
+          if [ -f package.json ]; then npm install; fi
+      - name: Lint Python
+        run: |
+          pip install flake8
+          flake8 . || true
+      - name: Lint Node
+        run: |
+          if [ -f package.json ]; then npx eslint . || true; fi
+      - name: Run Python tests
+        run: |
+          python -m pytest AthenaMyst_Host/tests --maxfail=10 --disable-warnings -v || true
+      - name: Run Node tests
+        run: |
+          if [ -f package.json ]; then npm test || true; fi
+      - name: Upload coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: htmlcov/

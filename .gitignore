@@ -1,120 +1,51 @@
-<<<<<<< HEAD
-# LilithOS Git Ignore File
-# Excludes sensitive files and build artifacts
-
-# Build artifacts
-build/
-dist/
-*.o
-*.a
+# Python
+__pycache__/
+*.py[cod]
 *.so
-*.dll
-*.exe
-*.nro
-*.nca
-*.nso
-*.elf
-
-# Switch-specific files (keep private)
-switch/homebrew/lilithos_app/lilithos_app.nro
-switch/homebrew/lilithos_app/source/
-switch/homebrew/lilithos_app/Makefile
-switch/homebrew/lilithos_app/README.md
-switch/homebrew/lilithos_app/LICENSE
-
-# Configuration files with sensitive data
-config/secrets.yaml
-config/private.json
-*.key
-*.pem
-*.p12
-
-# Logs and temporary files
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
 *.log
-!codex/index.log
-*.tmp
-*.temp
-.cache/
-logs/
 
-# IDE and editor files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
+# Virtual environments
+.venv/
+venv/
+ENV/
 
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# Package manager files
+# Node
 node_modules/
-vendor/
+
+# macOS
+.DS_Store
+
+# Test & coverage
+.coverage
+coverage/
+htmlcov/
+.pytest_cache/
+
+# Environment
+.env
+.env.*
+
+# CI/CD
+*.pid
 *.lock
 
-# Backup files
+# Submodules
+.gitmodules
+.git/
+
+# Editor
+.idea/
+.vscode/
+
+# Misc
+*.swp
 *.bak
-*.backup
-*.old
+*.tmp
 
-# Test files
-test_results/
-coverage/
-
-# Documentation that might be sensitive
-docs/SWITCH-DRIVE-PREPARATION.md
-docs/LEGAL-HOMEBREW-GUIDE.md
-
-# Scripts that might be sensitive
-scripts/prepare_switch_drive.sh
-scripts/prepare_switch_drive.ps1
-scripts/prepare_switch_drive.bat
-scripts/install_lilithos_app.sh
-scripts/build_switch_sd.sh
-scripts/build_switch_sd_macos.sh
-
-# Private modules
-modules/chips/nintendo-switch/
-modules/features/joycon/
-
-# Memory and scratch files
-@memories.md
-@lessons-learned.md
-@scratchpad.md
-docs/memories.md
-docs/lessons-learned.md
-docs/scratchpad.md
-
-=======
->>>>>>> master
-#amplify-do-not-edit-begin
-amplify/\#current-cloud-backend
-amplify/.config/local-*
-amplify/logs
-amplify/mock-data
-amplify/mock-api-resources
-amplify/backend/amplify-meta.json
-amplify/backend/.temp
-build/
-dist/
-node_modules/
-aws-exports.js
-awsconfiguration.json
-amplifyconfiguration.json
-amplifyconfiguration.dart
-amplify-build-config.json
-amplify-gradle-config.json
-amplifytools.xcconfig
-.secret-*
-**.sample
-<<<<<<< HEAD
-#amplify-do-not-edit-end
-=======
-#amplify-do-not-edit-end
->>>>>>> master
+# Ignore local config
+config.local.*
