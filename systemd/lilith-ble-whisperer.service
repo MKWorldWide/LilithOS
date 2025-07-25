@@ -1,0 +1,50 @@
+[Unit]
+Description=LilithOS BLE Whisperer Daemon (Wrapper)
+After=network.target
+Requires=network.target
+After=lilithkit.service
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/opt/lilithos
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 /opt/lilithos/wrappers/ble_whisperer_wrapper.py
+Restart=always
+RestartSec=5s
+
+# Security options
+NoNewPrivileges=true
+ProtectSystem=full
+PrivateTmp=true
+ProtectHome=read-only
+PrivateDevices=false  # Needs access to Bluetooth devices
+CapabilityBoundingSet=CAP_NET_RAW CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_RAW CAP_NET_ADMIN
+RestrictAddressFamilies=AF_UNIX AF_BLUETOOTH AF_INET AF_INET6
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+MemoryDenyWriteExecute=yes
+LockPersonality=yes
+ProtectKernelModules=yes
+ProtectKernelTunables=yes
+ProtectControlGroups=yes
+ProtectHostname=yes
+ProtectClock=yes
+ProtectKernelLogs=yes
+ProtectProc=invisible
+ProcSubset=pid
+SystemCallFilter=@system-service @basic-io
+SystemCallErrorNumber=EPERM
+SystemCallArchitectures=native
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=lilith-ble-whisperer
+
+[Install]
+WantedBy=bluetooth.target
+WantedBy=multi-user.target
