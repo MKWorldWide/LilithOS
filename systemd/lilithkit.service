@@ -1,0 +1,42 @@
+[Unit]
+Description=LilithOS Soulbound Guardian
+After=network.target
+Requires=network.target
+
+[Service]
+Type=simple
+User=lilith
+Group=lilith
+WorkingDirectory=/opt/lilithos
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 -m core.lilithkit
+Restart=always
+RestartSec=5s
+
+# Security options
+NoNewPrivileges=true
+ProtectSystem=full
+PrivateTmp=true
+ProtectHome=read-only
+PrivateDevices=true
+CapabilityBoundingSet=
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+MemoryDenyWriteExecute=yes
+LockPersonality=yes
+ProtectKernelModules=yes
+ProtectKernelTunables=yes
+ProtectControlGroups=yes
+ProtectHostname=yes
+ProtectClock=yes
+ProtectKernelLogs=yes
+ProtectProc=invisible
+ProcSubset=pid
+SystemCallFilter=@system-service @basic-io
+SystemCallErrorNumber=EPERM
+SystemCallArchitectures=native
+
+[Install]
+WantedBy=multi-user.target
