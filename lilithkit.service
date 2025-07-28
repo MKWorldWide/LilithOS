@@ -1,0 +1,48 @@
+[Unit]
+Description=LilithOS Core Daemon
+After=network.target
+Requires=network.target
+
+[Service]
+Type=simple
+User=lilith
+Group=lilith
+WorkingDirectory=/opt/lilithos
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONPATH=/opt/lilithos
+ExecStart=/usr/bin/python3 -m lilithkit --config /etc/lilith/athena.json
+Restart=always
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=lilithkit
+
+# Security options
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+RestrictNamespaces=true
+RestrictRealtime=true
+SystemCallFilter=@system-service @aio @chown @keyring @memlock @process @setuid @timer
+CapabilityBoundingSet=
+DeviceAllow=/dev/null rw
+DeviceAllow=/dev/urandom r
+DeviceAllow=/dev/random r
+DeviceAllow=/dev/zero r
+DeviceAllow=/dev/pts/ rw
+DeviceAllow=/dev/tty rw
+DeviceAllow=/dev/console rw
+
+# Resource limits
+LimitNOFILE=65535
+LimitNPROC=65535
+LimitMEMLOCK=infinity
+
+[Install]
+WantedBy=multi-user.target

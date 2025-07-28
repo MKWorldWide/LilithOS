@@ -1,0 +1,56 @@
+{
+  "host": "0.0.0.0",
+  "port": 9001,
+  "shared_secret": "37ae06c82c5b9b5dde14b1af9252d19eb33a32e622ff834393c5b6b8aa2ba896",
+  "auth_timeout": 5.0,
+  "max_message_size": 1048576,
+  "heartbeat_interval": 60,
+  "metrics_interval": 300,
+  "log_level": "info",
+  "allowed_ips": [
+    "127.0.0.1"
+  ],
+  "enable_metrics": true,
+  "enable_heartbeat": true,
+  "rpc_timeout": 30,
+  "max_retries": 3,
+  "retry_delay": 1.0,
+  "token_rotation_days": 7,
+  "last_rotated": null,
+  "next_rotation": null,
+  "features": {
+    "mist_response": true,
+    "bidirectional_memory": true,
+    "broadcast_presence": true,
+    "blockchain_logging": false
+  },
+  "endpoints": {
+    "athena_core": "http://localhost:9000",
+    "metrics": "/api/v1/metrics",
+    "heartbeat": "/api/v1/heartbeat"
+  },
+  "security": {
+    "require_client_auth": true,
+    "allowed_ciphers": [
+      "aes-256-gcm"
+    ],
+    "min_tls_version": "1.2",
+    "hsts_enabled": true,
+    "csp_enabled": true
+  },
+  "logging": {
+    "level": "info",
+    "file": "/var/log/lilith/divine_bus.log",
+    "max_size": 10485760,
+    "backup_count": 5,
+    "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  },
+  "alerts": {
+    "enabled": true,
+    "email": "alerts@example.com",
+    "slack_webhook": "",
+    "pagerduty_key": "",
+    "min_severity": "warning"
+  },
+  "version": "1.0.0"
+}
