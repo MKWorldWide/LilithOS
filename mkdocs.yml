@@ -1,0 +1,10 @@
+site_name: LilithOS
+site_url: https://LilithOS.SolarKhan.github.io
+nav:
+  - Home: index.md
+  - Divine Law: divine-law.md
+docs_dir: docs
+theme:
+  name: mkdocs
+extra:
+  banner: Solar Khan sigil + Codex watermark
