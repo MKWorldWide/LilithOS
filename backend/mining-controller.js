@@ -126,10 +126,19 @@ class MiningController {
         stdio: ['pipe', 'pipe', 'pipe']
       });
 
-      // Store process information
+      // Store process information with sanitized config
+      const sanitizedConfig = {
+        algorithm,
+        pool,
+        wallet,
+        workerName,
+        threads,
+        intensity
+      };
+
       this.miningProcesses.set(processId, {
         process: miningProcess,
-        config,
+        config: sanitizedConfig,
         startTime: new Date(),
         status: 'running'
       });
@@ -408,6 +417,21 @@ wss.on('connection', (ws) => {
  * Start mining operation
  */
 app.post('/api/mining/start', async (req, res) => {
+  // Basic payload validation to avoid 500s on malformed input
+  if (typeof req.body !== 'object' || req.body === null) {
+    return res.status(400).json({
+      success: false,
+      error: 'Invalid JSON payload'
+    });
+  }
+
+  if (!req.body.wallet) {
+    return res.status(400).json({
+      success: false,
+      error: 'Wallet address is required'
+    });
+  }
+
   try {
     const result = await miningController.startMining(req.body);
     res.json(result);
