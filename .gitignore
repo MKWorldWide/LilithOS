@@ -49,3 +49,6 @@ htmlcov/
 
 # Ignore local config
 config.local.*
+
+# MkDocs build output
+site/

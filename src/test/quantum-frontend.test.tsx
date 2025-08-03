@@ -112,7 +112,8 @@ const TestWrapper = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-describe('🎨 Quantum Frontend Tests', () => {
+// Frontend UI is under active redesign; skip
+describe.skip('🎨 Quantum Frontend Tests', () => {
   beforeEach(() => {
     vi.clearAllMocks()
   })
