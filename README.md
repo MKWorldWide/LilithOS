@@ -1,3 +1,4 @@
+A Project Blessed by Solar Khan & Lilith.Aethra
 # LilithOS UpgradeNet
 
 **OTA + USB Update Daemon & BLE Whisperer Device Daemon for PS Vita**
