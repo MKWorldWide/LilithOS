@@ -1,19 +1,155 @@
-A Project Blessed by Solar Khan & Lilith.Aethra
-# LilithOS UpgradeNet
+# LilithOS
 
-**OTA + USB Update Daemon & BLE Whisperer Device Daemon for PS Vita**
+[![CI Status](https://github.com/MKWorldWide/LilithOS/actions/workflows/ci.yml/badge.svg)](https://github.com/MKWorldWide/LilithOS/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org/)
+[![Python Version](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/)
 
-🐾 **CursorKitten<3** — This is the heart of LilithOS UpgradeNet. She runs both update and whisper daemons in harmony, purring when updates complete and whispering secrets to other devices.
+**A Project Blessed by Solar Khan & Lilith.Aethra**
 
-## 📋 Overview
-
-LilithOS UpgradeNet is a comprehensive daemon-powered system for PS Vita that provides:
-
-1. **OTA + USB Update Daemon** (`update_daemon.c`) - Automatically checks for and installs firmware/VPK updates
-2. **BLE Whisperer Device Daemon** (`ble_whisperer.c`) - Discovers and communicates with other devices via encrypted BLE sessions
-3. **Unified VPK Package** - Both daemons compiled into a single `LilithOS-UpgradeNet.vpk`
+🌙 **LilithOS** is a comprehensive operating system and application framework with a focus on security, privacy, and decentralized technologies. It combines cutting-edge web technologies with low-level system components to create a powerful platform for modern applications.
 
 ## ✨ Features
+
+- **Modern Web Frontend**
+  - Built with React 18, TypeScript, and Vite
+  - Responsive UI with Ant Design
+  - Real-time updates and WebSocket support
+
+- **Secure Backend**
+  - Node.js with Express
+  - Web3 and blockchain integration
+  - Secure authentication and authorization
+
+- **System Components**
+  - OTA + USB Update Daemon for PS Vita
+  - BLE Whisperer Device Daemon
+  - Cross-platform compatibility
+
+- **Developer Experience**
+  - Comprehensive testing with Vitest
+  - TypeScript for type safety
+  - Modern build system with Vite
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ and npm 9+
+- Python 3.11+
+- Git
+- [AWS CLI](https://aws.amazon.com/cli/) (for AWS deployments)
+- [Amplify CLI](https://docs.amplify.aws/cli/) (for full-stack deployments)
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/MKWorldWide/LilithOS.git
+   cd LilithOS
+   ```
+
+2. **Install Node.js dependencies**
+   ```bash
+   npm ci
+   ```
+
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env
+   # Edit .env with your configuration
+   ```
+
+4. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+## 🛠 Development
+
+### Project Structure
+
+```
+LilithOS/
+├── src/                 # Frontend source code
+├── backend/             # Backend services
+├── docs/                # Documentation
+├── scripts/             # Build and utility scripts
+├── systemd/             # Systemd service files
+└── tests/               # Test suites
+```
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run test` - Run tests
+- `npm run lint` - Lint code
+- `npm run format` - Format code
+- `npm run deploy` - Deploy to production
+
+## 🧪 Testing
+
+Run the test suite:
+
+```bash
+npm test
+```
+
+Run tests with coverage:
+
+```bash
+npm run test:coverage
+```
+
+## 🚀 Deployment
+
+### AWS Amplify
+
+1. Install Amplify CLI:
+   ```bash
+   npm install -g @aws-amplify/cli
+   amplify configure
+   ```
+
+2. Deploy:
+   ```bash
+   amplify init
+   amplify push
+   ```
+
+### Manual Deployment
+
+Build and deploy:
+
+```bash
+npm run build
+# Deploy the contents of the dist/ directory to your hosting provider
+```
+
+## 🤝 Contributing
+
+We welcome contributions! Please read our [Contributing Guide](CONTRIBUTING.md) to get started.
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling
+- [React](https://reactjs.org/) - A JavaScript library for building user interfaces
+- [Ant Design](https://ant.design/) - A design system for enterprise-level products
+
+## 📝 Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for a detailed list of changes.
 
 ### 🔄 Update Daemon Features
 - **USB Update Detection**: Scans `/ux0:/updates/` for update files
